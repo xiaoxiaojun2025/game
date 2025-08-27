@@ -5,14 +5,21 @@ var config=JSON.parse(localStorage.getItem("LA-config-"+localStorage.getItem("LA
 class game{
     constructor(){
         this.status="running";
-        document.getElementsByClassName("canvasContainer")[0].style.width=gameWidth+"px";
-        document.getElementsByClassName("canvasContainer")[0].style.height=gameHeight+"px";
         this.createCanvas();
+        this.initContainer();
+        this.storage=new bag(5000);
+        this.bag=new bag(50);
         this.changeMap(ateliter);
         this.PauseButtonGroup=new pauseButtonGroup(this);
         this.input=new inputManager;
         this.Lilies=new lilies(gameWidth,gameHeight,document.getElementById("Lilies"),gameWidth/2,0,0.2,0.25);
         this.animate=this.animate.bind(this);
+    }
+    initContainer(){
+        document.getElementsByClassName("canvasContainer")[0].style.width=gameWidth+"px";
+        document.getElementsByClassName("canvasContainer")[0].style.height=gameHeight+"px"
+        document.getElementsByClassName("innerCanvasContainer")[0].style.width=gameWidth*0.7+"px"
+        document.getElementsByClassName("innerCanvasContainer")[0].style.height=gameHeight*0.7+"px";
     }
     createCanvas(){
         this.gameCanvas=document.getElementById("canvas1");
