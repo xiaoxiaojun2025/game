@@ -1,0 +1,131 @@
+class entity{
+    constructor(gameWidth,gameHeight,img,x,y,width,height){
+        this.gameWidth=gameWidth;
+        this.gameHeight=gameHeight;
+        this.img=img;
+        this.vx=0;
+        this.vy=0;
+        this.frameX=0;
+        this.frameY=0;
+        this.weight=0;
+        this.spriteWidth=0;
+        this.spriteHeight=0;
+        this.width=width;
+        this.height=height;
+        this.x=x;
+        this.y=y;
+    }
+    update(){
+        this.x+=this.vx;
+        this.y+=this.vy;
+    }
+    draw(ctx){
+        ctx.drawImage(this.img,this.spriteWidth*this.frameX,this.spriteHeight*this.frameY,this.spriteWidth,this.spriteHeight,this.x,this.y,this.width,this.height);
+    }
+    setX(x){
+        this.x=x;
+    }
+    setY(y){
+        this.y=y;
+    }
+}
+class lilies extends entity{
+    constructor(gameWidth,gameHeight,img,x,y,width,height){
+        super(gameWidth,gameHeight,img,x,y,0,0);
+        this.spriteWidth=825;
+        this.spriteHeight=824;
+        this.width=Math.floor(this.spriteWidth*width);
+        this.height=Math.floor(this.spriteHeight*height);
+        this.weight=0.6;
+    }
+    update(input,hitboxGroup){
+        var config=JSON.parse(localStorage.getItem("LA-config-"+localStorage.getItem("LA-username")));
+        var isOnFloor=false;
+        var originX=this.x;
+        var originY=this.y;
+        super.update();
+        hitboxGroup.forEach(hitbox=>{
+            if(this.y<=hitbox.y+hitbox.height&&this.y+this.height>=hitbox.y&&this.x+this.width>hitbox.x&&this.x<hitbox.x+hitbox.width){
+                if(originX+this.width<=hitbox.x){
+                    this.vx=0;
+                    this.x=hitbox.x-this.width;
+                }
+                if(originX>=hitbox.x+hitbox.width){
+                    this.vx=0;
+                    this.x=hitbox.x+hitbox.width;
+                }
+                if(originY>=hitbox.y+hitbox.height){
+                    this.vy=0;
+                }
+                if(originY+this.height<=hitbox.y){
+                    this.vy=0;
+                    isOnFloor=true;
+                    this.y=hitbox.y-this.height;
+                }
+            }
+        });
+        if(input.key.indexOf(config.left)>-1){
+            this.vx=-2;
+        }
+        else if(input.key.indexOf(config.right)>-1){
+            this.vx=2;
+        }
+        else{
+            this.vx=0;
+        }
+        if(input.key.indexOf(config.jump)>-1&&isOnFloor){
+            this.vy-=20;
+        }
+        else if(!isOnFloor){
+            this.vy+=this.weight;
+        }
+        else{
+            this.vy=0;
+        }
+    }
+}
+class door extends entity{
+    constructor(gameWidth,gameHeight,x,y,width,height,destinationMap,destinationX,destinationY){
+        super(gameWidth,gameHeight,0,x,y,width,height);
+        this.destinationMap=destinationMap;
+        this.destinationX=destinationX;
+        this.destinationY=destinationY;
+    }
+    update(game,lilies,input){
+        if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            var config=JSON.parse(localStorage.getItem("LA-config-"+localStorage.getItem("LA-username")));
+            if(input.key.indexOf(config.interact)>-1){
+                game.changeMap(eval(this.destinationMap));
+                lilies.setX(this.destinationX);
+                lilies.setY(this.destinationY);
+            }
+        }
+    }
+    draw(){}
+}
+class pot extends entity{
+    constructor(gameWidth,gameHeight,img,x,y,width,height){
+        super(gameWidth,gameHeight,img,x,y,width,height);
+        this.spriteWidth=825;
+        this.spriteHeight=824;
+        this.width=Math.floor(this.spriteWidth*width);
+        this.height=Math.floor(this.spriteHeight*height);
+    }
+    update(game,lilies,input){
+        if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            var config=JSON.parse(localStorage.getItem("LA-config-"+localStorage.getItem("LA-username")));
+            if(input.key.indexOf(config.interact)>-1){
+                
+            }
+        }
+    }
+}
+class hitbox{
+    constructor(x,y,width,height){
+        this.x=x;
+        this.y=y;
+        this.width=width;
+        this.height=height;
+    }
+    draw(){};
+}

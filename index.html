@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="./icon.ico">
+        <title>Lilies' atelier</title>
+        <link rel="stylesheet" type="text/css" href="./css/index.css">
+    </head>
+    <body class="background">
+        <div class="logo">
+            <img src="./img/logo.png" width="10%" height="10%" alt="logo">
+        </div>
+        <div style="margin: 5vh auto;text-align: center;position: relative;">
+            <div class="index-button" onclick="window.location.href='./html/game.html'">新的游戏</div>
+            <div class="index-button"><a href="https://www.baidu.com">继续游戏</a></div>
+            <div class="index-button"><a href="https://www.baidu.com">成就</a></div>
+            <div class="index-button"><a href="https://www.baidu.com">关于</a></div>
+            <div class="index-button"><a href="https://www.baidu.com">设置</a></div>
+            <div class="index-button" onclick="logout()">退出登录</div>
+        </div>
+        <script>
+            window.onload=function(){
+                if(!localStorage.getItem("LA-username")){
+                    window.location.href="./html/login.html";
+                    return;
+                }
+                var user=localStorage.getItem("LA-username");
+                if(!localStorage.getItem("LA-config-"+user)){
+                    var config={
+                        "up":"w",
+                        "left":"a",
+                        "down":"s",
+                        "right":"d",
+                        "jump":" ",
+                        "interact":"e",
+                        "run":"Shift"
+                    }
+                    localStorage.setItem("LA-config-"+user,JSON.stringify(config));
+                }
+            }
+            function logout(){
+                localStorage.removeItem("LA-username");
+                window.location.href="./html/login.html";
+            }
+        </script>
+    </body>
+</html>

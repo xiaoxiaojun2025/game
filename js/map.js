@@ -1,0 +1,51 @@
+class map{
+    constructor(map){
+        this.src=map;
+        this.entityGroup=[];
+        this.src.entity.forEach(e=>{
+            this.entityGroup.push(e);
+        });
+    }
+}
+
+const ateliter={
+    "background":"",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,0,80,720]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1200,0,80,720]
+        },
+        {
+            "type":"door",
+            "destinationMap":"A",
+            "destinationX":320,
+            "destinationY":0,
+            "hitbox":[1040,320,240,320]
+        }
+    ]
+}
+const A={
+    "background":"",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,0,80,720]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1200,0,80,720]
+        },
+    ]
+}
