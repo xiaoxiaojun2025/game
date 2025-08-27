@@ -12,8 +12,20 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    padding: 30px 20px;
     border-radius: 10%;
     background-color: rgba(255, 255, 255, 0.5);
+}
+.itemContainer{
+    position: relative;
+    display: inline-block;
+    background-color: rgba(247, 203, 83, 0.8);
+    border-radius: 5%;
+    top: 8px;
+    left: 6px;
+    width: 70px;
+    height: 110px;
+    text-align: center;
 }
 #canvas1{
     background-color: blue;
@@ -29,8 +41,8 @@ body{
     left: 0;
     background-image: linear-gradient(to right,white,rgba(0,0,0,0));
     text-align: left;
-    height: 5vh;
-    width: 40vw;
+    height: 5%;
+    width: 40%;
     font-size: 1.5em;
     user-select: none;
     z-index: 10;

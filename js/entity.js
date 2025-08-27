@@ -94,12 +94,6 @@ class door extends entity{
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
             if(input.key.indexOf(config.interact)>-1){
                 game.changeMap(eval(this.destinationMap));
-                if(this.destinationMap.name=="ateliter"){
-                    document.getElementById("bag").innerHTML="材料箱";
-                }
-                else{
-                    document.getElementById("bag").innerHTML="采集篮";
-                }
                 lilies.setX(this.destinationX);
                 lilies.setY(this.destinationY);
             }

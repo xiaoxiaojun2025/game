@@ -9,6 +9,7 @@ class game{
         this.initContainer();
         this.storage=new bag(5000);
         this.bag=new bag(50);
+        this.storage.putin(this.bag);
         this.changeMap(ateliter);
         this.PauseButtonGroup=new pauseButtonGroup(this);
         this.input=new inputManager;
@@ -33,6 +34,12 @@ class game{
         this.hitboxEntity=[];
         this.noHitboxEntity=[];
         this.createEntities();
+        if(this.Map.name=="ateliter"){
+            document.getElementById("bag").innerHTML="材料箱";
+        }
+        else{
+            document.getElementById("bag").innerHTML="采集篮";
+        }
     }
     createEntities(){
         this.Map.entityGroup.forEach(e=>{

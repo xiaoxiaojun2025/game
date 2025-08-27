@@ -4,17 +4,17 @@ class bag{
         this.init();
     }
     putin(otherBag){
-        for(var key in otherBag.item){
-            this.item[key]+=otherBag.item[key];
-            otherBag.item[key]=0;
-        }
+        this.item.forEach((item,index)=>{
+            item.amount+=otherBag.item[index].amount;
+            otherBag.item[index].amount=0;
+        });
     }
     init(){
         this.item=[
             {
                 "name":"饮用水",
                 "img":"",
-                "amount":0
+                "amount":1
             }
         ]
     }
