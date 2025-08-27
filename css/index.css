@@ -24,6 +24,7 @@
     background-repeat: no-repeat;
     background-image: linear-gradient(to right,rgba(0,0,0,0),white,rgba(0,0,0,0));
     transition: 0.5s;
+    user-select: none;
 }
 .index-button:hover{
     background-size: 100%;

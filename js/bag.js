@@ -1,14 +1,21 @@
 class bag{
     constructor(size){
         this.size=size;
-        this.item={
-            "饮用水":0
-        }
+        this.init();
     }
     putin(otherBag){
         for(var key in otherBag.item){
             this.item[key]+=otherBag.item[key];
             otherBag.item[key]=0;
         }
+    }
+    init(){
+        this.item=[
+            {
+                "name":"饮用水",
+                "img":"",
+                "amount":0
+            }
+        ]
     }
 }

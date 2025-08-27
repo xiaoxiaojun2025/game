@@ -1,10 +1,29 @@
 body{
     background-color: black;
 }
+.canvasContainer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
 #canvas1{
     background-color: blue;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    z-index: -1;
+}
+.pauseButton{
+    position: relative;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right,white,rgba(0,0,0,0));
+    text-align: left;
+    height: 5vh;
+    width: 40vw;
+    font-size: 1.5em;
+    user-select: none;
+    z-index: 10;
 }

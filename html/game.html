@@ -9,10 +9,15 @@
         <script src="../js/entity.js"></script>
         <script src="../js/map.js"></script>
         <script src="../js/bag.js"></script>
+        <script src="../js/button.js"></script>
         <script src="../js/game.js"></script>
     </head>
     <body>
-        <canvas id="canvas1"></canvas>
-        <img src="../img/logo.png" hidden id="Lilies">
+        <div class="canvasContainer">
+            <div class="pauseButton" style="display: none;" id="continue">继续游戏</div>
+            <div class="pauseButton" style="display: none;" id="bag"></div>
+            <canvas id="canvas1"></canvas>
+            <img src="../img/logo.png" hidden id="Lilies">
+        </div>
     </body>
 </html>

@@ -39,7 +39,6 @@ class lilies extends entity{
         this.weight=0.6;
     }
     update(input,hitboxGroup){
-        var config=JSON.parse(localStorage.getItem("LA-config-"+localStorage.getItem("LA-username")));
         var isOnFloor=false;
         var originX=this.x;
         var originY=this.y;
@@ -93,9 +92,14 @@ class door extends entity{
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
-            var config=JSON.parse(localStorage.getItem("LA-config-"+localStorage.getItem("LA-username")));
             if(input.key.indexOf(config.interact)>-1){
                 game.changeMap(eval(this.destinationMap));
+                if(this.destinationMap.name=="ateliter"){
+                    document.getElementById("bag").innerHTML="材料箱";
+                }
+                else{
+                    document.getElementById("bag").innerHTML="采集篮";
+                }
                 lilies.setX(this.destinationX);
                 lilies.setY(this.destinationY);
             }
@@ -113,7 +117,6 @@ class pot extends entity{
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
-            var config=JSON.parse(localStorage.getItem("LA-config-"+localStorage.getItem("LA-username")));
             if(input.key.indexOf(config.interact)>-1){
                 
             }

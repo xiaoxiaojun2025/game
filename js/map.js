@@ -1,5 +1,6 @@
 class map{
     constructor(map){
+        this.name=map.name
         this.src=map;
         this.entityGroup=[];
         this.src.entity.forEach(e=>{
@@ -9,6 +10,7 @@ class map{
 }
 
 const ateliter={
+    "name":"ateliter",
     "background":"",
     "entity":[
         {
@@ -33,6 +35,7 @@ const ateliter={
     ]
 }
 const A={
+    "name":"A",
     "background":"",
     "entity":[
         {
