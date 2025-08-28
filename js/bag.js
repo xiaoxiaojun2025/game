@@ -18,4 +18,19 @@ class bag{
             }
         ]
     }
+    addItem(name,amount){
+        this.item.forEach(i=>{
+            if(i.name==name){
+                i.amount+=amount;
+            }
+        });
+    }
+    subItem(name,amount){
+        this.item.forEach(i=>{
+            if(i.name==name){
+                i.amount-=amount;
+                if(i.amount<0) i.amount=0;
+            }
+        });
+    }
 }

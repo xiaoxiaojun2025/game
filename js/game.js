@@ -10,6 +10,7 @@ class game{
         this.storage=new bag(5000);
         this.bag=new bag(50);
         this.storage.putin(this.bag);
+        this.Talk=new talk;
         this.changeMap(ateliter);
         this.PauseButtonGroup=new pauseButtonGroup(this);
         this.input=new inputManager;
@@ -31,8 +32,7 @@ class game{
     changeMap(newMap){
         this.Map=new map(newMap);
         //this.gameCanvas.style.backgroundImage="url('img/map/'+newMap.background)";
-        this.hitboxEntity=[];
-        this.noHitboxEntity=[];
+        this.Entity=[];
         this.createEntities();
         if(this.Map.name=="ateliter"){
             document.getElementById("bag").innerHTML="材料箱";
@@ -44,10 +44,13 @@ class game{
     createEntities(){
         this.Map.entityGroup.forEach(e=>{
             if(e.type=="hitbox"){
-                this.hitboxEntity.push(new hitbox(e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3]));
+                this.Entity.push(new hitbox(e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3]));
             }
             if(e.type=="door"){
-                this.noHitboxEntity.push(new door(gameWidth,gameHeight,e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.destinationMap,e.destinationX,e.destinationY));
+                this.Entity.push(new door(gameWidth,gameHeight,e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.destinationMap,e.destinationX,e.destinationY));
+            }
+            if(e.type=="text"){
+                this.Entity.push(new text(e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.text,e.once));
             }
         });
     }
@@ -61,15 +64,19 @@ class game{
         if(this.status=="running"){
             this.ctx.clearRect(0,0,gameWidth,gameHeight);
             this.Lilies.draw(this.ctx);
-            this.hitboxEntity.forEach(e=>{
+            this.Entity.forEach(e=>{
                 e.draw(this.ctx);
             });
-            this.noHitboxEntity.forEach(e=>{
-                e.draw(this.ctx);
-            });
-            this.Lilies.update(this.input,this.hitboxEntity);
-            this.noHitboxEntity.forEach(e=>{
+            this.Lilies.update(this.input,this.Entity);
+            this.Entity.forEach(e=>{
                 e.update(this,this.Lilies,this.input);
+            });
+        }
+        if(this.status=="talking"){
+            this.Entity.forEach(e=>{
+                if(e instanceof text){
+                    e.update(this,this.Lilies,this.input);
+                }
             });
         }
         requestAnimationFrame(this.animate);

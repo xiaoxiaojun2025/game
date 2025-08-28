@@ -31,6 +31,15 @@ const ateliter={
             "destinationX":320,
             "destinationY":0,
             "hitbox":[1040,320,240,320]
+        },
+        {
+            "type":"text",
+            "hitbox":[200,540,200,100],
+            "text":[
+                "测试1",
+                "测试2"
+            ],
+            "once":true
         }
     ]
 }

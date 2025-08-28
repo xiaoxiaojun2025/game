@@ -44,22 +44,24 @@ class lilies extends entity{
         var originY=this.y;
         super.update();
         hitboxGroup.forEach(hitbox=>{
-            if(this.y<=hitbox.y+hitbox.height&&this.y+this.height>=hitbox.y&&this.x+this.width>hitbox.x&&this.x<hitbox.x+hitbox.width){
-                if(originX+this.width<=hitbox.x){
-                    this.vx=0;
-                    this.x=hitbox.x-this.width;
-                }
-                if(originX>=hitbox.x+hitbox.width){
-                    this.vx=0;
-                    this.x=hitbox.x+hitbox.width;
-                }
-                if(originY>=hitbox.y+hitbox.height){
-                    this.vy=0;
-                }
-                if(originY+this.height<=hitbox.y){
-                    this.vy=0;
-                    isOnFloor=true;
-                    this.y=hitbox.y-this.height;
+            if(hitbox.hitbox){
+                if(this.y<=hitbox.y+hitbox.height&&this.y+this.height>=hitbox.y&&this.x+this.width>hitbox.x&&this.x<hitbox.x+hitbox.width){
+                    if(originX+this.width<=hitbox.x){
+                        this.vx=0;
+                        this.x=hitbox.x-this.width;
+                    }
+                    if(originX>=hitbox.x+hitbox.width){
+                        this.vx=0;
+                        this.x=hitbox.x+hitbox.width;
+                    }
+                    if(originY>=hitbox.y+hitbox.height){
+                        this.vy=0;
+                    }
+                    if(originY+this.height<=hitbox.y){
+                        this.vy=0;
+                        isOnFloor=true;
+                        this.y=hitbox.y-this.height;
+                    }
                 }
             }
         });
@@ -89,6 +91,7 @@ class door extends entity{
         this.destinationMap=destinationMap;
         this.destinationX=destinationX;
         this.destinationY=destinationY;
+        this.hitbox=false;
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
@@ -108,11 +111,24 @@ class pot extends entity{
         this.spriteHeight=824;
         this.width=Math.floor(this.spriteWidth*width);
         this.height=Math.floor(this.spriteHeight*height);
+        this.hitbox=false;
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
             if(input.key.indexOf(config.interact)>-1){
-                
+                game.status="paused";
+                document.getElementsByClassName("innerCanvasContainer")[0].style.display="block";
+                document.getElementById("continue").style.display="block";
+                document.getElementById("continue").innerHTML="返回";
+                document.getElementById("continue").onclick=function(){
+                    document.getElementsByClassName("innerCanvasContainer")[0].style.display="none";
+                    document.getElementsByClassName("innerCanvasContainer")[0].innerHTML="";
+                    document.getElementById("continue").innerHTML="继续游戏";
+                    document.getElementById("continue").onclick=function(){
+                        game.status="running";
+                        document.getElementById("continue").style.display="none";
+                    };
+                };
             }
         }
     }
@@ -123,6 +139,50 @@ class hitbox{
         this.y=y;
         this.width=width;
         this.height=height;
+        this.hitbox=true;
     }
-    draw(){};
+    draw(){}
+    update(){}
+}
+class text extends hitbox{
+    constructor(x,y,width,height,text,once){
+        super(x,y,width,height);
+        this.hitbox=false;
+        this.once=once;
+        this.text=text;
+        this.index=0;
+    }
+    update(game,lilies=undefined,input){
+        if(this.y<=game.Lilies.y+game.Lilies.height&&this.y+this.height>=game.Lilies.y&&this.x+this.width>game.Lilies.x&&this.x<game.Lilies.x+game.Lilies.width){
+            game.status="talking";
+            if(input.key.indexOf(config.interact)>-1){
+                if(this.index>=this.text.length||game.Talk.index>=this.text[this.index].length){
+                    if(this.index>=this.text.length){
+                        if(this.once){
+                            game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(this),1);
+                            game.Entity.splice(game.Entity.indexOf(this),1);
+                        }
+                        game.Talk.clear();
+                        game.Talk.hide();
+                        game.status="running";
+                        console.log(this.index);
+                    }
+                    else{
+                        if(game.Talk.displayed){
+                            this.index++;
+                            game.Talk.clear();
+                        }
+                    }
+                }
+                else{
+                    clearTimeout(game.Talk.timeout);
+                    game.Talk.display(this.text[this.index],4);
+                }
+            }
+            else{
+                clearTimeout(game.Talk.timeout);
+                game.Talk.display(this.text[this.index],2);
+            }
+        }
+    }
 }
