@@ -62,5 +62,6 @@ body{
     width: 40%;
     font-size: 1.5em;
     user-select: none;
+    font-family: "Lolita";
     z-index: 10;
 }

@@ -12,10 +12,11 @@ class game{
         this.storage.putin(this.bag);
         this.RecipeGroup=new recipeGroup;
         this.Talk=new talk;
-        this.changeMap(ateliter);
         this.PauseButtonGroup=new pauseButtonGroup(this);
         this.input=new inputManager;
         this.Lilies=new lilies(gameWidth,gameHeight,document.getElementById("Lilies"),gameWidth/2,0,0.2,0.25);
+        this.SaveManager=new saveManager(this);
+        this.SaveManager.load(this);
         this.animate=this.animate.bind(this);
     }
     initContainer(){

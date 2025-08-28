@@ -243,7 +243,6 @@ class text extends hitbox{
                 if(this.index>=this.text.length||game.Talk.index>=this.text[this.index].length){
                     if(this.index>=this.text.length){
                         if(this.once){
-                            console.log(game.Map.entityGroup.indexOf(this.TEXT))
                             game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(this.TEXT),1);
                             game.Entity.splice(game.Entity.indexOf(this),1);
                             globalThis[game.Map.name].entity=game.Map.entityGroup;

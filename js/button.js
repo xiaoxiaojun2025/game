@@ -34,8 +34,23 @@ class pauseButtonGroup{
             }
             else if(this.buttonGroup[e].id=="exit"){
                 this.buttonGroup[e].onclick=function(){
+                    game.SaveManager.save(game);
                     window.location.href="../index.html"
                 }
+            }
+            else if(this.buttonGroup[e].id=="save"){
+                this.buttonGroup[e].onclick=function(){
+                    game.SaveManager.save(game);
+                    game.status="running";
+                    this.hideAll();
+                }.bind(this);
+            }
+            else if(this.buttonGroup[e].id=="load"){
+                this.buttonGroup[e].onclick=function(){
+                    game.SaveManager.load(game);
+                    game.status="running";
+                    this.hideAll();
+                }.bind(this);
             }
             else if(this.buttonGroup[e].id=="bag"){
                 this.buttonGroup[e].innerHTML="材料箱";
