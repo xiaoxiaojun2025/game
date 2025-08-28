@@ -69,6 +69,15 @@ var A={
             "destinationX":320,
             "destinationY":0,
             "hitbox":[1040,320,240,320]
+        },
+        {
+            "type":"item",
+            "itemname":"饮用水",
+            "img":"item_img_1.png",
+            "amount":3,
+            "quality":[5,20,10],
+            "trait":["难喝","好喝",""],
+            "hitbox":[500,200,200,200]
         }
     ]
 }

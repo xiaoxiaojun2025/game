@@ -5,6 +5,7 @@ var config=JSON.parse(localStorage.getItem("LA-config-"+localStorage.getItem("LA
 class game{
     constructor(){
         this.status="running";
+        this.timer=0;
         this.createCanvas();
         this.initContainer();
         this.storage=new bag(5000);
@@ -14,7 +15,7 @@ class game{
         this.Talk=new talk;
         this.PauseButtonGroup=new pauseButtonGroup(this);
         this.input=new inputManager;
-        this.Lilies=new lilies(gameWidth,gameHeight,document.getElementById("Lilies"),gameWidth/2,0,0.2,0.25);
+        this.Lilies=new lilies(gameWidth,gameHeight,document.getElementById("Lilies"),gameWidth/2,0,0.2,0.2);
         this.SaveManager=new saveManager(this);
         this.SaveManager.load(this);
         this.animate=this.animate.bind(this);
@@ -32,6 +33,7 @@ class game{
         this.gameCanvas.height=gameHeight;
     }
     changeMap(newMap){
+        this.timer+=2;
         this.Map=new map(newMap);
         this.gameCanvas.style.backgroundImage="url(../img/map/"+newMap.background+")";
         this.Entity=[];
@@ -57,10 +59,13 @@ class game{
             if(e.type=="pot"){
                 this.Entity.push(new pot(gameWidth,gameHeight,document.getElementById("Lilies"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3]));
             }
+            if(e.type=="item"){
+                this.Entity.push(new item(gameWidth,gameHeight,document.getElementById("Lilies"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],50,50,e.itemname,e.amount,e.quality,e.trait));
+            }
         });
     }
     animate(){
-        if(this.input.key.indexOf("Tab")>-1){
+        if(this.input.key.indexOf(config.pause)>-1){
             if(this.status=="running"){
                 this.status="paused";
                 this.PauseButtonGroup.display();
@@ -68,10 +73,10 @@ class game{
         }
         if(this.status=="running"){
             this.ctx.clearRect(0,0,gameWidth,gameHeight);
-            this.Lilies.draw(this.ctx);
             this.Entity.forEach(e=>{
                 e.draw(this.ctx);
             });
+            this.Lilies.draw(this.ctx);
             this.Lilies.update(this.input,this.Entity);
             this.Entity.forEach(e=>{
                 e.update(this,this.Lilies,this.input);

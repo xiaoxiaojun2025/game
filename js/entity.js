@@ -32,8 +32,8 @@ class entity{
 class lilies extends entity{
     constructor(gameWidth,gameHeight,img,x,y,width,height){
         super(gameWidth,gameHeight,img,x,y,0,0);
-        this.spriteWidth=825;
-        this.spriteHeight=824;
+        this.spriteWidth=543;
+        this.spriteHeight=726;
         this.width=Math.floor(this.spriteWidth*width);
         this.height=Math.floor(this.spriteHeight*height);
         this.weight=0.6;
@@ -110,6 +110,9 @@ class door extends entity{
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
             if(input.key.indexOf(config.interact)>-1){
+                if(this.destinationMap=="ateliter"){
+                    game.storage.putin(game.bag);
+                }
                 game.changeMap(eval(this.destinationMap));
                 lilies.setX(this.destinationX);
                 lilies.setY(this.destinationY);
@@ -212,6 +215,26 @@ class pot extends entity{
                         game.PauseButtonGroup.hideAll();
                     }
                 }
+            }
+        }
+    }
+}
+class item extends entity{
+    constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,amount,quality,trait){
+        super(gameWidth,gameHeight,img,x,y,width,height);
+        this.spriteWidth=spriteWidth;
+        this.spriteHeight=spriteHeight;
+        this.name=name;
+        this.amount=amount;
+        this.quality=quality;
+        this.trait=trait;
+        this.hitbox=false;
+    }
+    update(game,lilies,input){
+        if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            if(input.key.indexOf(config.interact)>-1){
+                game.bag.addItem(this.name,this.amount,this.quality,this.trait);
+                game.Entity.splice(game.Entity.indexOf(this),1);
             }
         }
     }

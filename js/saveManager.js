@@ -21,12 +21,14 @@ class saveManager{
         this.pos=[game.Lilies.x,game.Lilies.y];
         this.position=game.Map.name;
         this.map=new saveMap;
+        this.timer=game.timer;
         localStorage.setItem("LA-save-"+this.username,true);
         localStorage.setItem("LA-save-"+this.username+"storage",JSON.stringify(this.storage));
         localStorage.setItem("LA-save-"+this.username+"bag",JSON.stringify(this.bag));
         localStorage.setItem("LA-save-"+this.username+"pos",JSON.stringify(this.pos));
         localStorage.setItem("LA-save-"+this.username+"position",JSON.stringify(this.position));
         localStorage.setItem("LA-save-"+this.username+"map",JSON.stringify(this.map));
+        localStorage.setItem("LA-save-"+this.username+"timer",JSON.stringify(this.timer));
     }
     load(game){
         this.storage=JSON.parse(localStorage.getItem("LA-save-"+this.username+"storage"));
@@ -34,6 +36,7 @@ class saveManager{
         this.pos=JSON.parse(localStorage.getItem("LA-save-"+this.username+"pos"));
         this.position=JSON.parse(localStorage.getItem("LA-save-"+this.username+"position"));
         this.map=JSON.parse(localStorage.getItem("LA-save-"+this.username+"map"));
+        this.timer=JSON.parse(localStorage.getItem("LA-save-"+this.username+"timer"));
         game.storage.item=this.storage;
         game.bag.item=this.bag;
         game.Lilies.x=this.pos[0];
