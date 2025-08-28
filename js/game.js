@@ -32,7 +32,7 @@ class game{
     }
     changeMap(newMap){
         this.Map=new map(newMap);
-        //this.gameCanvas.style.backgroundImage="url('img/map/'+newMap.background)";
+        this.gameCanvas.style.backgroundImage="url(../img/map/"+newMap.background+")";
         this.Entity=[];
         this.createEntities();
         if(this.Map.name=="ateliter"){
@@ -51,7 +51,7 @@ class game{
                 this.Entity.push(new door(gameWidth,gameHeight,e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.destinationMap,e.destinationX,e.destinationY));
             }
             if(e.type=="text"){
-                this.Entity.push(new text(e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.text,e.once));
+                this.Entity.push(new text(e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.text,e.once,e));
             }
             if(e.type=="pot"){
                 this.Entity.push(new pot(gameWidth,gameHeight,document.getElementById("Lilies"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3]));

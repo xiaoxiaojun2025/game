@@ -32,6 +32,11 @@ class pauseButtonGroup{
                     this.hideAll();
                 }.bind(this);
             }
+            else if(this.buttonGroup[e].id=="exit"){
+                this.buttonGroup[e].onclick=function(){
+                    window.location.href="../index.html"
+                }
+            }
             else if(this.buttonGroup[e].id=="bag"){
                 this.buttonGroup[e].innerHTML="材料箱";
                 this.buttonGroup[e].onclick=function(){

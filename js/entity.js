@@ -228,12 +228,13 @@ class hitbox{
     update(){}
 }
 class text extends hitbox{
-    constructor(x,y,width,height,text,once){
+    constructor(x,y,width,height,text,once,TEXT){
         super(x,y,width,height);
         this.hitbox=false;
         this.once=once;
         this.text=text;
         this.index=0;
+        this.TEXT=TEXT;
     }
     update(game,lilies=undefined,input){
         if(this.y<=game.Lilies.y+game.Lilies.height&&this.y+this.height>=game.Lilies.y&&this.x+this.width>game.Lilies.x&&this.x<game.Lilies.x+game.Lilies.width){
@@ -242,13 +243,14 @@ class text extends hitbox{
                 if(this.index>=this.text.length||game.Talk.index>=this.text[this.index].length){
                     if(this.index>=this.text.length){
                         if(this.once){
-                            game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(this),1);
+                            console.log(game.Map.entityGroup.indexOf(this.TEXT))
+                            game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(this.TEXT),1);
                             game.Entity.splice(game.Entity.indexOf(this),1);
+                            globalThis[game.Map.name].entity=game.Map.entityGroup;
                         }
                         game.Talk.clear();
                         game.Talk.hide();
                         game.status="running";
-                        console.log(this.index);
                     }
                     else{
                         if(game.Talk.displayed){

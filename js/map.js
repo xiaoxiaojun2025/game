@@ -9,9 +9,9 @@ class map{
     }
 }
 
-const ateliter={
+var ateliter={
     "name":"ateliter",
-    "background":"",
+    "background":"ateliter.png",
     "entity":[
         {
             "type":"hitbox",
@@ -47,7 +47,7 @@ const ateliter={
         }
     ]
 }
-const A={
+var A={
     "name":"A",
     "background":"",
     "entity":[
