@@ -40,6 +40,10 @@ const ateliter={
                 "测试2"
             ],
             "once":true
+        },
+        {
+            "type":"pot",
+            "hitbox":[600,540,80,100]
         }
     ]
 }
@@ -59,5 +63,12 @@ const A={
             "type":"hitbox",
             "hitbox":[1200,0,80,720]
         },
+        {
+            "type":"door",
+            "destinationMap":"ateliter",
+            "destinationX":320,
+            "destinationY":0,
+            "hitbox":[1040,320,240,320]
+        }
     ]
 }

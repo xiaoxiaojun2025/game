@@ -49,11 +49,22 @@ class pauseButtonGroup{
                         this.display();
                     }.bind(this);
                     if(game.Map.name=="ateliter"){
-                        for(var i=0;i<game.storage.item.length;i++){
+                        for(let i=0;i<game.storage.item.length;i++){
                             if(game.storage.item[i].amount==0) continue;
-                            var item=document.createElement("div");
+                            let item=document.createElement("div");
                             item.className="itemContainer";
+                            item.id=game.storage.item[i].name;
                             item.innerHTML=game.storage.item[i].name+"x"+game.storage.item[i].amount;
+                            item.onclick=function(){
+                                document.getElementsByClassName("innerCanvasContainer")[0].innerHTML="";
+                                for(let j=0;j<game.storage.item[i].amount;j++){
+                                    let newItem=document.createElement("div");
+                                    newItem.className="itemContainer";
+                                    newItem.innerHTML=game.storage.item[i].name+"<br>品质"+game.storage.item[i].quality[j]+"<br>"+game.storage.item[i].trait[j];
+                                    newItem.id=newItem.id+"-"+j;
+                                    document.getElementsByClassName("innerCanvasContainer")[0].appendChild(newItem);
+                                }
+                            }
                             document.getElementsByClassName("innerCanvasContainer")[0].appendChild(item);
                         }
                     }

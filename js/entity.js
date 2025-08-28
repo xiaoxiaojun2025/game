@@ -37,6 +37,7 @@ class lilies extends entity{
         this.width=Math.floor(this.spriteWidth*width);
         this.height=Math.floor(this.spriteHeight*height);
         this.weight=0.6;
+        this.face="right";
     }
     update(input,hitboxGroup){
         var isOnFloor=false;
@@ -66,9 +67,11 @@ class lilies extends entity{
             }
         });
         if(input.key.indexOf(config.left)>-1){
+            this.face="left";
             this.vx=-2;
         }
         else if(input.key.indexOf(config.right)>-1){
+            this.face="right";
             this.vx=2;
         }
         else{
@@ -82,6 +85,17 @@ class lilies extends entity{
         }
         else{
             this.vy=0;
+        }
+    }
+    draw(ctx){
+        if(this.face=="right"){
+            super.draw(ctx);
+        }
+        else{
+            ctx.save();
+            ctx.scale(-1,1);
+            ctx.drawImage(this.img,this.spriteWidth*this.frameX,this.spriteHeight*this.frameY,this.spriteWidth,this.spriteHeight,-this.x-this.width,this.y,this.width,this.height);
+            ctx.restore();
         }
     }
 }
@@ -117,18 +131,87 @@ class pot extends entity{
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
             if(input.key.indexOf(config.interact)>-1){
                 game.status="paused";
-                document.getElementsByClassName("innerCanvasContainer")[0].style.display="block";
+                var recipeContainer=document.getElementsByClassName("innerCanvasContainer")[0];
+                recipeContainer.style.display="block";
+                for(let i=0;i<game.RecipeGroup.recipe.length;i++){
+                    var recipe=document.createElement("div");
+                    recipe.className="itemContainer";
+                    recipe.innerHTML=game.RecipeGroup.recipe[i].name+"<br>配方:<br>";
+                    for(let key in game.RecipeGroup.recipe[i].recipe){
+                        recipe.innerHTML+=key+"x"+game.RecipeGroup.recipe[i].recipe[key]+"<br>";
+                    }
+                    recipeContainer.appendChild(recipe);
+                    recipe.onclick=function(){
+                        recipeContainer.innerHTML="";
+                        let page=0;
+                        let itemID=0;
+                        let usedItem=[];
+                        let selectNum=0;
+                        let recipeItemName=Object.keys(game.RecipeGroup.recipe[i].recipe);
+                        let newQuality=0;
+                        let newTrait="";
+                        let storage=JSON.parse(JSON.stringify(game.storage));
+                        (function craft(){
+                            for(let j=0;j<game.storage.item.length;j++){
+                                if(game.storage.item[j].name==recipeItemName[page]){
+                                    itemID=j;
+                                    break;
+                                }
+                            }
+                            for(let j=0;j<game.storage.item[itemID].amount;j++){
+                                let newItem=document.createElement("div");
+                                newItem.className="itemContainer";
+                                newItem.innerHTML=game.storage.item[itemID].name+"<br>品质"+game.storage.item[itemID].quality[j]+"<br>"+game.storage.item[itemID].trait[j];
+                                document.getElementsByClassName("innerCanvasContainer")[0].appendChild(newItem);
+                                newItem.onclick=function(){
+                                    newItem.style.display="none";
+                                    let usingItem={
+                                        "name":storage.item[itemID].name,
+                                        "quality":storage.item[itemID].quality[j],
+                                        "trait":storage.item[itemID].trait[j]
+                                    }
+                                    usedItem.push(usingItem);
+                                    game.storage.useItem(storage.item[itemID].name,storage.item[itemID].quality[j],storage.item[itemID].trait[j]);
+                                    selectNum++;
+                                    if(selectNum>=game.RecipeGroup.recipe[i].recipe[recipeItemName[page]]){
+                                        page++;
+                                        if(page<recipeItemName.length){
+                                            recipeContainer.innerHTML="";
+                                            craft();
+                                            return;
+                                        }
+                                        recipeContainer.innerHTML="";
+                                        recipeContainer.style.display="none";
+                                        game.PauseButtonGroup.hideAll();
+                                        document.getElementById("continue").onclick=function(){
+                                            game.status="running";
+                                            game.PauseButtonGroup.hideAll();
+                                        }
+                                        usedItem.forEach(it=>{
+                                            newQuality+=it.quality;
+                                        });
+                                        newQuality=Math.floor(newQuality/usedItem.length);
+                                        newTrait=usedItem[0].trait;
+                                        game.storage.addItem(game.RecipeGroup.recipe[i].name,1,[newQuality],[newTrait]);
+                                        game.status="running";
+                                        selectNum=0;
+                                    }
+                                }
+                            }
+                        })();
+                    }
+                }
                 document.getElementById("continue").style.display="block";
-                document.getElementById("continue").innerHTML="返回";
                 document.getElementById("continue").onclick=function(){
-                    document.getElementsByClassName("innerCanvasContainer")[0].style.display="none";
-                    document.getElementsByClassName("innerCanvasContainer")[0].innerHTML="";
-                    document.getElementById("continue").innerHTML="继续游戏";
+                    recipeContainer.innerHTML="";
+                    recipeContainer.style.display="none";
+                    game.PauseButtonGroup.hideAll();
+                    game.status="running";
                     document.getElementById("continue").onclick=function(){
                         game.status="running";
-                        document.getElementById("continue").style.display="none";
-                    };
-                };
+                        game.PauseButtonGroup.hideAll();
+                    }
+                }
             }
         }
     }

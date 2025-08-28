@@ -5,8 +5,8 @@ class bag{
     }
     putin(otherBag){
         this.item.forEach((item,index)=>{
-            item.amount+=otherBag.item[index].amount;
-            otherBag.item[index].amount=0;
+            this.addItem(otherBag.item[index].name,otherBag.item[index].amount,otherBag.item[index].quality,otherBag.item[index].trait);
+            otherBag.subItem(otherBag.item[index].name,otherBag.item[index].amount);
         });
     }
     init(){
@@ -14,14 +14,32 @@ class bag{
             {
                 "name":"饮用水",
                 "img":"",
-                "amount":1
+                "amount":2,
+                "quality":[5,5],
+                "trait":["好喝","解渴"]
+            },
+            {
+                "name":"寻常草",
+                "img":"",
+                "amount":1,
+                "quality":[10],
+                "trait":[""]
+            },
+            {
+                "name":"山师之药",
+                "img":"",
+                "amount":0,
+                "quality":[],
+                "trait":[]
             }
         ]
     }
-    addItem(name,amount){
+    addItem(name,amount,quality,trait){
         this.item.forEach(i=>{
             if(i.name==name){
                 i.amount+=amount;
+                i.quality.push(...quality);
+                i.trait.push(...trait);
             }
         });
     }
@@ -29,8 +47,25 @@ class bag{
         this.item.forEach(i=>{
             if(i.name==name){
                 i.amount-=amount;
-                if(i.amount<0) i.amount=0;
+                for(var j=0;j<amount;j++){
+                    i.quality.pop();
+                    i.trait.pop();
+                }
             }
         });
+    }
+    useItem(name,quality,trait){
+        for(let i=0;i<this.item.length;i++){
+            if(this.item[i].name==name){
+                for(let j=0;j<this.item[i].amount;j++){
+                    if(this.item[i].quality[j]==quality&&this.item[i].trait[j]==trait){
+                        this.item[i].quality.splice(j,1);
+                        this.item[i].trait.splice(j,1);
+                        this.item[i].amount--;
+                        return;
+                    }
+                }
+            }
+        }
     }
 }

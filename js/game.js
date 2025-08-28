@@ -10,6 +10,7 @@ class game{
         this.storage=new bag(5000);
         this.bag=new bag(50);
         this.storage.putin(this.bag);
+        this.RecipeGroup=new recipeGroup;
         this.Talk=new talk;
         this.changeMap(ateliter);
         this.PauseButtonGroup=new pauseButtonGroup(this);
@@ -51,6 +52,9 @@ class game{
             }
             if(e.type=="text"){
                 this.Entity.push(new text(e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.text,e.once));
+            }
+            if(e.type=="pot"){
+                this.Entity.push(new pot(gameWidth,gameHeight,document.getElementById("Lilies"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3]));
             }
         });
     }
