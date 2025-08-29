@@ -1,13 +1,14 @@
 @import url(./fonts.css);
 
 .background{
+    position: static;
     margin: 0 auto;
-    background-image: url("../img/index_background.png");
+    background-image: url("../img/index_background_0.png"),url("../img/index_background_1.png");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: auto 100%;
+    background-size: auto 100%,cover;
     background-attachment: fixed;
-    background-color: black;
+    z-index: -1;
 }
 .index-button{
     font-family: "Lolita";
@@ -51,6 +52,7 @@
     width: 80%;
     height: 80%;
     overflow: hidden;
+    user-select: none;
 }
 .optionsContainer{
     position: relative;
@@ -64,6 +66,7 @@
     width: 80%;
     height: 8%;
     padding-left: 5px;
+    user-select: none;
 }
 .options{
     position: relative;

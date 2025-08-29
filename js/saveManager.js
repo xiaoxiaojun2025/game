@@ -1,6 +1,6 @@
 class saveMap{
     constructor(){
-        this.ateliter=ateliter;
+        this.atelier=atelier;
         this.A=A;
     }
 }
@@ -11,7 +11,7 @@ class saveManager{
     }
     init(game){
         if(!localStorage.getItem("LA-save-"+this.username)){
-            game.changeMap(ateliter);
+            game.changeMap(atelier);
             this.save(game);
         }
     }

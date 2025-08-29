@@ -44,7 +44,6 @@ class lilies extends entity{
         var originX=this.x;
         var originY=this.y;
         super.update();
-        this.frameX=Math.floor(Frame/60)%4;
         hitboxGroup.forEach(hitbox=>{
             if(hitbox.hitbox){
                 if(this.y<=hitbox.y+hitbox.height&&this.y+this.height>=hitbox.y&&this.x+this.width>hitbox.x&&this.x<hitbox.x+hitbox.width){
@@ -92,6 +91,7 @@ class lilies extends entity{
         }
     }
     draw(ctx){
+        this.frameX=Math.floor(Frame/60)%4;
         if(this.face=="right"){
             super.draw(ctx);
         }
@@ -114,12 +114,13 @@ class door extends entity{
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
             if(input.key.indexOf(config.interact)>-1){
-                if(this.destinationMap=="ateliter"){
+                if(this.destinationMap=="atelier"){
                     game.storage.putin(game.bag);
                 }
-                if(game.Map.name!="ateliter"){
+                if(game.Map.name!="atelier"){
                     game.timer=Number(game.timer)+4;
                 }
+                input.key.splice(input.key.indexOf(config.interact),1);
                 game.changeMap(eval(this.destinationMap));
                 lilies.setX(this.destinationX);
                 lilies.setY(this.destinationY);
@@ -131,16 +132,17 @@ class door extends entity{
 class pot extends entity{
     constructor(gameWidth,gameHeight,img,x,y,width,height){
         super(gameWidth,gameHeight,img,x,y,width,height);
-        this.spriteWidth=825;
-        this.spriteHeight=824;
-        this.width=Math.floor(this.spriteWidth*width);
-        this.height=Math.floor(this.spriteHeight*height);
+        this.spriteWidth=254;
+        this.spriteHeight=320;
+        this.width=width;
+        this.height=height;
         this.hitbox=false;
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
             if(input.key.indexOf(config.interact)>-1){
-                game.status="paused";
+                lilies.frameY=0;
+                game.status="talking";
                 var recipeContainer=document.getElementsByClassName("innerCanvasContainer")[0];
                 recipeContainer.style.display="block";
                 for(let i=0;i<game.RecipeGroup.recipe.length;i++){
@@ -203,6 +205,11 @@ class pot extends entity{
                                         game.timer=Number(game.timer)+game.RecipeGroup.recipe[i].time;
                                         newQuality=Math.floor(newQuality/usedItem.length);
                                         newTrait=usedItem[0].trait;
+                                        switch(newTrait){
+                                            case "好喝":
+                                                newQuality+=Math.floor(newQuality/5);
+                                                break;
+                                        }
                                         game.storage.addItem(game.RecipeGroup.recipe[i].name,1,[newQuality],[newTrait]);
                                         game.status="running";
                                         selectNum=0;
@@ -225,6 +232,10 @@ class pot extends entity{
                 }
             }
         }
+    }
+    draw(ctx){
+        this.frameX=Math.floor(Frame/20)%3;
+        super.draw(ctx);
     }
 }
 class item extends entity{

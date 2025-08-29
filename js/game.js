@@ -38,7 +38,7 @@ class game{
         this.gameCanvas.style.backgroundImage="url(../img/map/"+newMap.background+")";
         this.Entity=[];
         this.createEntities();
-        if(this.Map.name=="ateliter"){
+        if(this.Map.name=="atelier"){
             document.getElementById("bag").innerHTML="材料箱";
         }
         else{
@@ -57,7 +57,7 @@ class game{
                 this.Entity.push(new text(e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.text,e.once,e));
             }
             if(e.type=="pot"){
-                this.Entity.push(new pot(gameWidth,gameHeight,document.getElementById("Lilies"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3]));
+                this.Entity.push(new pot(gameWidth,gameHeight,document.getElementById("pot"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3]));
             }
             if(e.type=="item"){
                 this.Entity.push(new item(gameWidth,gameHeight,document.getElementById("Lilies"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],50,50,e.itemname,e.amount,e.quality,e.trait));
@@ -88,6 +88,12 @@ class game{
             });
         }
         if(this.status=="talking"){
+            Frame++;
+            this.ctx.clearRect(0,0,gameWidth,gameHeight);
+            this.Entity.forEach(e=>{
+                e.draw(this.ctx);
+            });
+            this.Lilies.draw(this.ctx);
             this.Entity.forEach(e=>{
                 if(e instanceof text){
                     e.update(this,this.Lilies,this.input);

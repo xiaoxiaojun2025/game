@@ -9,9 +9,9 @@ class map{
     }
 }
 
-var ateliter={
-    "name":"ateliter",
-    "background":"ateliter.png",
+var atelier={
+    "name":"atelier",
+    "background":"atelier.png",
     "entity":[
         {
             "type":"hitbox",
@@ -23,27 +23,31 @@ var ateliter={
         },
         {
             "type":"hitbox",
-            "hitbox":[1200,0,80,720]
+            "hitbox":[1200,0,80,240]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1280,240,80,480]
         },
         {
             "type":"door",
             "destinationMap":"A",
-            "destinationX":320,
-            "destinationY":0,
-            "hitbox":[1040,320,240,320]
+            "destinationX":80,
+            "destinationY":320,
+            "hitbox":[1200,240,80,480]
         },
         {
             "type":"text",
             "hitbox":[200,540,200,100],
             "text":[
-                "测试1",
+                "测试1111111111111111111111111111111111111111111111",
                 "测试2"
             ],
             "once":true
         },
         {
             "type":"pot",
-            "hitbox":[600,540,80,100]
+            "hitbox":[240,320,254,320]
         }
     ]
 }
@@ -65,9 +69,9 @@ var A={
         },
         {
             "type":"door",
-            "destinationMap":"ateliter",
-            "destinationX":320,
-            "destinationY":0,
+            "destinationMap":"atelier",
+            "destinationX":1168,
+            "destinationY":486,
             "hitbox":[1040,320,240,320]
         },
         {
@@ -84,7 +88,7 @@ var A={
             "img":"item_img_1.png",
             "hitbox":[600,400,200,200],
             "recipe":{
-                "name":"名字",
+                "name":"饮用水",
                 "time":2,
                 "recipe":{
                     "饮用水":1,

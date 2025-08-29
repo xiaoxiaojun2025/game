@@ -68,7 +68,7 @@ class pauseButtonGroup{
                         }.bind(this);
                         this.display();
                     }.bind(this);
-                    if(game.Map.name=="ateliter"){
+                    if(game.Map.name=="atelier"){
                         for(let i=0;i<game.storage.item.length;i++){
                             if(game.storage.item[i].amount==0) continue;
                             let item=document.createElement("div");
