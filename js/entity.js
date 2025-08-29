@@ -251,11 +251,18 @@ class item extends entity{
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            game.Talk.see(this.name+"x"+this.amount);
             if(input.key.indexOf(config.interact)>-1){
                 game.timer=Number(game.timer)+3;
                 game.bag.addItem(this.name,this.amount,this.quality,this.trait);
                 game.Entity.splice(game.Entity.indexOf(this),1);
+                game.Talk.clear();
+                game.Talk.hide();
             }
+        }
+        else if(game.Talk.displayed==true){
+            game.Talk.clear();
+            game.Talk.hide();
         }
     }
 }
@@ -294,6 +301,8 @@ class text extends hitbox{
         this.text=text;
         this.index=0;
         this.TEXT=TEXT;
+        this.fast=false;
+        this.slow=false;
     }
     update(game,lilies=undefined,input){
         if(this.y<=game.Lilies.y+game.Lilies.height&&this.y+this.height>=game.Lilies.y&&this.x+this.width>game.Lilies.x&&this.x<game.Lilies.x+game.Lilies.width){
@@ -306,6 +315,7 @@ class text extends hitbox{
                             game.Entity.splice(game.Entity.indexOf(this),1);
                             globalThis[game.Map.name].entity=game.Map.entityGroup;
                         }
+                        input.key.splice(input.key.indexOf(config.interact),1);
                         game.Talk.clear();
                         game.Talk.hide();
                         game.status="running";
@@ -317,14 +327,18 @@ class text extends hitbox{
                         }
                     }
                 }
-                else{
+                else if(!this.fast){
+                    this.fast=true;
+                    this.slow=false;
                     clearTimeout(game.Talk.timeout);
-                    game.Talk.display(this.text[this.index],4);
+                    game.Talk.display(this.text[this.index],50,game.Talk);
                 }
             }
-            else{
+            else if(!this.slow){
+                this.slow=true;
+                this.fast=false;
                 clearTimeout(game.Talk.timeout);
-                game.Talk.display(this.text[this.index],2);
+                game.Talk.display(this.text[this.index],20,game.Talk);
             }
         }
     }

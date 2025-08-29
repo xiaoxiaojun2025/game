@@ -89,11 +89,21 @@ class pauseButtonGroup{
                         }
                     }
                     else{
-                        for(var i=0;i<game.bag.item.length;i++){
+                        for(let i=0;i<game.bag.item.length;i++){
                             if(game.bag.item[i].amount==0) continue;
-                            var item=document.createElement("div");
+                            let item=document.createElement("div");
                             item.className="itemContainer";
                             item.innerHTML=game.bag.item[i].name+"x"+game.bag.item[i].amount;
+                            item.onclick=function(){
+                                document.getElementsByClassName("innerCanvasContainer")[0].innerHTML="";
+                                for(let j=0;j<game.bag.item[i].amount;j++){
+                                    let newItem=document.createElement("div");
+                                    newItem.className="itemContainer";
+                                    newItem.innerHTML=game.bag.item[i].name+"<br>品质"+game.bag.item[i].quality[j]+"<br>"+game.bag.item[i].trait[j];
+                                    newItem.id=newItem.id+"-"+j;
+                                    document.getElementsByClassName("innerCanvasContainer")[0].appendChild(newItem);
+                                }
+                            }
                             document.getElementsByClassName("innerCanvasContainer")[0].appendChild(item);
                         }
                     }

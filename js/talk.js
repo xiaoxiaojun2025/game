@@ -5,18 +5,23 @@ class talk{
         this.displayed=false;
         this.timeout=null;
     }
-    display(text,speed){
-        this.talkBox.style.display="block";
-        if(this.index<text.length){
-            this.talkBox.innerHTML+=text.charAt(this.index);
-            this.index++;
-            this.timeout=setTimeout(()=>{
-                this.display(text,speed);
+    display(text,speed,talk){
+        talk.talkBox.style.display="block";
+        if(talk.index<text.length){
+            talk.talkBox.innerHTML+=text.charAt(this.index);
+            talk.index++;
+            talk.timeout=setTimeout(()=>{
+                talk.display(text,speed,talk);
             },Math.floor(1000/speed));
         }
         else{
-            this.displayed=true;
+            talk.displayed=true;
         }
+    }
+    see(text){
+        this.talkBox.innerHTML=text;
+        this.talkBox.style.display="block";
+        this.displayed=true;
     }
     clear(){
         this.index=0;
