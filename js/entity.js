@@ -32,10 +32,10 @@ class entity{
 class lilies extends entity{
     constructor(gameWidth,gameHeight,img,x,y,width,height){
         super(gameWidth,gameHeight,img,x,y,0,0);
-        this.spriteWidth=100;
-        this.spriteHeight=200;
-        this.width=Math.floor(this.spriteWidth*width);
-        this.height=Math.floor(this.spriteHeight*height);
+        this.spriteWidth=55.75;
+        this.spriteHeight=77;
+        this.width=this.spriteWidth*width;
+        this.height=this.spriteHeight*height;
         this.weight=0.6;
         this.face="right";
     }
@@ -68,14 +68,17 @@ class lilies extends entity{
             }
         });
         if(input.key.indexOf(config.left)>-1){
+            this.frameY=1;
             this.face="left";
             this.vx=-2;
         }
         else if(input.key.indexOf(config.right)>-1){
+            this.frameY=1;
             this.face="right";
             this.vx=2;
         }
         else{
+            this.frameY=0;
             this.vx=0;
         }
         if(input.key.indexOf(config.jump)>-1&&isOnFloor){

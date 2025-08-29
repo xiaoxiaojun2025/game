@@ -16,7 +16,7 @@ class game{
         this.Talk=new talk;
         this.PauseButtonGroup=new pauseButtonGroup(this);
         this.input=new inputManager;
-        this.Lilies=new lilies(gameWidth,gameHeight,document.getElementById("Lilies"),gameWidth/2,0,0.2,0.2);
+        this.Lilies=new lilies(gameWidth,gameHeight,document.getElementById("Lilies"),gameWidth/2,0,2,2);
         this.SaveManager=new saveManager(this);
         this.SaveManager.load(this);
         this.animate=this.animate.bind(this);

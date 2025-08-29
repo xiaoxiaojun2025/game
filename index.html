@@ -13,9 +13,9 @@
         <div style="margin: 5vh auto;text-align: center;position: relative;">
             <div class="index-button" onclick="localStorage.removeItem('LA-save-'+localStorage.getItem('LA-username'));window.location.href='./html/game.html'">新的游戏</div>
             <div class="index-button" style="display: none;" id="loadGame" onclick="window.location.href='./html/game.html'">继续游戏</div>
-            <div class="index-button"><a href="https://www.baidu.com">成就</a></div>
-            <div class="index-button"><a href="https://www.baidu.com">关于</a></div>
-            <div class="index-button"><a href="https://www.baidu.com">设置</a></div>
+            <div class="index-button" onclick="window.location.href='./html/achievement.html'">成就</div>
+            <div class="index-button" onclick="window.location.href='./html/about.html'">关于</div>
+            <div class="index-button" onclick="window.location.href='./html/options.html'">设置</div>
             <div class="index-button" onclick="logout()">退出登录</div>
         </div>
         <script>
