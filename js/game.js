@@ -88,7 +88,6 @@ class game{
             });
         }
         if(this.status=="talking"){
-            Frame++;
             this.Entity.forEach(e=>{
                 if(e instanceof text){
                     e.update(this,this.Lilies,this.input);
