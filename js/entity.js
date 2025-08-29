@@ -36,7 +36,7 @@ class lilies extends entity{
         this.spriteHeight=77;
         this.width=this.spriteWidth*width;
         this.height=this.spriteHeight*height;
-        this.weight=0.6;
+        this.weight=0.3;
         this.face="right";
     }
     update(input,hitboxGroup){
@@ -81,7 +81,7 @@ class lilies extends entity{
             this.vx=0;
         }
         if(input.key.indexOf(config.jump)>-1&&isOnFloor){
-            this.vy-=20;
+            this.vy-=12;
         }
         else if(!isOnFloor){
             this.vy+=this.weight;
