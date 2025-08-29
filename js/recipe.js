@@ -6,6 +6,7 @@ class recipeGroup{
         this.recipe=[
             {
                 "name":"山师之药",
+                "time":4,
                 "recipe":{
                     "饮用水":2,
                     "寻常草":1

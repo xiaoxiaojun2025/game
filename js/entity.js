@@ -32,8 +32,8 @@ class entity{
 class lilies extends entity{
     constructor(gameWidth,gameHeight,img,x,y,width,height){
         super(gameWidth,gameHeight,img,x,y,0,0);
-        this.spriteWidth=543;
-        this.spriteHeight=726;
+        this.spriteWidth=100;
+        this.spriteHeight=200;
         this.width=Math.floor(this.spriteWidth*width);
         this.height=Math.floor(this.spriteHeight*height);
         this.weight=0.6;
@@ -44,6 +44,7 @@ class lilies extends entity{
         var originX=this.x;
         var originY=this.y;
         super.update();
+        this.frameX=Math.floor(Frame/60)%4;
         hitboxGroup.forEach(hitbox=>{
             if(hitbox.hitbox){
                 if(this.y<=hitbox.y+hitbox.height&&this.y+this.height>=hitbox.y&&this.x+this.width>hitbox.x&&this.x<hitbox.x+hitbox.width){
@@ -112,6 +113,9 @@ class door extends entity{
             if(input.key.indexOf(config.interact)>-1){
                 if(this.destinationMap=="ateliter"){
                     game.storage.putin(game.bag);
+                }
+                if(game.Map.name!="ateliter"){
+                    game.timer=Number(game.timer)+4;
                 }
                 game.changeMap(eval(this.destinationMap));
                 lilies.setX(this.destinationX);
@@ -193,6 +197,7 @@ class pot extends entity{
                                         usedItem.forEach(it=>{
                                             newQuality+=it.quality;
                                         });
+                                        game.timer=Number(game.timer)+game.RecipeGroup.recipe[i].time;
                                         newQuality=Math.floor(newQuality/usedItem.length);
                                         newTrait=usedItem[0].trait;
                                         game.storage.addItem(game.RecipeGroup.recipe[i].name,1,[newQuality],[newTrait]);
@@ -233,8 +238,25 @@ class item extends entity{
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
             if(input.key.indexOf(config.interact)>-1){
+                game.timer=Number(game.timer)+3;
                 game.bag.addItem(this.name,this.amount,this.quality,this.trait);
                 game.Entity.splice(game.Entity.indexOf(this),1);
+            }
+        }
+    }
+}
+class recipeItem extends item{
+    constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,recipe){
+        super(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,recipe.recipe.name,1,[0],[""]);
+        this.recipe=recipe;
+    }
+    update(game,lilies,input){
+        if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            if(input.key.indexOf(config.interact)>-1){
+                game.RecipeGroup.recipe.push(this.recipe.recipe);
+                game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(this.recipe),1);
+                game.Entity.splice(game.Entity.indexOf(this),1);
+                globalThis[game.Map.name].entity=game.Map.entityGroup;
             }
         }
     }

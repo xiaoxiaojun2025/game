@@ -77,7 +77,20 @@ var A={
             "amount":3,
             "quality":[5,20,10],
             "trait":["难喝","好喝",""],
-            "hitbox":[500,200,200,200]
+            "hitbox":[500,400,50,50]
+        },
+        {
+            "type":"recipeItem",
+            "img":"item_img_1.png",
+            "hitbox":[600,400,200,200],
+            "recipe":{
+                "name":"名字",
+                "time":2,
+                "recipe":{
+                    "饮用水":1,
+                    "山师之药":1
+                }
+            }
         }
     ]
 }

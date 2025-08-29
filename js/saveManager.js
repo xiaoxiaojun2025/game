@@ -19,6 +19,7 @@ class saveManager{
         this.storage=game.storage.item;
         this.bag=game.bag.item;
         this.pos=[game.Lilies.x,game.Lilies.y];
+        this.RecipeGroup=game.RecipeGroup;
         this.position=game.Map.name;
         this.map=new saveMap;
         this.timer=game.timer;
@@ -26,25 +27,29 @@ class saveManager{
         localStorage.setItem("LA-save-"+this.username+"storage",JSON.stringify(this.storage));
         localStorage.setItem("LA-save-"+this.username+"bag",JSON.stringify(this.bag));
         localStorage.setItem("LA-save-"+this.username+"pos",JSON.stringify(this.pos));
+        localStorage.setItem("LA-save-"+this.username+"RecipeGroup",JSON.stringify(this.RecipeGroup));
         localStorage.setItem("LA-save-"+this.username+"position",JSON.stringify(this.position));
         localStorage.setItem("LA-save-"+this.username+"map",JSON.stringify(this.map));
-        localStorage.setItem("LA-save-"+this.username+"timer",JSON.stringify(this.timer));
+        localStorage.setItem("LA-save-"+this.username+"timer",this.timer);
     }
     load(game){
         this.storage=JSON.parse(localStorage.getItem("LA-save-"+this.username+"storage"));
         this.bag=JSON.parse(localStorage.getItem("LA-save-"+this.username+"bag"));
         this.pos=JSON.parse(localStorage.getItem("LA-save-"+this.username+"pos"));
+        this.RecipeGroup=JSON.parse(localStorage.getItem("LA-save-"+this.username+"RecipeGroup"));
         this.position=JSON.parse(localStorage.getItem("LA-save-"+this.username+"position"));
         this.map=JSON.parse(localStorage.getItem("LA-save-"+this.username+"map"));
-        this.timer=JSON.parse(localStorage.getItem("LA-save-"+this.username+"timer"));
+        this.timer=localStorage.getItem("LA-save-"+this.username+"timer");
         game.storage.item=this.storage;
         game.bag.item=this.bag;
         game.Lilies.x=this.pos[0];
         game.Lilies.y=this.pos[1];
+        game.RecipeGroup=this.RecipeGroup;
         for(let key in this.map){
             globalThis[this.map[key].name]=this.map[key];
             console.log(globalThis[this.map[key].name]);
         }
+        game.timer=this.timer;
         game.changeMap(eval(this.position));
     }
 }

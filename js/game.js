@@ -1,11 +1,12 @@
 const gameWidth=1280;
 const gameHeight=720;
 var config=JSON.parse(localStorage.getItem("LA-config-"+localStorage.getItem("LA-username")));
+var Frame=0;
 
 class game{
     constructor(){
         this.status="running";
-        this.timer=0;
+        this.timer=8;
         this.createCanvas();
         this.initContainer();
         this.storage=new bag(5000);
@@ -33,7 +34,6 @@ class game{
         this.gameCanvas.height=gameHeight;
     }
     changeMap(newMap){
-        this.timer+=2;
         this.Map=new map(newMap);
         this.gameCanvas.style.backgroundImage="url(../img/map/"+newMap.background+")";
         this.Entity=[];
@@ -62,6 +62,9 @@ class game{
             if(e.type=="item"){
                 this.Entity.push(new item(gameWidth,gameHeight,document.getElementById("Lilies"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],50,50,e.itemname,e.amount,e.quality,e.trait));
             }
+            if(e.type=="recipeItem"){
+                this.Entity.push(new recipeItem(gameWidth,gameHeight,document.getElementById("Lilies"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],50,50,e));
+            }
         });
     }
     animate(){
@@ -72,6 +75,8 @@ class game{
             }
         }
         if(this.status=="running"){
+            Frame++;
+            document.getElementById("timer").innerHTML=Math.floor(this.timer/24).toString()+"天"+Math.floor(this.timer%24).toString()+"时";
             this.ctx.clearRect(0,0,gameWidth,gameHeight);
             this.Entity.forEach(e=>{
                 e.draw(this.ctx);
@@ -83,6 +88,7 @@ class game{
             });
         }
         if(this.status=="talking"){
+            Frame++;
             this.Entity.forEach(e=>{
                 if(e instanceof text){
                     e.update(this,this.Lilies,this.input);
