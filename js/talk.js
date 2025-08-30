@@ -8,7 +8,7 @@ class talk{
     display(text,speed,talk){
         talk.talkBox.style.display="block";
         if(talk.index<text.length){
-            talk.talkBox.innerHTML=text.charAt(this.index);
+            talk.talkBox.innerHTML+=text.charAt(this.index);
             talk.index++;
             talk.timeout=setTimeout(()=>{
                 talk.display(text,speed,talk);
@@ -19,7 +19,7 @@ class talk{
         }
     }
     see(text){
-        this.talkBox.innerHTML+=text+"<br>";
+        this.talkBox.innerHTML=text+"<br>";
         this.talkBox.style.display="block";
         this.displayed=true;
     }
