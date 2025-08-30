@@ -11,7 +11,7 @@ window.addEventListener('load', function() {
 
 
  
-    if (prevFullUrl.includes("group_introduce")) {
+    if (prevFullUrl.includes("group_introduce.html")) {
         backBtn.href = targetRelativePaths.path2;
     }
     else {
