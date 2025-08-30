@@ -204,7 +204,7 @@ class pot extends entity{
                                             newQuality+=it.quality;
                                         });
                                         game.timer=Number(game.timer)+game.RecipeGroup.recipe[i].time;
-                                        newQuality=Math.floor(newQuality/usedItem.length);
+                                        newQuality=Math.floor(newQuality/usedItem.length+Math.random()*5);
                                         newTrait=usedItem[0].trait;
                                         switch(newTrait){
                                             case "好喝":
@@ -213,7 +213,7 @@ class pot extends entity{
                                         }
                                         game.storage.addItem(game.RecipeGroup.recipe[i].name,1,[newQuality],[newTrait]);
                                         game.status="running";
-                                        game.Talk.see("成功制作"+game.RecipeGroup.recipe[i].name);
+                                        game.Talk.see("成功制作"+game.RecipeGroup.recipe[i].name+"&emsp;消耗时间"+game.RecipeGroup.recipe[i].time+"小时"+"<br>品质："+newQuality);
                                         setTimeout(() => {
                                             game.Talk.clear();
                                             game.Talk.hide();
@@ -329,6 +329,8 @@ class text extends hitbox{
                     else{
                         if(game.Talk.displayed){
                             this.index++;
+                            this.fast=false;
+                            this.slow=false;
                             game.Talk.clear();
                         }
                     }
