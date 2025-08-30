@@ -109,6 +109,11 @@ class pauseButtonGroup{
                     }
                 }.bind(this);
             }
+            else if(this.buttonGroup[e].id=="ender"){
+                this.buttonGroup[e].onclick=function(){
+                    game.EndChecker.ender.end=true;
+                }
+            }
         }
     }
 }

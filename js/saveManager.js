@@ -23,6 +23,8 @@ class saveManager{
         this.position=game.Map.name;
         this.map=new saveMap;
         this.timer=game.timer;
+        this.ender=game.EndChecker.ender;
+        this.achievement=game.achievement.achievements;
         localStorage.setItem("LA-save-"+this.username,true);
         localStorage.setItem("LA-save-"+this.username+"storage",JSON.stringify(this.storage));
         localStorage.setItem("LA-save-"+this.username+"bag",JSON.stringify(this.bag));
@@ -31,6 +33,8 @@ class saveManager{
         localStorage.setItem("LA-save-"+this.username+"position",JSON.stringify(this.position));
         localStorage.setItem("LA-save-"+this.username+"map",JSON.stringify(this.map));
         localStorage.setItem("LA-save-"+this.username+"timer",this.timer);
+        localStorage.setItem("LA-save-"+this.username+"ender",JSON.stringify(this.ender));
+        localStorage.setItem("LA-save-"+this.username+"achievement",JSON.stringify(this.achievement));
     }
     load(game){
         this.storage=JSON.parse(localStorage.getItem("LA-save-"+this.username+"storage"));
@@ -40,6 +44,8 @@ class saveManager{
         this.position=JSON.parse(localStorage.getItem("LA-save-"+this.username+"position"));
         this.map=JSON.parse(localStorage.getItem("LA-save-"+this.username+"map"));
         this.timer=localStorage.getItem("LA-save-"+this.username+"timer");
+        this.ender=JSON.parse(localStorage.getItem("LA-save-"+this.username+"ender"));
+        this.achievement=JSON.parse(localStorage.getItem("LA-save-"+this.username+"achievement"));
         game.storage.item=this.storage;
         game.bag.item=this.bag;
         game.Lilies.x=this.pos[0];
@@ -47,9 +53,10 @@ class saveManager{
         game.RecipeGroup=this.RecipeGroup;
         for(let key in this.map){
             globalThis[this.map[key].name]=this.map[key];
-            console.log(globalThis[this.map[key].name]);
         }
         game.timer=this.timer;
+        game.EndChecker.ender=this.ender;
+        game.achievement.achievements=this.achievement;
         game.changeMap(eval(this.position));
     }
 }

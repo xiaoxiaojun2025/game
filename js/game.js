@@ -14,11 +14,13 @@ class game{
         this.storage.putin(this.bag);
         this.RecipeGroup=new recipeGroup;
         this.Talk=new talk;
-        this.PauseButtonGroup=new pauseButtonGroup(this);
         this.input=new inputManager;
+        this.achievement=new achievementManager;
         this.Lilies=new lilies(gameWidth,gameHeight,document.getElementById("Lilies"),gameWidth/2,0,2,2);
+        this.EndChecker=new endChecker;
         this.SaveManager=new saveManager(this);
         this.SaveManager.load(this);
+        this.PauseButtonGroup=new pauseButtonGroup(this);
         this.animate=this.animate.bind(this);
     }
     initContainer(){
@@ -100,6 +102,7 @@ class game{
                 }
             });
         }
+        this.EndChecker.update(this);
         requestAnimationFrame(this.animate);
     }
 }
