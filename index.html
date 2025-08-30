@@ -41,6 +41,9 @@
                 if(localStorage.getItem("LA-save-"+user)){
                     document.getElementById("loadGame").style.display="block";
                 }
+                if(!localStorage.getItem("LA-AllAchievements-"+user)){
+                    localStorage.setItem("LA-AllAchievements-"+user,JSON.stringify([]));
+                }
             }
             function logout(){
                 localStorage.removeItem("LA-username");

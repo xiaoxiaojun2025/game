@@ -19,7 +19,7 @@ class talk{
         }
     }
     see(text){
-        this.talkBox.innerHTML=text;
+        this.talkBox.innerHTML+=text+"<br>";
         this.talkBox.style.display="block";
         this.displayed=true;
     }

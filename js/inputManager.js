@@ -7,7 +7,7 @@ class inputManager{
             }
         });
         window.addEventListener("keyup",e=>{
-            this.key.splice(e.key,1);
+            this.key.splice(this.key.indexOf(e.key),1);
         });
     }
 }

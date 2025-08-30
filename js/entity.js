@@ -40,7 +40,7 @@ class lilies extends entity{
         this.face="right";
     }
     update(input,hitboxGroup){
-        var isOnFloor=false;
+        this.isOnFloor=false;
         var originX=this.x;
         var originY=this.y;
         super.update();
@@ -60,7 +60,7 @@ class lilies extends entity{
                     }
                     if(originY+this.height<=hitbox.y){
                         this.vy=0;
-                        isOnFloor=true;
+                        this.isOnFloor=true;
                         this.y=hitbox.y-this.height;
                     }
                 }
@@ -80,10 +80,10 @@ class lilies extends entity{
             this.frameY=0;
             this.vx=0;
         }
-        if(input.key.indexOf(config.jump)>-1&&isOnFloor){
+        if(input.key.indexOf(config.jump)>-1&&this.isOnFloor){
             this.vy-=12;
         }
-        else if(!isOnFloor){
+        else if(!this.isOnFloor){
             this.vy+=this.weight;
         }
         else{
@@ -139,10 +139,11 @@ class pot extends entity{
         this.hitbox=false;
     }
     update(game,lilies,input){
-        if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+        if(lilies.isOnFloor&&this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
             if(input.key.indexOf(config.interact)>-1){
                 lilies.frameY=0;
                 game.status="talking";
+                game.achievement.getAchievement(ceshi,game);
                 var recipeContainer=document.getElementsByClassName("innerCanvasContainer")[0];
                 recipeContainer.style.display="block";
                 for(let i=0;i<game.RecipeGroup.recipe.length;i++){
@@ -212,6 +213,11 @@ class pot extends entity{
                                         }
                                         game.storage.addItem(game.RecipeGroup.recipe[i].name,1,[newQuality],[newTrait]);
                                         game.status="running";
+                                        game.Talk.see("成功制作"+game.RecipeGroup.recipe[i].name);
+                                        setTimeout(() => {
+                                            game.Talk.clear();
+                                            game.Talk.hide();
+                                        },1000)
                                         selectNum=0;
                                     }
                                 }
@@ -260,7 +266,7 @@ class item extends entity{
                 game.Talk.hide();
             }
         }
-        else if(game.Talk.displayed==true){
+        else if(game.Talk.displayed){
             game.Talk.clear();
             game.Talk.hide();
         }
@@ -331,14 +337,14 @@ class text extends hitbox{
                     this.fast=true;
                     this.slow=false;
                     clearTimeout(game.Talk.timeout);
-                    game.Talk.display(this.text[this.index],50,game.Talk);
+                    game.Talk.display(this.text[this.index]?this.text[this.index]:"",50,game.Talk);
                 }
             }
             else if(!this.slow){
                 this.slow=true;
                 this.fast=false;
                 clearTimeout(game.Talk.timeout);
-                game.Talk.display(this.text[this.index],20,game.Talk);
+                game.Talk.display(this.text[this.index]?this.text[this.index]:"",20,game.Talk);
             }
         }
     }
