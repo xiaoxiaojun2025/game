@@ -38,6 +38,7 @@ class lilies extends entity{
         this.height=this.spriteHeight*height;
         this.weight=0.3;
         this.face="right";
+        this.jumped=false;
     }
     update(input,hitboxGroup){
         this.isOnFloor=false;
@@ -67,31 +68,43 @@ class lilies extends entity{
             }
         });
         if(input.key.indexOf(config.left)>-1){
-            this.frameY=1;
+            if(this.frameY==0){
+                this.frameY=1;
+            }
             this.face="left";
             this.vx=-2;
         }
         else if(input.key.indexOf(config.right)>-1){
-            this.frameY=1;
+            if(this.frameY==0){
+                this.frameY=1;
+            }
             this.face="right";
             this.vx=2;
         }
         else{
-            this.frameY=0;
+            if(this.frameY==1){
+                this.frameY=0;
+            }
             this.vx=0;
         }
         if(input.key.indexOf(config.jump)>-1&&this.isOnFloor){
-            this.vy-=12;
+            if(!this.jumped){
+                this.jumped=true;
+                this.vy-=12;
+            }
         }
         else if(!this.isOnFloor){
             this.vy+=this.weight;
         }
         else{
+            if(input.key.indexOf(config.jump)==-1){
+                this.jumped=false;
+            }
             this.vy=0;
         }
     }
     draw(ctx){
-        this.frameX=Math.floor(Frame/60)%4;
+        this.frameX=Math.floor(Frame/30)%4;
         if(this.face=="right"){
             super.draw(ctx);
         }
