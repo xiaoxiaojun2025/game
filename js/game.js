@@ -16,7 +16,7 @@ class game{
         this.Talk=new talk;
         this.input=new inputManager;
         this.achievement=new achievementManager;
-        this.Lilies=new lilies(gameWidth,gameHeight,document.getElementById("Lilies"),gameWidth/2,0,2,2);
+        this.Lilies=new lilies(gameWidth,gameHeight,document.getElementById("Lilies"),240,486,2,2);
         this.EndChecker=new endChecker;
         this.SaveManager=new saveManager(this);
         this.SaveManager.load(this);
