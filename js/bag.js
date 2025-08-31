@@ -5,38 +5,227 @@ class bag{
     }
     putin(otherBag){
         this.item.forEach((item,index)=>{
-            this.addItem(otherBag.item[index].name,otherBag.item[index].amount,otherBag.item[index].quality,otherBag.item[index].trait);
-            otherBag.subItem(otherBag.item[index].name,otherBag.item[index].amount);
+            this.addItem(otherBag.item[index].name[0],otherBag.item[index].amount,otherBag.item[index].quality,otherBag.item[index].trait);
+            otherBag.subItem(otherBag.item[index].name[0],otherBag.item[index].amount);
         });
     }
     init(){
         this.item=[
             {
-                "name":"饮用水",
-                "img":"",
+                "name":["饮用水","（水）"],
+                "img":"drinking-water.webp",
                 "amount":2,
                 "quality":[5,5],
                 "trait":["好喝","解渴"]
             },
             {
-                "name":"寻常草",
-                "img":"",
+                "name":["啪汽啪汽水","（水）","（气体）"],
+                "img":"crackling-water.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["寻常草","（植物）"],
+                "img":"koinos-grass.webp",
                 "amount":1,
                 "quality":[10],
                 "trait":[""]
             },
             {
-                "name":"山师之药",
-                "img":"",
+                "name":["中和剂（红）","（中和剂）","（燃料）"],
+                "img":"red-neutralizer.webp",
                 "amount":0,
                 "quality":[],
                 "trait":[]
-            }
+            },
+            {
+                "name":["中和剂（蓝）","（中和剂）","（食材）"],
+                "img":"blue-neutralizer.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["中和剂（黄）","（中和剂）","（石材）"],
+                "img":"yellow-neutralizer.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["中和剂（绿）","（中和剂）","（气体）"],
+                "img":"green-neutralizer.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["中和剂（白）","（中和剂）","（有毒材料）"],
+                "img":"white-neutralizer.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["炼金黏土","（砂）","（万灵药）"],
+                "img":"alchemic-clay.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["木材","（木材）","（火药）"],
+                "img":"straight-baum.webp",
+                "amount":1,
+                "quality":[10],
+                "trait":[""]
+            },
+            {
+                "name":["灰木炭","（木材）","（燃料）"],
+                "img":"aschenp-coal.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["白砂","（砂）","（药材）"],
+                "img":"white-sand.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["可燃灰砂","（砂）","（燃料）","（火药）"],
+                "img":"flammable-sand.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["金属块","（金属）"],
+                "img":"ingot.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["丝薇丽银","（金属）"],
+                "img":"silvalia.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["黄金艾森矿","（金属）","（原石）"],
+                "img":"gold-eisen.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["精灵银块","（金属）"],
+                "img":"harmonium.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["海银","（金属）"],
+                "img":"okeagyrn.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["艾森矿","（矿石）"],
+                "img":"eisen-ore.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["黑洞","（魔法道具）","（神秘之力）"],
+                "img":"black-agujero.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["龙之血晶","（龙素材）","（神秘之力）"],
+                "img":"dragon-bloodstone.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["龙眼","（龙素材）","（神秘之力）","（万灵药）"],
+                "img":"dragon-eye.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["贤者之石","（石材）","（神秘之力）","（宝石）","（万灵药）"],
+                "img":"philosopher-s-stones.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["天启与智慧之杖"],
+                "img":"enlightenment-staff.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["百万水晶","（宝石）","（神秘之力）"],
+                "img":"millio-quartz.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["纯洁钻石","（宝石）"],
+                "img":"innocent-adamas.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["睿智绿宝石","（宝石）"],
+                "img":"wise-smaragd.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["诚实黄宝石","（宝石）"],
+                "img":"honest-topaz.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["高贵蓝宝石","（宝石）"],
+                "img":"noble-sapphire.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["热情红宝石","（宝石）"],
+                "img":"passion-ruby.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
         ]
     }
     addItem(name,amount,quality,trait){
         this.item.forEach(i=>{
-            if(i.name==name){
+            if(i.name[0]==name){
                 i.amount+=amount;
                 i.quality.push(...quality);
                 i.trait.push(...trait);
@@ -45,7 +234,7 @@ class bag{
     }
     subItem(name,amount){
         this.item.forEach(i=>{
-            if(i.name==name){
+            if(i.name[0]==name){
                 i.amount-=amount;
                 for(var j=0;j<amount;j++){
                     i.quality.pop();
@@ -56,7 +245,7 @@ class bag{
     }
     useItem(name,quality,trait){
         for(let i=0;i<this.item.length;i++){
-            if(this.item[i].name==name){
+            if(this.item[i].name[0]==name){
                 for(let j=0;j<this.item[i].amount;j++){
                     if(this.item[i].quality[j]==quality&&this.item[i].trait[j]==trait){
                         this.item[i].quality.splice(j,1);

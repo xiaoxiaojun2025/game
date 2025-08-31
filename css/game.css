@@ -16,10 +16,8 @@ body{
     border-radius: 10%;
     background-color: rgba(255, 255, 255, 0.5);
     user-select: none;
-}
-.flow{
     overflow-y: auto;
-    height: 100%;
+    overflow: hidden;
 }
 .itemContainer{
     position: relative;
@@ -30,12 +28,22 @@ body{
     top:12px;
     margin-left: 8px;
     margin-top: 16px;
-    width: 70px;
-    height: 110px;
+    width: 120px;
+    height: 200px;
     text-align: center;
     vertical-align: top;
     user-select: none;
     font-family: "Lolita";
+}
+.itemContainer img{
+    position: relative;
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .talkContainer{
     position: absolute;

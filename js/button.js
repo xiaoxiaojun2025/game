@@ -73,14 +73,14 @@ class pauseButtonGroup{
                             if(game.storage.item[i].amount==0) continue;
                             let item=document.createElement("div");
                             item.className="itemContainer";
-                            item.id=game.storage.item[i].name;
-                            item.innerHTML=game.storage.item[i].name+"x"+game.storage.item[i].amount;
+                            item.id=game.storage.item[i].name[0];
+                            item.innerHTML="<img src=../img/item/"+game.bag.item[i].img+">"+game.storage.item[i].name[0]+"x"+game.storage.item[i].amount;
                             item.onclick=function(){
                                 document.getElementsByClassName("innerCanvasContainer")[0].innerHTML="";
                                 for(let j=0;j<game.storage.item[i].amount;j++){
                                     let newItem=document.createElement("div");
                                     newItem.className="itemContainer";
-                                    newItem.innerHTML=game.storage.item[i].name+"<br>品质"+game.storage.item[i].quality[j]+"<br>"+game.storage.item[i].trait[j];
+                                    newItem.innerHTML="<img src=../img/item/"+game.storage.item[i].img+">"+game.storage.item[i].name[0]+"<br>品质"+game.storage.item[i].quality[j]+"<br>"+game.storage.item[i].trait[j];
                                     newItem.id=newItem.id+"-"+j;
                                     document.getElementsByClassName("innerCanvasContainer")[0].appendChild(newItem);
                                 }
@@ -93,13 +93,13 @@ class pauseButtonGroup{
                             if(game.bag.item[i].amount==0) continue;
                             let item=document.createElement("div");
                             item.className="itemContainer";
-                            item.innerHTML=game.bag.item[i].name+"x"+game.bag.item[i].amount;
+                            item.innerHTML="<img src=../img/item/"+game.bag.item[i].img+">"+game.bag.item[i].name[0]+"x"+game.bag.item[i].amount;
                             item.onclick=function(){
                                 document.getElementsByClassName("innerCanvasContainer")[0].innerHTML="";
                                 for(let j=0;j<game.bag.item[i].amount;j++){
                                     let newItem=document.createElement("div");
                                     newItem.className="itemContainer";
-                                    newItem.innerHTML=game.bag.item[i].name+"<br>品质"+game.bag.item[i].quality[j]+"<br>"+game.bag.item[i].trait[j];
+                                    newItem.innerHTML="<img src=../img/item/"+game.bag.item[i].img+">"+game.bag.item[i].name[0]+"<br>品质"+game.bag.item[i].quality[j]+"<br>"+game.bag.item[i].trait[j];
                                     newItem.id=newItem.id+"-"+j;
                                     document.getElementsByClassName("innerCanvasContainer")[0].appendChild(newItem);
                                 }

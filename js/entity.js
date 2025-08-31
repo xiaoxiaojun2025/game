@@ -186,7 +186,14 @@ class pot extends entity{
                 for(let i=0;i<game.RecipeGroup.recipe.length;i++){
                     var recipe=document.createElement("div");
                     recipe.className="itemContainer";
-                    recipe.innerHTML=game.RecipeGroup.recipe[i].name+"<br>配方:<br>";
+                    let recipeNameInItemIndex=0;
+                    for(let j=0;j<game.storage.item.length;j++){
+                        if(game.storage.item[j].name.includes(game.RecipeGroup.recipe[i].name)){
+                            recipeNameInItemIndex=j;
+                            break;
+                        }
+                    }
+                    recipe.innerHTML="<img src=../img/item/"+game.storage.item[recipeNameInItemIndex].img+">"+game.RecipeGroup.recipe[i].name+"<br>配方:<br>";
                     for(let key in game.RecipeGroup.recipe[i].recipe){
                         recipe.innerHTML+=key+"x"+game.RecipeGroup.recipe[i].recipe[key]+"<br>";
                     }
@@ -194,7 +201,7 @@ class pot extends entity{
                     recipe.onclick=function(){
                         recipeContainer.innerHTML="";
                         let page=0;
-                        let itemID=0;
+                        let itemID=[];
                         let usedItem=[];
                         let selectNum=0;
                         let recipeItemName=Object.keys(game.RecipeGroup.recipe[i].recipe);
@@ -203,59 +210,61 @@ class pot extends entity{
                         let storage=JSON.parse(JSON.stringify(game.storage));
                         (function craft(){
                             for(let j=0;j<game.storage.item.length;j++){
-                                if(game.storage.item[j].name==recipeItemName[page]){
-                                    itemID=j;
-                                    break;
+                                if(game.storage.item[j].name.includes(recipeItemName[page])){
+                                    itemID.push(j);
                                 }
                             }
-                            for(let j=0;j<game.storage.item[itemID].amount;j++){
-                                let newItem=document.createElement("div");
-                                newItem.className="itemContainer";
-                                newItem.innerHTML=game.storage.item[itemID].name+"<br>品质"+game.storage.item[itemID].quality[j]+"<br>"+game.storage.item[itemID].trait[j];
-                                document.getElementsByClassName("innerCanvasContainer")[0].appendChild(newItem);
-                                newItem.onclick=function(){
-                                    newItem.style.display="none";
-                                    let usingItem={
-                                        "name":storage.item[itemID].name,
-                                        "quality":storage.item[itemID].quality[j],
-                                        "trait":storage.item[itemID].trait[j]
-                                    }
-                                    usedItem.push(usingItem);
-                                    game.storage.useItem(storage.item[itemID].name,storage.item[itemID].quality[j],storage.item[itemID].trait[j]);
-                                    selectNum++;
-                                    if(selectNum>=game.RecipeGroup.recipe[i].recipe[recipeItemName[page]]){
-                                        page++;
-                                        if(page<recipeItemName.length){
+                            for(let k=0;k<itemID.length;k++){
+                                for(let j=0;j<game.storage.item[itemID[k]].amount;j++){
+                                    let newItem=document.createElement("div");
+                                    newItem.className="itemContainer";
+                                    newItem.innerHTML="<img src=../img/item/"+game.storage.item[itemID[k]].img+">"+game.storage.item[itemID[k]].name[0]+"<br>品质"+game.storage.item[itemID[k]].quality[j]+"<br>"+game.storage.item[itemID[k]].trait[j];
+                                    document.getElementsByClassName("innerCanvasContainer")[0].appendChild(newItem);
+                                    newItem.onclick=function(){
+                                        newItem.style.display="none";
+                                        let usingItem={
+                                            "name":storage.item[itemID[k]].name[0],
+                                            "quality":storage.item[itemID[k]].quality[j],
+                                            "trait":storage.item[itemID[k]].trait[j]
+                                        }
+                                        usedItem.push(usingItem);
+                                        game.storage.useItem(storage.item[itemID[k]].name[0],storage.item[itemID[k]].quality[j],storage.item[itemID[k]].trait[j]);
+                                        selectNum++;
+                                        if(selectNum>=game.RecipeGroup.recipe[i].recipe[recipeItemName[page]]){
+                                            page++;
+                                            itemID=[];
+                                            if(page<recipeItemName.length){
+                                                recipeContainer.innerHTML="";
+                                                craft();
+                                                return;
+                                            }
                                             recipeContainer.innerHTML="";
-                                            craft();
-                                            return;
-                                        }
-                                        recipeContainer.innerHTML="";
-                                        recipeContainer.style.display="none";
-                                        game.PauseButtonGroup.hideAll();
-                                        document.getElementById("continue").onclick=function(){
-                                            game.status="running";
+                                            recipeContainer.style.display="none";
                                             game.PauseButtonGroup.hideAll();
+                                            document.getElementById("continue").onclick=function(){
+                                                game.status="running";
+                                                game.PauseButtonGroup.hideAll();
+                                            }
+                                            usedItem.forEach(it=>{
+                                                newQuality+=it.quality;
+                                            });
+                                            game.timer=Number(game.timer)+game.RecipeGroup.recipe[i].time;
+                                            newQuality=Math.floor(newQuality/usedItem.length+Math.random()*5);
+                                            newTrait=usedItem[0].trait;
+                                            switch(newTrait){
+                                                case "好喝":
+                                                    newQuality+=Math.floor(newQuality/5);
+                                                    break;
+                                            }
+                                            game.storage.addItem(game.RecipeGroup.recipe[i].name[0],1,[newQuality],[newTrait]);
+                                            game.status="running";
+                                            game.Talk.see("成功制作"+game.RecipeGroup.recipe[i].name+"&emsp;消耗时间"+game.RecipeGroup.recipe[i].time+"小时"+"<br>品质："+newQuality);
+                                            setTimeout(() => {
+                                                game.Talk.clear();
+                                                game.Talk.hide();
+                                            },1000)
+                                            selectNum=0;
                                         }
-                                        usedItem.forEach(it=>{
-                                            newQuality+=it.quality;
-                                        });
-                                        game.timer=Number(game.timer)+game.RecipeGroup.recipe[i].time;
-                                        newQuality=Math.floor(newQuality/usedItem.length+Math.random()*5);
-                                        newTrait=usedItem[0].trait;
-                                        switch(newTrait){
-                                            case "好喝":
-                                                newQuality+=Math.floor(newQuality/5);
-                                                break;
-                                        }
-                                        game.storage.addItem(game.RecipeGroup.recipe[i].name,1,[newQuality],[newTrait]);
-                                        game.status="running";
-                                        game.Talk.see("成功制作"+game.RecipeGroup.recipe[i].name+"&emsp;消耗时间"+game.RecipeGroup.recipe[i].time+"小时"+"<br>品质："+newQuality);
-                                        setTimeout(() => {
-                                            game.Talk.clear();
-                                            game.Talk.hide();
-                                        },1000)
-                                        selectNum=0;
                                     }
                                 }
                             }
@@ -316,8 +325,11 @@ class recipeItem extends item{
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            game.Talk.see(this.recipe.name);
             if(input.key.indexOf(config.interact)>-1){
-                game.RecipeGroup.recipe.push(this.recipe.recipe);
+                this.recipe.recipe.forEach(it=>{
+                    game.RecipeGroup.recipe.push(it);
+                });
                 game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(this.recipe),1);
                 game.Entity.splice(game.Entity.indexOf(this),1);
                 globalThis[game.Map.name].entity=game.Map.entityGroup;
