@@ -142,6 +142,30 @@ class door extends entity{
     }
     draw(){}
 }
+class entrance extends entity{
+    constructor(gameWidth,gameHeight,x,y,width,height,destinationMap,destinationX,destinationY){
+        super(gameWidth,gameHeight,0,x,y,width,height);
+        this.destinationMap=destinationMap;
+        this.destinationX=destinationX;
+        this.destinationY=destinationY;
+        this.hitbox=false;
+    }
+    update(game,lilies,input){
+        if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            if(this.destinationMap=="atelier"){
+                game.storage.putin(game.bag);
+            }
+            if(game.Map.name!="atelier"){
+                game.timer=Number(game.timer)+4;
+            }
+            input.key.splice(input.key.indexOf(config.interact),1);
+            game.changeMap(eval(this.destinationMap));
+            lilies.setX(this.destinationX);
+            lilies.setY(this.destinationY);
+        }
+    }
+    draw(){}
+}
 class pot extends entity{
     constructor(gameWidth,gameHeight,img,x,y,width,height){
         super(gameWidth,gameHeight,img,x,y,width,height);

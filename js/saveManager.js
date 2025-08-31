@@ -32,7 +32,7 @@ class saveManager{
         localStorage.setItem("LA-save-"+this.username+"RecipeGroup",JSON.stringify(this.RecipeGroup));
         localStorage.setItem("LA-save-"+this.username+"position",JSON.stringify(this.position));
         localStorage.setItem("LA-save-"+this.username+"map",JSON.stringify(this.map));
-        localStorage.setItem("LA-save-"+this.username+"timer",this.timer);
+        localStorage.setItem("LA-save-"+this.username+"timer",JSON.stringify(this.timer));
         localStorage.setItem("LA-save-"+this.username+"ender",JSON.stringify(this.ender));
         localStorage.setItem("LA-save-"+this.username+"achievement",JSON.stringify(this.achievement));
     }
@@ -43,7 +43,7 @@ class saveManager{
         this.RecipeGroup=JSON.parse(localStorage.getItem("LA-save-"+this.username+"RecipeGroup"));
         this.position=JSON.parse(localStorage.getItem("LA-save-"+this.username+"position"));
         this.map=JSON.parse(localStorage.getItem("LA-save-"+this.username+"map"));
-        this.timer=localStorage.getItem("LA-save-"+this.username+"timer");
+        this.timer=JSON.parse(localStorage.getItem("LA-save-"+this.username+"timer"));
         this.ender=JSON.parse(localStorage.getItem("LA-save-"+this.username+"ender"));
         this.achievement=JSON.parse(localStorage.getItem("LA-save-"+this.username+"achievement"));
         game.storage.item=this.storage;

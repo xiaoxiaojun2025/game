@@ -67,6 +67,9 @@ class game{
             if(e.type=="recipeItem"){
                 this.Entity.push(new recipeItem(gameWidth,gameHeight,document.getElementById("Lilies"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],50,50,e));
             }
+            if(e.type=="entrance"){
+                this.Entity.push(new entrance(gameWidth,gameHeight,e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.destinationMap,e.destinationX,e.destinationY));
+            }
         });
     }
     animate(){
