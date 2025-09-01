@@ -59,6 +59,8 @@ class pauseButtonGroup{
                     this.hideAll("continue");
                     document.getElementById("continue").innerHTML="返回";
                     document.getElementById("continue").onclick=function(){
+                        game.Talk.clear();
+                        game.Talk.hide();
                         document.getElementsByClassName("innerCanvasContainer")[0].style.display="none";
                         document.getElementsByClassName("innerCanvasContainer")[0].innerHTML="";
                         document.getElementById("continue").innerHTML="继续游戏";
@@ -76,6 +78,7 @@ class pauseButtonGroup{
                             item.id=game.storage.item[i].name[0];
                             item.innerHTML="<img src=../img/item/"+game.bag.item[i].img+">"+game.storage.item[i].name[0]+"x"+game.storage.item[i].amount;
                             item.onclick=function(){
+                                game.Talk.see(game.storage.item[i].intro);
                                 document.getElementsByClassName("innerCanvasContainer")[0].innerHTML="";
                                 for(let j=0;j<game.storage.item[i].amount;j++){
                                     let newItem=document.createElement("div");
@@ -97,6 +100,7 @@ class pauseButtonGroup{
                             item.onclick=function(){
                                 document.getElementsByClassName("innerCanvasContainer")[0].innerHTML="";
                                 for(let j=0;j<game.bag.item[i].amount;j++){
+                                    game.Talk.see(game.storage.item[i].intro);
                                     let newItem=document.createElement("div");
                                     newItem.className="itemContainer";
                                     newItem.innerHTML="<img src=../img/item/"+game.bag.item[i].img+">"+game.bag.item[i].name[0]+"<br>品质"+game.bag.item[i].quality[j]+"<br>"+game.bag.item[i].trait[j];
