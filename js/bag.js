@@ -16,7 +16,7 @@ class bag{
                 "img":"drinking-water.webp",
                 "amount":2,
                 "quality":[5,5],
-                "trait":["好喝","解渴"]
+                "trait":["品质提升","品质提升+"]
             },
             {
                 "name":["啪汽啪汽水","（水）","（气体）"],
@@ -30,7 +30,42 @@ class bag{
                 "img":"koinos-grass.webp",
                 "amount":1,
                 "quality":[10],
-                "trait":[""]
+                "trait":["品质提升++"]
+            },
+            {
+                "name":["红色的花","（植物）","（燃料）"],
+                "img":"red-flower.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["蓝色的花","（植物）","（药材）"],
+                "img":"blue-flower.webp",
+                "amount":1,
+                "quality":[10],
+                "trait":["品质提升"]
+            },
+            {
+                "name":["黄色的花","（植物）","（食材）"],
+                "img":"yellow-flower.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["绿色的花","（植物）"],
+                "img":"green-flower.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["白色的花","（植物）","（神秘之力）"],
+                "img":"white-flower.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
             },
             {
                 "name":["中和剂（红）","（中和剂）","（燃料）"],

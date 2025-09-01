@@ -27,7 +27,7 @@ class recipeGroup{
                 "time":3,
                 "recipe":{
                     "蓝色的花":1,
-                    "（水）":3,
+                    "（水）":3
                 }
             },
             {

@@ -36,7 +36,7 @@ class lilies extends entity{
         this.spriteHeight=77;
         this.width=this.spriteWidth*width;
         this.height=this.spriteHeight*height;
-        this.weight=0.3;
+        this.weight=1;
         this.face="right";
         this.jumped=false;
     }
@@ -72,14 +72,14 @@ class lilies extends entity{
                 this.frameY=1;
             }
             this.face="left";
-            this.vx=-2;
+            this.vx=-5;
         }
         else if(input.key.indexOf(config.right)>-1){
             if(this.frameY==0){
                 this.frameY=1;
             }
             this.face="right";
-            this.vx=2;
+            this.vx=5;
         }
         else{
             if(this.frameY==1){
@@ -90,7 +90,7 @@ class lilies extends entity{
         if(input.key.indexOf(config.jump)>-1&&this.isOnFloor){
             if(!this.jumped){
                 this.jumped=true;
-                this.vy-=12;
+                this.vy-=20;
             }
         }
         else if(!this.isOnFloor){
@@ -104,7 +104,7 @@ class lilies extends entity{
         }
     }
     draw(ctx){
-        this.frameX=Math.floor(Frame/30)%4;
+        this.frameX=Math.floor(Frame/10)%4;
         if(this.face=="right"){
             super.draw(ctx);
         }
@@ -232,6 +232,7 @@ class pot extends entity{
                                         selectNum++;
                                         if(selectNum>=game.RecipeGroup.recipe[i].recipe[recipeItemName[page]]){
                                             page++;
+                                            selectNum=0;
                                             itemID=[];
                                             if(page<recipeItemName.length){
                                                 recipeContainer.innerHTML="";
@@ -251,12 +252,32 @@ class pot extends entity{
                                             game.timer=Number(game.timer)+game.RecipeGroup.recipe[i].time;
                                             newQuality=Math.floor(newQuality/usedItem.length+Math.random()*5);
                                             newTrait=usedItem[0].trait;
+                                            for(let l=1;l<usedItem.length;l++){
+                                                if([newTrait,usedItem[l].trait].includes("品质提升")||[newTrait,usedItem[l].trait].includes("品质提升+")){
+                                                    newTrait="品质提升++";
+                                                }
+                                                else if([newTrait,usedItem[l].trait].includes("品质提升+")||[newTrait,usedItem[l].trait].includes("品质提升++")){
+                                                    newTrait="超级品质";
+                                                }
+                                            }
                                             switch(newTrait){
-                                                case "好喝":
+                                                case "品质提升":
+                                                    newQuality+=Math.floor(newQuality/10);
+                                                    break;
+                                                case "品质提升+":
                                                     newQuality+=Math.floor(newQuality/5);
                                                     break;
+                                                case "品质提升++":
+                                                    newQuality+=Math.floor(newQuality/4);
+                                                    break;
+                                                case "超级品质":
+                                                    newQuality+=Math.floor(newQuality/2);
+                                                    break;
+                                                case "究极的逸品":
+                                                    newQuality+=newQuality;
+                                                    break;
                                             }
-                                            game.storage.addItem(game.RecipeGroup.recipe[i].name[0],1,[newQuality],[newTrait]);
+                                            game.storage.addItem(game.RecipeGroup.recipe[i].name,1,[newQuality],[newTrait]);
                                             game.status="running";
                                             game.Talk.see("成功制作"+game.RecipeGroup.recipe[i].name+"&emsp;消耗时间"+game.RecipeGroup.recipe[i].time+"小时"+"<br>品质："+newQuality);
                                             setTimeout(() => {
@@ -286,7 +307,7 @@ class pot extends entity{
         }
     }
     draw(ctx){
-        this.frameX=Math.floor(Frame/20)%3;
+        this.frameX=Math.floor(Frame/5)%3;
         super.draw(ctx);
     }
 }
@@ -303,16 +324,19 @@ class item extends entity{
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            this.displayed=true;
             game.Talk.see(this.name+"x"+this.amount);
             if(input.key.indexOf(config.interact)>-1){
                 game.timer=Number(game.timer)+3;
                 game.bag.addItem(this.name,this.amount,this.quality,this.trait);
                 game.Entity.splice(game.Entity.indexOf(this),1);
+                this.displayed=false;
                 game.Talk.clear();
                 game.Talk.hide();
             }
         }
-        else if(game.Talk.displayed){
+        else if(game.Talk.displayed&&this.displayed){
+            this.displayed=false;
             game.Talk.clear();
             game.Talk.hide();
         }
@@ -325,6 +349,7 @@ class recipeItem extends item{
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            this.displayed=true;
             game.Talk.see(this.recipe.name);
             if(input.key.indexOf(config.interact)>-1){
                 this.recipe.recipe.forEach(it=>{
@@ -333,7 +358,15 @@ class recipeItem extends item{
                 game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(this.recipe),1);
                 game.Entity.splice(game.Entity.indexOf(this),1);
                 globalThis[game.Map.name].entity=game.Map.entityGroup;
+                this.displayed=false;
+                game.Talk.clear();
+                game.Talk.hide();
             }
+        }
+        else if(game.Talk.displayed&&this.displayed){
+            this.displayed=false;
+            game.Talk.clear();
+            game.Talk.hide();
         }
     }
 }
@@ -388,7 +421,7 @@ class text extends hitbox{
                     this.fast=true;
                     this.slow=false;
                     clearTimeout(game.Talk.timeout);
-                    game.Talk.display(this.text[this.index]?this.text[this.index]:"",50,game.Talk);
+                    game.Talk.display(this.text[this.index]?this.text[this.index]:"",100,game.Talk);
                 }
             }
             else if(!this.slow){

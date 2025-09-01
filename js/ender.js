@@ -16,7 +16,7 @@ class endChecker{
         if(game.timer>=2880){
             this.ender.end=true;
         }
-        if(game.storage.item[2].amount>=1){
+        if(game.storage.item[0].amount>=1){
             this.ender.canEnd=true;
         }
         if(game.status=="paused"&&this.ender.canEnd){

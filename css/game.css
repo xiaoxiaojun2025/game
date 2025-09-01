@@ -91,3 +91,16 @@ body{
     font-family: "Lolita";
     z-index: 10;
 }
+.mapname{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,0);
+    text-align: center;
+    height: 5%;
+    width: 40%;
+    font-size: 1.5em;
+    user-select: none;
+    font-family: "Lolita";
+    z-index: 10;
+}

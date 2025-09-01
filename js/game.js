@@ -1,6 +1,8 @@
 const gameWidth=1280;
 const gameHeight=720;
 var config=JSON.parse(localStorage.getItem("LA-config-"+localStorage.getItem("LA-username")));
+var fps=60;
+var FrameRate=1000/fps;
 var Frame=0;
 
 class game{
@@ -21,6 +23,8 @@ class game{
         this.SaveManager=new saveManager(this);
         this.SaveManager.load(this);
         this.PauseButtonGroup=new pauseButtonGroup(this);
+        this.prevTimestamp=document.timeline.currentTime;
+        this.sumTimestamp=0;
         this.animate=this.animate.bind(this);
     }
     initContainer(){
@@ -37,6 +41,7 @@ class game{
     }
     changeMap(newMap){
         this.Map=new map(newMap);
+        document.getElementById("mapname").innerHTML=newMap.name1;
         this.gameCanvas.style.backgroundImage="url(../img/map/"+newMap.background+")";
         this.Entity=[];
         this.createEntities();
@@ -72,45 +77,50 @@ class game{
             }
         });
     }
-    animate(){
-        if(this.input.key.indexOf(config.pause)>-1){
-            if(this.status=="running"){
-                this.status="paused";
-                this.PauseButtonGroup.display();
-            }
-        }
-        if(this.status=="running"){
-            Frame++;
-            document.getElementById("timer").innerHTML=Math.floor(this.timer/24).toString()+"天"+Math.floor(this.timer%24).toString()+"时";
-            this.ctx.clearRect(0,0,gameWidth,gameHeight);
-            this.Entity.forEach(e=>{
-                e.draw(this.ctx);
-            });
-            this.Lilies.draw(this.ctx);
-            this.Lilies.update(this.input,this.Entity);
-            this.Entity.forEach(e=>{
-                e.update(this,this.Lilies,this.input);
-            });
-        }
-        if(this.status=="talking"){
-            Frame++;
-            this.ctx.clearRect(0,0,gameWidth,gameHeight);
-            this.Entity.forEach(e=>{
-                e.draw(this.ctx);
-            });
-            this.Lilies.draw(this.ctx);
-            this.Entity.forEach(e=>{
-                if(e instanceof text){
-                    e.update(this,this.Lilies,this.input);
+    animate(timestamp){
+        this.sumTimestamp+=timestamp-this.prevTimestamp;
+        this.prevTimestamp=timestamp;
+        if(this.sumTimestamp>=FrameRate){
+            this.sumTimestamp-=FrameRate;
+            if(this.input.key.indexOf(config.pause)>-1){
+                if(this.status=="running"){
+                    this.status="paused";
+                    this.PauseButtonGroup.display();
                 }
-            });
+            }
+            if(this.status=="running"){
+                Frame++;
+                document.getElementById("timer").innerHTML=Math.floor(this.timer/24).toString()+"天"+Math.floor(this.timer%24).toString()+"时";
+                this.ctx.clearRect(0,0,gameWidth,gameHeight);
+                this.Entity.forEach(e=>{
+                    e.draw(this.ctx);
+                });
+                this.Lilies.draw(this.ctx);
+                this.Lilies.update(this.input,this.Entity);
+                this.Entity.forEach(e=>{
+                    e.update(this,this.Lilies,this.input);
+                });
+            }
+            if(this.status=="talking"){
+                Frame++;
+                this.ctx.clearRect(0,0,gameWidth,gameHeight);
+                this.Entity.forEach(e=>{
+                    e.draw(this.ctx);
+                });
+                this.Lilies.draw(this.ctx);
+                this.Entity.forEach(e=>{
+                    if(e instanceof text){
+                        e.update(this,this.Lilies,this.input);
+                    }
+                });
+            }
+            this.EndChecker.update(this);
         }
-        this.EndChecker.update(this);
-        requestAnimationFrame(this.animate);
+        requestAnimationFrame((t)=>this.animate(t));
     }
 }
 
 window.addEventListener("load",function(){
     var Game=new game;
-    Game.animate();
+    Game.animate(Game.prevTimestamp);
 });

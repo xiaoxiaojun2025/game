@@ -6,11 +6,35 @@ class map{
         this.src.entity.forEach(e=>{
             this.entityGroup.push(e);
         });
+        this.randomTrait();
     }
+    randomTrait(){
+        this.entityGroup.forEach(e=>{
+            if(e.type=="item"){
+                let trait=[];
+                for(let i=0;i<e.amount;i++){
+                    trait.push(mapTraitGroup[this.name][Math.floor(Math.random()*mapTraitGroup[this.name].length)]);
+                }
+                e.trait=trait;
+            }
+        });
+    }
+}
+
+var mapTraitGroup={
+    "A":[
+        "",
+        "",
+        "",
+        "",
+        "",
+        "品质提升"
+    ]
 }
 
 var atelier={
     "name":"atelier",
+    "name1":"炼金工房",
     "background":"atelier.png",
     "entity":[
         {
@@ -53,6 +77,7 @@ var atelier={
 }
 var A={
     "name":"A",
+    "name1":"A",
     "background":"",
     "entity":[
         {
@@ -80,7 +105,7 @@ var A={
             "img":"item_img_1.png",
             "amount":3,
             "quality":[5,20,10],
-            "trait":["难喝","好喝",""],
+            "trait":[],
             "hitbox":[500,400,50,50]
         },
         {
