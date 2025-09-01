@@ -40,15 +40,24 @@ var mapTraitGroup={
         "",
         "",
         "",
-        "品质提升"
+        "品质提升",
+        "低价"
     ],
     "pathToTheTown":[
         "",
         "",
+        "",
+        "",
+        "",
         "品质提升",
         "品质提升",
         "品质提升",
-        "品质提升+"
+        "品质提升+",
+        "低价",
+        "低价",
+        "低价+",
+        "高价",
+        "高价"
     ]
 }
 var mapQualityGroup={
@@ -250,6 +259,15 @@ var pathToTheTown={
             "destinationX":1168,
             "destinationY":486,
             "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"puni",
+            "name":"蓝噗尼",
+            "img":"blue-puni",
+            "damage":1,
+            "hearts":10,
+            "hitbox":[1014,520,85,85],
+            "actRange":[854,520,320,80]
         },
         {
             "type":"item",

@@ -9,6 +9,7 @@ class game{
     constructor(){
         this.status="running";
         this.timer=8;
+        this.cash=0;
         this.createCanvas();
         this.initContainer();
         this.storage=new bag(5000);
@@ -47,6 +48,7 @@ class game{
         this.createEntities();
         if(this.Map.name=="atelier"){
             document.getElementById("bag").innerHTML="材料箱";
+            this.Lilies.hearts=5;
         }
         else{
             document.getElementById("bag").innerHTML="采集篮";
@@ -75,6 +77,9 @@ class game{
             if(e.type=="entrance"){
                 this.Entity.push(new entrance(gameWidth,gameHeight,e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.destinationMap,e.destinationX,e.destinationY));
             }
+            if(e.type=="puni"){
+                this.Entity.push(new puni(gameWidth,gameHeight,document.getElementById(e.img),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],256,256,e.name,e.damage,e.hearts,e.actRange));
+            }
         });
     }
     animate(timestamp){
@@ -90,7 +95,7 @@ class game{
             }
             if(this.status=="running"){
                 Frame++;
-                document.getElementById("timer").innerHTML=Math.floor(this.timer/24).toString()+"天"+Math.floor(this.timer%24).toString()+"时";
+                document.getElementById("timer").innerHTML=Math.floor(this.timer/24).toString()+"天"+Math.floor(this.timer%24).toString()+"时<br>金币："+this.cash.toString()+"<br>生命："+this.Lilies.hearts.toString()+"❤";
                 this.ctx.clearRect(0,0,gameWidth,gameHeight);
                 this.Entity.forEach(e=>{
                     e.draw(this.ctx);

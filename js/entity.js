@@ -29,6 +29,43 @@ class entity{
         this.y=y;
     }
 }
+class atk extends entity{
+    constructor(gameWidth,gameHeight,img,x,y,width,height){
+        super(gameWidth,gameHeight,img,x,y,width,height);
+        this.spriteWidth=100;
+        this.spriteHeight=180;
+        this.frame=0;
+        this.face="right";
+    }
+    update(lilies){
+        this.frame++;
+        this.frameX=Math.floor(this.frame/30);
+        if(lilies.face=="right"){
+            this.face="right";
+            this.x=lilies.x+lilies.width;
+            this.y=lilies.y+lilies.height/2-this.height/2;
+        }
+        if(lilies.face=="left"){
+            this.face="left";
+            this.x=lilies.x-this.width;
+            this.y=lilies.y+lilies.height/2-this.height/2;
+        }
+        if(this.frameX>=3){
+            lilies.atk=null;
+        }
+    }
+    draw(ctx){
+        if(this.face=="right"){
+            super.draw(ctx);
+        }
+        else{
+            ctx.save();
+            ctx.scale(-1,1);
+            ctx.drawImage(this.img,this.spriteWidth*this.frameX,this.spriteHeight*this.frameY,this.spriteWidth,this.spriteHeight,-this.x-this.width,this.y,this.width,this.height);
+            ctx.restore();
+        }
+    }
+}
 class lilies extends entity{
     constructor(gameWidth,gameHeight,img,x,y,width,height){
         super(gameWidth,gameHeight,img,x,y,0,0);
@@ -39,6 +76,10 @@ class lilies extends entity{
         this.weight=1;
         this.face="right";
         this.jumped=false;
+        this.damage=5;
+        this.hearts=5;
+        this.atk=null;
+        this.invincible=false;
     }
     update(input,hitboxGroup){
         this.isOnFloor=false;
@@ -102,6 +143,12 @@ class lilies extends entity{
             }
             this.vy=0;
         }
+        if(input.key.indexOf(config.attack)>-1&&this.atk==null){
+            this.atk=new atk(this.gameWidth,this.gameHeight,document.getElementById("atk"),this.x+this.width,this.y+this.height/2-this.height*1.5,this.width/2,this.height*1.5);
+        }
+        if(this.atk!=null){
+            this.atk.update(this);
+        }
     }
     draw(ctx){
         this.frameX=Math.floor(Frame/10)%4;
@@ -113,6 +160,25 @@ class lilies extends entity{
             ctx.scale(-1,1);
             ctx.drawImage(this.img,this.spriteWidth*this.frameX,this.spriteHeight*this.frameY,this.spriteWidth,this.spriteHeight,-this.x-this.width,this.y,this.width,this.height);
             ctx.restore();
+        }
+        if(this.atk!=null){
+            this.atk.draw(ctx);
+        }
+    }
+    getDamaged(damage,game){
+        if(!this.invincible){
+            if(this.hearts-damage>0){
+                this.hearts-=damage;
+                this.invincible=true;
+                setTimeout(()=>{
+                    this.invincible=false;
+                },2000);
+            }
+            else{
+                game.changeMap(atelier);
+                game.bag.clear();
+                game.timer+=72;
+            }
         }
     }
 }
@@ -309,6 +375,73 @@ class pot extends entity{
     draw(ctx){
         this.frameX=Math.floor(Frame/5)%3;
         super.draw(ctx);
+    }
+}
+class enemy extends entity{
+    constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,damage,hearts,actRange){
+        super(gameWidth,gameHeight,img,x,y,width,height);
+        this.spriteWidth=spriteWidth;
+        this.spriteHeight=spriteHeight;
+        this.name=name;
+        this.damage=damage;
+        this.maxHearths=hearts;
+        this.hearts=hearts;
+        this.actRange=actRange;
+        this.invincible=false;
+    }
+    draw(ctx){
+        ctx.fillText(this.name+" "+this.hearts+"/"+this.maxHearths,this.x,this.y-this.height/2);
+        super.draw(ctx);
+    }
+    getDamaged(damage,game){
+        if(!this.invincible){
+            if(this.hearts-damage>0){
+                this.hearts-=damage;
+                this.invincible=true;
+                setTimeout(()=>{
+                    this.invincible=false;
+                },1500);
+            }
+            else{
+                game.Entity.splice(game.Entity.indexOf(this),1);
+            }
+        }
+    }
+}
+class puni extends enemy{
+    constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,damage,hearts,actRange){
+        super(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,damage,hearts,actRange);
+        this.vx=2;
+        this.face="left";
+    }
+    update(game,lilies,input){
+        super.update(game,lilies,input);
+        if(this.x+this.width>=this.actRange[0]+this.actRange[2]||this.x+this.width>=gameWidth){
+            this.face="right";
+            this.vx=-this.vx;
+        }
+        if(this.x<=this.actRange[0]||this.x<=0){
+            this.face="left";
+            this.vx=-this.vx;
+        }
+        if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            lilies.getDamaged(this.damage,game);
+        }
+        if(lilies.atk!=null&&this.y<=lilies.atk.y+lilies.atk.height&&this.y+this.height>=lilies.atk.y&&this.x+this.width>lilies.atk.x&&this.x<lilies.atk.x+lilies.atk.width){
+            this.getDamaged(lilies.damage,game);
+        }
+    }
+    draw(ctx){
+        if(this.face=="right"){
+            super.draw(ctx);
+        }
+        else{
+            ctx.fillText(this.name+" "+this.hearts+"/"+this.maxHearths,this.x,this.y-this.height/2);
+            ctx.save();
+            ctx.scale(-1,1);
+            ctx.drawImage(this.img,this.spriteWidth*this.frameX,this.spriteHeight*this.frameY,this.spriteWidth,this.spriteHeight,-this.x-this.width,this.y,this.width,this.height);
+            ctx.restore();
+        }
     }
 }
 class item extends entity{

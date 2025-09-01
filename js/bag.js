@@ -50,6 +50,13 @@ class bag{
         });
         return amount;
     }
+    clear(){
+        for(let i=0;i<this.item.length;i++){
+            this.item[i].amount=0;
+            this.item[i].quality=[];
+            this.item[i].trait=[];
+        }
+    }
     init(){
         this.item=[
             {
