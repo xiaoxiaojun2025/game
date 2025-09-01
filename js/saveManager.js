@@ -24,10 +24,11 @@ class saveManager{
         this.position=game.Map.name;
         this.map=new saveMap;
         this.timer=game.timer;
-        this.ender=game.EndChecker.ender;
+        this.event=game.eventChecker.event;
         this.achievement=game.achievement.achievements;
         this.cash=game.cash;
         this.hearts=game.Lilies.hearts;
+        this.damage=game.Lilies.damage;
         localStorage.setItem("LA-save-"+this.username,true);
         localStorage.setItem("LA-save-"+this.username+"storage",JSON.stringify(this.storage));
         localStorage.setItem("LA-save-"+this.username+"bag",JSON.stringify(this.bag));
@@ -36,10 +37,11 @@ class saveManager{
         localStorage.setItem("LA-save-"+this.username+"position",JSON.stringify(this.position));
         localStorage.setItem("LA-save-"+this.username+"map",JSON.stringify(this.map));
         localStorage.setItem("LA-save-"+this.username+"timer",JSON.stringify(this.timer));
-        localStorage.setItem("LA-save-"+this.username+"ender",JSON.stringify(this.ender));
+        localStorage.setItem("LA-save-"+this.username+"event",JSON.stringify(this.event));
         localStorage.setItem("LA-save-"+this.username+"achievement",JSON.stringify(this.achievement));
         localStorage.setItem("LA-save-"+this.username+"cash",JSON.stringify(this.cash));
         localStorage.setItem("LA-save-"+this.username+"hearts",JSON.stringify(this.hearts));
+        localStorage.setItem("LA-save-"+this.username+"damage",JSON.stringify(this.damage));
     }
     load(game){
         this.storage=JSON.parse(localStorage.getItem("LA-save-"+this.username+"storage"));
@@ -49,10 +51,11 @@ class saveManager{
         this.position=JSON.parse(localStorage.getItem("LA-save-"+this.username+"position"));
         this.map=JSON.parse(localStorage.getItem("LA-save-"+this.username+"map"));
         this.timer=JSON.parse(localStorage.getItem("LA-save-"+this.username+"timer"));
-        this.ender=JSON.parse(localStorage.getItem("LA-save-"+this.username+"ender"));
+        this.event=JSON.parse(localStorage.getItem("LA-save-"+this.username+"event"));
         this.achievement=JSON.parse(localStorage.getItem("LA-save-"+this.username+"achievement"));
         this.cash=JSON.parse(localStorage.getItem("LA-save-"+this.username+"cash"));
         this.hearts=JSON.parse(localStorage.getItem("LA-save-"+this.username+"hearts"));
+        this.damage=JSON.parse(localStorage.getItem("LA-save-"+this.username+"damage"));
         game.storage.item=this.storage;
         game.bag.item=this.bag;
         game.Lilies.x=this.pos[0];
@@ -62,10 +65,11 @@ class saveManager{
             globalThis[this.map[key].name]=this.map[key];
         }
         game.timer=this.timer;
-        game.EndChecker.ender=this.ender;
+        game.eventChecker.event=this.event;
         game.achievement.achievements=this.achievement;
         game.cash=this.cash;
         game.Lilies.hearts=this.hearts;
+        game.Lilies.damage=this.damage;
         game.changeMap(eval(this.position));
     }
 }

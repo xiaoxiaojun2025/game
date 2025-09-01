@@ -261,15 +261,6 @@ var pathToTheTown={
             "hitbox":[-80,0,80,720]
         },
         {
-            "type":"puni",
-            "name":"蓝噗尼",
-            "img":"blue-puni",
-            "damage":1,
-            "hearts":10,
-            "hitbox":[1014,520,85,85],
-            "actRange":[854,520,320,80]
-        },
-        {
             "type":"item",
             "itemname":"蓝色的花",
             "amount":2,

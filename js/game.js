@@ -20,7 +20,7 @@ class game{
         this.input=new inputManager;
         this.achievement=new achievementManager;
         this.Lilies=new lilies(gameWidth,gameHeight,document.getElementById("Lilies"),240,486,2,2);
-        this.EndChecker=new endChecker;
+        this.eventChecker=new eventChecker;
         this.SaveManager=new saveManager(this);
         this.SaveManager.load(this);
         this.PauseButtonGroup=new pauseButtonGroup(this);
@@ -78,7 +78,7 @@ class game{
                 this.Entity.push(new entrance(gameWidth,gameHeight,e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.destinationMap,e.destinationX,e.destinationY));
             }
             if(e.type=="puni"){
-                this.Entity.push(new puni(gameWidth,gameHeight,document.getElementById(e.img),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],256,256,e.name,e.damage,e.hearts,e.actRange));
+                this.Entity.push(new puni(gameWidth,gameHeight,document.getElementById(e.img),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],128,169,e.name,e.damage,e.hearts,e.actRange));
             }
         });
     }
@@ -119,7 +119,7 @@ class game{
                     }
                 });
             }
-            this.EndChecker.update(this);
+            this.eventChecker.update(this);
         }
         requestAnimationFrame((t)=>this.animate(t));
     }

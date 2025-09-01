@@ -1,4 +1,4 @@
-class ender{
+class event{
     constructor(){
         this.end=false;
         this.canEnd=false;
@@ -8,18 +8,18 @@ class ender{
         this.end_4=false;
     }
 }
-class endChecker{
+class eventChecker{
     constructor(){
-        this.ender=new ender;
+        this.event=new event;
     }
     update(game){
         if(game.timer>=2880){
-            this.ender.end=true;
+            this.event.end=true;
         }
         if(game.storage.item[0].amount>=1){
-            this.ender.canEnd=true;
+            this.event.canEnd=true;
         }
-        if(game.status=="paused"&&this.ender.canEnd){
+        if(game.status=="paused"&&this.event.canEnd){
             document.getElementById("ender").style.display="block";
         }
         else{
