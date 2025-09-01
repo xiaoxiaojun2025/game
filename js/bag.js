@@ -71,6 +71,7 @@ class bag{
                 "name":["饮用水","（水）"],
                 "intro":"咕噜咕噜……嗯～就是一般的水呢。",
                 "img":"drinking-water.webp",
+                "price":1,
                 "amount":2,
                 "quality":[5,5],
                 "trait":["",""]
@@ -79,6 +80,7 @@ class bag{
                 "name":["啪汽啪汽水","（水）","（气体）"],
                 "intro":"直接喝也很好喝，不过冰镇后会更美味呢。",
                 "img":"crackling-water.webp",
+                "price":1,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -87,6 +89,7 @@ class bag{
                 "name":["寻常草","（植物）"],
                 "intro":"应该也可以当药草啦，不过基本上还是用作燃料居多。",
                 "img":"koinos-grass.webp",
+                "price":1,
                 "amount":1,
                 "quality":[10],
                 "trait":[""]
@@ -95,6 +98,7 @@ class bag{
                 "name":["红色的花","（植物）","（燃料）"],
                 "intro":"啊，我见过这种花！名字叫……什么来着？<br>总之先叫它红色的花吧。",
                 "img":"red-flower.webp",
+                "price":1,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -103,6 +107,7 @@ class bag{
                 "name":["蓝色的花","（植物）","（药材）"],
                 "intro":"这是开在海边等类寒冷地区的花。为了抵御强风，它的根抓得很牢，所以拔的时候最好使出全力。",
                 "img":"blue-flower.webp",
+                "price":1,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -111,6 +116,7 @@ class bag{
                 "name":["黄色的花","（植物）","（食材）"],
                 "intro":"听说这种花有很多花蜜。<br>这么说，附近该不会有蜜蜂……哇──！快逃──！",
                 "img":"yellow-flower.webp",
+                "price":1,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -119,6 +125,7 @@ class bag{
                 "name":["绿色的花","（植物）"],
                 "intro":"这种花啊，咬下去会甜甜的。<br>不过，它看起来苦苦的，咬下去可能需要勇气……",
                 "img":"green-flower.webp",
+                "price":1,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -127,6 +134,7 @@ class bag{
                 "name":["白色的花","（植物）","（神秘之力）"],
                 "intro":"听说这种花在阴暗处放个几天，马上就会枯萎了。<br>不过放晴了好像就会立刻长回来。",
                 "img":"white-flower.webp",
+                "price":1,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -135,6 +143,7 @@ class bag{
                 "name":["中和剂（红）","（中和剂）","（燃料）"],
                 "intro":"炼金术基础中的基础，中和剂！",
                 "img":"red-neutralizer.webp",
+                "price":10,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -143,6 +152,7 @@ class bag{
                 "name":["中和剂（蓝）","（中和剂）","（食材）"],
                 "intro":"是蓝色的，所以是冰属性呢。这样很好懂对吧。幸好蓝色不是火属性。",
                 "img":"blue-neutralizer.webp",
+                "price":10,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -151,6 +161,7 @@ class bag{
                 "name":["中和剂（黄）","（中和剂）","（石材）"],
                 "intro":"这是黄色的，所以是雷属性吗？这次要加砂才行，但我也可以加雷电吗？",
                 "img":"yellow-neutralizer.webp",
+                "price":10,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -159,6 +170,7 @@ class bag{
                 "name":["中和剂（绿）","（中和剂）","（气体）"],
                 "intro":"啊，底部有残渣。跟其他的不同，制作这种中和剂时，必须要过滤，所以很麻烦啊。",
                 "img":"green-neutralizer.webp",
+                "price":10,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -167,6 +179,7 @@ class bag{
                 "name":["中和剂（白）","（中和剂）","（有毒材料）"],
                 "intro":"得小心不要把它当成牛奶喝掉。",
                 "img":"white-neutralizer.webp",
+                "price":10,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -175,6 +188,7 @@ class bag{
                 "name":["炼金黏土","（砂）","（万灵药）"],
                 "intro":"哎呀～玩黏土一不小心就会忘了时间对吧？",
                 "img":"alchemic-clay.webp",
+                "price":15,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -183,6 +197,7 @@ class bag{
                 "name":["直木","（木材）","（火药）"],
                 "intro":"偶尔～会有弯曲的长出来，那种也能卖到相当高价呢。<br>弯曲的直木……也太莫名其妙了。",
                 "img":"straight-baum.webp",
+                "price":1,
                 "amount":1,
                 "quality":[10],
                 "trait":[""]
@@ -191,6 +206,7 @@ class bag{
                 "name":["灰木炭","（木材）","（燃料）"],
                 "intro":"“好，我来施个魔法。我会让你知道你是很棒的素材。来吧，坐上南瓜马车……",
                 "img":"aschenp-coal.webp",
+                "price":1,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -199,6 +215,7 @@ class bag{
                 "name":["白砂","（砂）","（药材）"],
                 "intro":"好的白砂颗粒细腻，照到光还会有点闪闪发亮。",
                 "img":"white-sand.webp",
+                "price":1,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -207,6 +224,7 @@ class bag{
                 "name":["可燃灰砂","（砂）","（燃料）","（火药）"],
                 "intro":"哈……哈……哈啾！",
                 "img":"flammable-sand.webp",
+                "price":1,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -215,6 +233,7 @@ class bag{
                 "name":["金属块","（金属）"],
                 "intro":"接下来会用它做出各种各样的东西！",
                 "img":"ingot.webp",
+                "price":15,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -223,6 +242,7 @@ class bag{
                 "name":["丝薇丽银","（金属）"],
                 "intro":"银色果然很帅气啊。",
                 "img":"silvalia.webp",
+                "price":40,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -231,6 +251,7 @@ class bag{
                 "name":["黄金艾森矿","（金属）","（原石）"],
                 "intro":"金条！",
                 "img":"gold-eisen.webp",
+                "price":200,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -239,6 +260,7 @@ class bag{
                 "name":["精灵银块","（金属）"],
                 "intro":"要把这个拿来锻造东西？",
                 "img":"harmonium.webp",
+                "price":500,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -247,6 +269,7 @@ class bag{
                 "name":["海银","（金属）"],
                 "intro":"让人联想到海底的深蓝色……我是第一次见到这种金属。<br>据说它是只存在于传说里的金属。原来颜色这么漂亮。",
                 "img":"okeagyrn.webp",
+                "price":1000,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -255,6 +278,7 @@ class bag{
                 "name":["艾森矿","（矿石）"],
                 "intro":"艾森矿随处可见，而且熔点又低，可以用家里的锅子进行加工呢。",
                 "img":"eisen-ore.webp",
+                "price":1,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -263,6 +287,7 @@ class bag{
                 "name":["黑洞","（魔法道具）","（神秘之力）"],
                 "intro":"……嗯，差不多就这样吧。好，放入！",
                 "img":"black-agujero.webp",
+                "price":1000,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -271,6 +296,7 @@ class bag{
                 "name":["龙之血晶","（龙素材）","（神秘之力）"],
                 "intro":"凝固成这样，它吃的肯定都是油腻的食物……",
                 "img":"dragon-bloodstone.webp",
+                "price":100,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -279,6 +305,7 @@ class bag{
                 "name":["龙眼","（龙素材）","（神秘之力）","（万灵药）"],
                 "intro":"我曾看到过这颗龙眼在晚上转来转去的。",
                 "img":"dragon-eye.webp",
+                "price":100,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -287,6 +314,7 @@ class bag{
                 "name":["贤者之石","（石材）","（神秘之力）","（宝石）","（万灵药）"],
                 "intro":"",
                 "img":"philosopher-s-stones.webp",
+                "price":10000,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -295,6 +323,7 @@ class bag{
                 "name":["百万水晶","（宝石）","（神秘之力）"],
                 "intro":"原来如此，放在水里就没声音了。",
                 "img":"millio-quartz.webp",
+                "price":800,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -303,6 +332,7 @@ class bag{
                 "name":["纯洁钻石","（宝石）","（万灵药）"],
                 "intro":"感觉我能改当宝石工匠呢。",
                 "img":"innocent-adamas.webp",
+                "price":650,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -311,6 +341,7 @@ class bag{
                 "name":["睿智绿宝石","（宝石）","（植物）"],
                 "intro":"我盯……",
                 "img":"wise-smaragd.webp",
+                "price":400,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -319,6 +350,7 @@ class bag{
                 "name":["诚实黄宝石","（宝石）","（砂）","（石材）"],
                 "intro":"它在晚上也会发出耀眼的光芒，所以被人称为“夜晚的太阳”。<br>还有，据说只要改变调合的方式，它也能呼唤雷电。",
                 "img":"honest-topaz.webp",
+                "price":300,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -327,6 +359,7 @@ class bag{
                 "name":["高贵蓝宝石","（宝石）","（矿石）"],
                 "intro":"这种宝石似乎是贵族或王族的证明。",
                 "img":"noble-sapphire.webp",
+                "price":225,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -335,6 +368,7 @@ class bag{
                 "name":["热情红宝石","（宝石）","（燃料）"],
                 "intro":"其实这个也能拿来制作引爆装置。",
                 "img":"passion-ruby.webp",
+                "price":150,
                 "amount":0,
                 "quality":[],
                 "trait":[]

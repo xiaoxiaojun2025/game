@@ -80,11 +80,15 @@ class game{
             if(e.type=="puni"){
                 this.Entity.push(new puni(gameWidth,gameHeight,document.getElementById(e.img),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],128,169,e.name,e.damage,e.hearts,e.actRange));
             }
+            if(e.type=="sellstore"){
+                this.Entity.push(new sellstore(gameWidth,gameHeight,e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],"喵"));
+            }
         });
     }
     animate(timestamp){
         this.sumTimestamp+=timestamp-this.prevTimestamp;
         this.prevTimestamp=timestamp;
+        document.getElementById("timer").innerHTML=Math.floor(this.timer/24).toString()+"天"+Math.floor(this.timer%24).toString()+"时<br>金币："+this.cash.toString()+"<br>生命："+this.Lilies.hearts.toString()+"❤";
         if(this.sumTimestamp>=FrameRate){
             this.sumTimestamp-=FrameRate;
             if(this.input.key.indexOf(config.pause)>-1){
@@ -95,7 +99,6 @@ class game{
             }
             if(this.status=="running"){
                 Frame++;
-                document.getElementById("timer").innerHTML=Math.floor(this.timer/24).toString()+"天"+Math.floor(this.timer%24).toString()+"时<br>金币："+this.cash.toString()+"<br>生命："+this.Lilies.hearts.toString()+"❤";
                 this.ctx.clearRect(0,0,gameWidth,gameHeight);
                 this.Entity.forEach(e=>{
                     e.draw(this.ctx);

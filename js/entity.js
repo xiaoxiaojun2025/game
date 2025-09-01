@@ -444,6 +444,73 @@ class puni extends enemy{
         }
     }
 }
+class sellstore extends entity{
+    constructor(gameWidth,gameHeight,x,y,width,height,name){
+        super(gameWidth,gameHeight,0,x,y,width,height);
+        this.name=name;
+    }
+    update(game,lilies,input){
+        if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            if(input.key.indexOf(config.interact)>-1){
+                document.getElementById("innerCanvasContainer").style.display="block";
+                document.getElementById("continue").onclick=function(){
+                    document.getElementById("innerCanvas").innerHTML="";
+                    document.getElementById("innerCanvasContainer").style.display="none";
+                    game.PauseButtonGroup.hideAll();
+                    game.status="running";
+                    document.getElementById("continue").onclick=function(){
+                        game.status="running";
+                        game.PauseButtonGroup.hideAll();
+                    }
+                }
+                document.getElementById("continue").style.display="block";
+                game.status="pause";
+                for(let i=0;i<game.storage.item.length;i++){
+                    if(game.storage.item[i].amount>0){
+                        let item=document.createElement("div");
+                        item.className="itemContainer";
+                        item.innerHTML="<img src=../img/item/"+game.storage.item[i].img+">"+game.storage.item[i].name[0]+"x"+game.storage.item[i].amount;
+                        document.getElementById("innerCanvas").appendChild(item);
+                        item.onclick=function(){
+                            document.getElementById("innerCanvas").innerHTML="";
+                            let storage=JSON.parse(JSON.stringify(game.storage));
+                            for(let j=0;j<storage.item[i].amount;j++){
+                                let price=Math.floor(storage.item[i].price*(1+storage.item[i].quality[j]/333));
+                                switch(storage.item[i].trait[j]){
+                                    case "低价":
+                                        price=Math.floor(price*0.8);
+                                        break;
+                                    case "低价+":
+                                        price=Math.floor(price*0.6);
+                                        break;
+                                    case "低价++":
+                                        price=Math.floor(price*0.4);
+                                        break;
+                                    case "量产品":
+                                        price=Math.floor(price*0.2);
+                                        break;
+                                    case "无价":
+                                        price=0;
+                                        break;
+                                }
+                                let newItem=document.createElement("div");
+                                newItem.className="itemContainer";
+                                newItem.innerHTML="<img src=../img/item/"+storage.item[i].img+">"+storage.item[i].name[0]+"<br>品质"+storage.item[i].quality[j]+"<br>价格"+price+"<br>"+storage.item[i].trait[j];
+                                document.getElementById("innerCanvas").appendChild(newItem);
+                                newItem.onclick=function(){
+                                    newItem.style.display="none";
+                                    game.cash+=price;
+                                    game.storage.useItem(storage.item[i].name[0],storage.item[i].quality[j],storage.item[i].trait[j]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    draw(){}
+}
 class item extends entity{
     constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,amount,quality,trait){
         super(gameWidth,gameHeight,img,x,y,width,height);
