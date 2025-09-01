@@ -16,7 +16,7 @@ class bag{
                 "img":"drinking-water.webp",
                 "amount":2,
                 "quality":[5,5],
-                "trait":["品质提升","品质提升+"]
+                "trait":["",""]
             },
             {
                 "name":["啪汽啪汽水","（水）","（气体）"],
@@ -30,7 +30,7 @@ class bag{
                 "img":"koinos-grass.webp",
                 "amount":1,
                 "quality":[10],
-                "trait":["品质提升++"]
+                "trait":[""]
             },
             {
                 "name":["红色的花","（植物）","（燃料）"],
@@ -42,9 +42,9 @@ class bag{
             {
                 "name":["蓝色的花","（植物）","（药材）"],
                 "img":"blue-flower.webp",
-                "amount":1,
-                "quality":[10],
-                "trait":["品质提升"]
+                "amount":0,
+                "quality":[],
+                "trait":[]
             },
             {
                 "name":["黄色的花","（植物）","（食材）"],

@@ -22,7 +22,7 @@ class map{
 }
 
 var mapTraitGroup={
-    "A":[
+    "pathNearAtelier":[
         "",
         "",
         "",
@@ -55,7 +55,7 @@ var atelier={
         },
         {
             "type":"door",
-            "destinationMap":"A",
+            "destinationMap":"pathNearAtelier",
             "destinationX":80,
             "destinationY":320,
             "hitbox":[1200,240,80,480]
@@ -75,10 +75,10 @@ var atelier={
         }
     ]
 }
-var A={
-    "name":"A",
-    "name1":"A",
-    "background":"",
+var pathNearAtelier={
+    "name":"pathNearAtelier",
+    "name1":"工房旁小路",
+    "background":"pathNearAtelier.png",
     "entity":[
         {
             "type":"hitbox",
@@ -102,7 +102,6 @@ var A={
         {
             "type":"item",
             "itemname":"饮用水",
-            "img":"item_img_1.png",
             "amount":3,
             "quality":[5,20,10],
             "trait":[],
@@ -111,7 +110,6 @@ var A={
         {
             "type":"recipeItem",
             "name":"喵",
-            "img":"item_img_1.png",
             "hitbox":[600,400,200,200],
             "recipe":[
                 {

@@ -67,10 +67,10 @@ class game{
                 this.Entity.push(new pot(gameWidth,gameHeight,document.getElementById("pot"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3]));
             }
             if(e.type=="item"){
-                this.Entity.push(new item(gameWidth,gameHeight,document.getElementById("Lilies"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],50,50,e.itemname,e.amount,e.quality,e.trait));
+                this.Entity.push(new item(gameWidth,gameHeight,document.getElementById("item"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],512,512,e.itemname,e.amount,e.quality,e.trait));
             }
             if(e.type=="recipeItem"){
-                this.Entity.push(new recipeItem(gameWidth,gameHeight,document.getElementById("Lilies"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],50,50,e));
+                this.Entity.push(new recipeItem(gameWidth,gameHeight,document.getElementById("item"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],512,512,e));
             }
             if(e.type=="entrance"){
                 this.Entity.push(new entrance(gameWidth,gameHeight,e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.destinationMap,e.destinationX,e.destinationY));

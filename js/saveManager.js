@@ -1,7 +1,7 @@
 class saveMap{
     constructor(){
         this.atelier=atelier;
-        this.A=A;
+        this.pathNearAtelier=pathNearAtelier;
     }
 }
 class saveManager{

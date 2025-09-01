@@ -164,7 +164,6 @@ class entrance extends entity{
             lilies.setY(this.destinationY);
         }
     }
-    draw(){}
 }
 class pot extends entity{
     constructor(gameWidth,gameHeight,img,x,y,width,height){
@@ -340,6 +339,10 @@ class item extends entity{
             game.Talk.clear();
             game.Talk.hide();
         }
+    }
+    draw(ctx){
+        this.frameX=Math.floor(Frame/2)%19;
+        super.draw(ctx);
     }
 }
 class recipeItem extends item{
