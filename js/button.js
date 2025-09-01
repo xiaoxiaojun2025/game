@@ -55,14 +55,14 @@ class pauseButtonGroup{
             else if(this.buttonGroup[e].id=="bag"){
                 this.buttonGroup[e].innerHTML="材料箱";
                 this.buttonGroup[e].onclick=function(){
-                    document.getElementsByClassName("innerCanvasContainer")[0].style.display="block";
+                    document.getElementById("innerCanvasContainer").style.display="block";
                     this.hideAll("continue");
                     document.getElementById("continue").innerHTML="返回";
                     document.getElementById("continue").onclick=function(){
                         game.Talk.clear();
                         game.Talk.hide();
-                        document.getElementsByClassName("innerCanvasContainer")[0].style.display="none";
-                        document.getElementsByClassName("innerCanvasContainer")[0].innerHTML="";
+                        document.getElementById("innerCanvasContainer").style.display="none";
+                        document.getElementById("innerCanvas").innerHTML="";
                         document.getElementById("continue").innerHTML="继续游戏";
                         document.getElementById("continue").onclick=function(){
                             game.status="running";
@@ -79,16 +79,16 @@ class pauseButtonGroup{
                             item.innerHTML="<img src=../img/item/"+game.bag.item[i].img+">"+game.storage.item[i].name[0]+"x"+game.storage.item[i].amount;
                             item.onclick=function(){
                                 game.Talk.see(game.storage.item[i].intro);
-                                document.getElementsByClassName("innerCanvasContainer")[0].innerHTML="";
+                                document.getElementById("innerCanvas").innerHTML="";
                                 for(let j=0;j<game.storage.item[i].amount;j++){
                                     let newItem=document.createElement("div");
                                     newItem.className="itemContainer";
                                     newItem.innerHTML="<img src=../img/item/"+game.storage.item[i].img+">"+game.storage.item[i].name[0]+"<br>品质"+game.storage.item[i].quality[j]+"<br>"+game.storage.item[i].trait[j];
                                     newItem.id=newItem.id+"-"+j;
-                                    document.getElementsByClassName("innerCanvasContainer")[0].appendChild(newItem);
+                                    document.getElementById("innerCanvas").appendChild(newItem);
                                 }
                             }
-                            document.getElementsByClassName("innerCanvasContainer")[0].appendChild(item);
+                            document.getElementById("innerCanvas").appendChild(item);
                         }
                     }
                     else{
@@ -98,17 +98,17 @@ class pauseButtonGroup{
                             item.className="itemContainer";
                             item.innerHTML="<img src=../img/item/"+game.bag.item[i].img+">"+game.bag.item[i].name[0]+"x"+game.bag.item[i].amount;
                             item.onclick=function(){
-                                document.getElementsByClassName("innerCanvasContainer")[0].innerHTML="";
+                                document.getElementById("innerCanvas").innerHTML="";
                                 for(let j=0;j<game.bag.item[i].amount;j++){
                                     game.Talk.see(game.storage.item[i].intro);
                                     let newItem=document.createElement("div");
                                     newItem.className="itemContainer";
                                     newItem.innerHTML="<img src=../img/item/"+game.bag.item[i].img+">"+game.bag.item[i].name[0]+"<br>品质"+game.bag.item[i].quality[j]+"<br>"+game.bag.item[i].trait[j];
                                     newItem.id=newItem.id+"-"+j;
-                                    document.getElementsByClassName("innerCanvasContainer")[0].appendChild(newItem);
+                                    document.getElementById("innerCanvas").appendChild(newItem);
                                 }
                             }
-                            document.getElementsByClassName("innerCanvasContainer")[0].appendChild(item);
+                            document.getElementById("innerCanvas").appendChild(item);
                         }
                     }
                 }.bind(this);

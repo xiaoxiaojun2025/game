@@ -164,6 +164,7 @@ class entrance extends entity{
             lilies.setY(this.destinationY);
         }
     }
+    draw(){}
 }
 class pot extends entity{
     constructor(gameWidth,gameHeight,img,x,y,width,height){
@@ -180,8 +181,8 @@ class pot extends entity{
                 lilies.frameY=0;
                 game.status="talking";
                 game.achievement.getAchievement(ceshi,game);
-                var recipeContainer=document.getElementsByClassName("innerCanvasContainer")[0];
-                recipeContainer.style.display="block";
+                var recipeContainer=document.getElementById("innerCanvas");
+                document.getElementById("innerCanvasContainer").style.display="block";
                 for(let i=0;i<game.RecipeGroup.recipe.length;i++){
                     var recipe=document.createElement("div");
                     recipe.className="itemContainer";
@@ -218,7 +219,7 @@ class pot extends entity{
                                     let newItem=document.createElement("div");
                                     newItem.className="itemContainer";
                                     newItem.innerHTML="<img src=../img/item/"+game.storage.item[itemID[k]].img+">"+game.storage.item[itemID[k]].name[0]+"<br>品质"+game.storage.item[itemID[k]].quality[j]+"<br>"+game.storage.item[itemID[k]].trait[j];
-                                    document.getElementsByClassName("innerCanvasContainer")[0].appendChild(newItem);
+                                    document.getElementById("innerCanvas").appendChild(newItem);
                                     newItem.onclick=function(){
                                         newItem.style.display="none";
                                         let usingItem={
@@ -239,7 +240,7 @@ class pot extends entity{
                                                 return;
                                             }
                                             recipeContainer.innerHTML="";
-                                            recipeContainer.style.display="none";
+                                            document.getElementById("innerCanvasContainer").style.display="none";
                                             game.PauseButtonGroup.hideAll();
                                             document.getElementById("continue").onclick=function(){
                                                 game.status="running";
@@ -294,7 +295,7 @@ class pot extends entity{
                 document.getElementById("continue").style.display="block";
                 document.getElementById("continue").onclick=function(){
                     recipeContainer.innerHTML="";
-                    recipeContainer.style.display="none";
+                    document.getElementById("innerCanvasContainer").style.display="none";
                     game.PauseButtonGroup.hideAll();
                     game.status="running";
                     document.getElementById("continue").onclick=function(){
@@ -323,10 +324,16 @@ class item extends entity{
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            if(!this.displayed){
+                game.Talk.see(this.name+"x"+this.amount);
+            }
             this.displayed=true;
-            game.Talk.see(this.name+"x"+this.amount);
             if(input.key.indexOf(config.interact)>-1){
-                game.timer=Number(game.timer)+3;
+                if(game.bag.itemAmount()+this.amount>game.bag.size){
+                    game.Talk.see("背包已满");
+                    return;
+                }
+                game.timer=Number(game.timer)+4;
                 game.bag.addItem(this.name,this.amount,this.quality,this.trait);
                 game.Entity.splice(game.Entity.indexOf(this),1);
                 this.displayed=false;

@@ -9,6 +9,47 @@ class bag{
             otherBag.subItem(otherBag.item[index].name[0],otherBag.item[index].amount);
         });
     }
+    addItem(name,amount,quality,trait){
+        this.item.forEach(i=>{
+            if(i.name[0]==name){
+                i.amount+=amount;
+                i.quality.push(...quality);
+                i.trait.push(...trait);
+            }
+        });
+    }
+    subItem(name,amount){
+        this.item.forEach(i=>{
+            if(i.name[0]==name){
+                i.amount-=amount;
+                for(var j=0;j<amount;j++){
+                    i.quality.pop();
+                    i.trait.pop();
+                }
+            }
+        });
+    }
+    useItem(name,quality,trait){
+        for(let i=0;i<this.item.length;i++){
+            if(this.item[i].name[0]==name){
+                for(let j=0;j<this.item[i].amount;j++){
+                    if(this.item[i].quality[j]==quality&&this.item[i].trait[j]==trait){
+                        this.item[i].quality.splice(j,1);
+                        this.item[i].trait.splice(j,1);
+                        this.item[i].amount--;
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    itemAmount(){
+        let amount=0;
+        this.item.forEach(i=>{
+            amount+=i.amount;
+        });
+        return amount;
+    }
     init(){
         this.item=[
             {
@@ -292,39 +333,5 @@ class bag{
                 "trait":[]
             },
         ]
-    }
-    addItem(name,amount,quality,trait){
-        this.item.forEach(i=>{
-            if(i.name[0]==name){
-                i.amount+=amount;
-                i.quality.push(...quality);
-                i.trait.push(...trait);
-            }
-        });
-    }
-    subItem(name,amount){
-        this.item.forEach(i=>{
-            if(i.name[0]==name){
-                i.amount-=amount;
-                for(var j=0;j<amount;j++){
-                    i.quality.pop();
-                    i.trait.pop();
-                }
-            }
-        });
-    }
-    useItem(name,quality,trait){
-        for(let i=0;i<this.item.length;i++){
-            if(this.item[i].name[0]==name){
-                for(let j=0;j<this.item[i].amount;j++){
-                    if(this.item[i].quality[j]==quality&&this.item[i].trait[j]==trait){
-                        this.item[i].quality.splice(j,1);
-                        this.item[i].trait.splice(j,1);
-                        this.item[i].amount--;
-                        return;
-                    }
-                }
-            }
-        }
     }
 }

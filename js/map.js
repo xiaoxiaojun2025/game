@@ -7,6 +7,7 @@ class map{
             this.entityGroup.push(e);
         });
         this.randomTrait();
+        this.randonmQuality();
     }
     randomTrait(){
         this.entityGroup.forEach(e=>{
@@ -16,6 +17,17 @@ class map{
                     trait.push(mapTraitGroup[this.name][Math.floor(Math.random()*mapTraitGroup[this.name].length)]);
                 }
                 e.trait=trait;
+            }
+        });
+    }
+    randonmQuality(){
+        this.entityGroup.forEach(e=>{
+            if(e.type=="item"){
+                let quality=[];
+                for(let i=0;i<e.amount;i++){
+                    quality.push(mapQualityGroup[this.name][Math.floor(Math.random()*mapQualityGroup[this.name].length)]);
+                }
+                e.quality=quality;
             }
         });
     }
@@ -29,6 +41,34 @@ var mapTraitGroup={
         "",
         "",
         "品质提升"
+    ],
+    "pathToTheTown":[
+        "",
+        "",
+        "品质提升",
+        "品质提升",
+        "品质提升",
+        "品质提升+"
+    ]
+}
+var mapQualityGroup={
+    "pathNearAtelier":[
+        5,
+        5,
+        10,
+        10,
+        10,
+        10,
+        20
+    ],
+    "pathToTheTown":[
+        10,
+        10,
+        10,
+        15,
+        15,
+        20,
+        25
     ]
 }
 
@@ -56,8 +96,8 @@ var atelier={
         {
             "type":"door",
             "destinationMap":"pathNearAtelier",
-            "destinationX":80,
-            "destinationY":320,
+            "destinationX":0,
+            "destinationY":406,
             "hitbox":[1200,240,80,480]
         },
         {
@@ -81,74 +121,175 @@ var pathNearAtelier={
     "background":"pathNearAtelier.png",
     "entity":[
         {
-            "type":"hitbox",
-            "hitbox":[0,640,1280,80]
+            "type":"hitbox",//地板
+            "hitbox":[0,640,1360,80]
         },
         {
-            "type":"hitbox",
-            "hitbox":[0,0,80,720]
+            "type":"hitbox",//左侧墙
+            "hitbox":[0,0,80,393]
         },
         {
-            "type":"hitbox",
-            "hitbox":[1200,0,80,720]
+            "type":"hitbox",//上台阶
+            "hitbox":[0,560,320,40]
+        },
+        {
+            "type":"hitbox",//下台阶
+            "hitbox":[0,600,360,400]
+        },
+        {
+            "type":"hitbox",//右侧碰撞箱
+            "hitbox":[1360,0,80,720]
+        },
+        {
+            "type":"hitbox",//左门左边的碰撞箱
+            "hitbox":[-80,393,80,167]
         },
         {
             "type":"door",
             "destinationMap":"atelier",
             "destinationX":1168,
             "destinationY":486,
-            "hitbox":[1040,320,240,320]
+            "hitbox":[0,393,80,167]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"pathToTheTown",
+            "destinationX":0,
+            "destinationY":486,
+            "hitbox":[1280,0,80,720]
         },
         {
             "type":"item",
             "itemname":"饮用水",
             "amount":3,
-            "quality":[5,20,10],
+            "quality":[],
             "trait":[],
-            "hitbox":[500,400,50,50]
+            "hitbox":[732,504,128,128]
+        },
+        // {
+        //     "type":"recipeItem",
+        //     "name":"喵",
+        //     "hitbox":[600,400,200,200],
+        //     "recipe":[
+        //         {
+        //             "name":"丝薇丽银",
+        //             "time":8,
+        //             "recipe":{
+        //                 "金属块":1,
+        //                 "中和剂（红）":2,
+        //                 "（石材）":2
+        //             }
+        //         },
+        //         {
+        //             "name":"黄金艾森矿",
+        //             "time":16,
+        //             "recipe":{
+        //                 "丝薇丽银":1,
+        //                 "中和剂（黄）":2,
+        //                 "黄金色之岩":4
+        //             }
+        //         },
+        //         {
+        //             "name":"精灵银块",
+        //             "time":32,
+        //             "recipe":{
+        //                 "黄金艾森矿":1,
+        //                 "七色棱镜":1,
+        //                 "残破矿石":3
+        //             }
+        //         },
+        //         {
+        //             "name":"海银",
+        //             "time":64,
+        //             "recipe":{
+        //                 "精灵银块":1,
+        //                 "黑洞":1,
+        //                 "（神秘之力）":3
+        //             }
+        //         }
+        //     ]
+        // }
+    ]
+}
+var pathToTheTown={
+    "name":"pathToTheTown",
+    "name1":"通往城镇的小路",
+    "background":"pathToTheTown.png",
+    "entity":[
+        {
+            "type":"hitbox",//地板左
+            "hitbox":[-80,640,600,160]
         },
         {
-            "type":"recipeItem",
-            "name":"喵",
-            "hitbox":[600,400,200,200],
-            "recipe":[
-                {
-                    "name":"丝薇丽银",
-                    "time":8,
-                    "recipe":{
-                        "金属块":1,
-                        "中和剂（红）":2,
-                        "（石材）":2
-                    }
-                },
-                {
-                    "name":"黄金艾森矿",
-                    "time":16,
-                    "recipe":{
-                        "丝薇丽银":1,
-                        "中和剂（黄）":2,
-                        "黄金色之岩":4
-                    }
-                },
-                {
-                    "name":"精灵银块",
-                    "time":32,
-                    "recipe":{
-                        "黄金艾森矿":1,
-                        "七色棱镜":1,
-                        "残破矿石":3
-                    }
-                },
-                {
-                    "name":"海银",
-                    "time":64,
-                    "recipe":{
-                        "精灵银块":1,
-                        "黑洞":1,
-                        "（神秘之力）":3
-                    }
-                }
-            ]
-        }
+            "type":"hitbox",//地板右
+            "hitbox":[680,640,680,160]
+        },
+        {
+            "type":"hitbox",//左侧碰撞箱
+            "hitbox":[-160,0,80,720]
+        },
+        {
+            "type":"hitbox",//右侧碰撞箱
+            "hitbox":[1420,0,80,720]
+        },
+        {
+            "type":"hitbox",//下侧碰撞箱
+            "hitbox":[520,800,160,80]
+        },
+        {
+            "type":"item",
+            "itemname":"直木",
+            "amount":5,
+            "quality":[],
+            "trait":[],
+            "hitbox":[160,512,128,128]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"pathNearAtelier",
+            "destinationX":1168,
+            "destinationY":486,
+            "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"item",
+            "itemname":"蓝色的花",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "hitbox":[732,585,81,81]
+        },
+        {
+            "type":"item",
+            "itemname":"黄色的花",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "hitbox":[838,594,66,66]
+        },
+        {
+            "type":"item",
+            "itemname":"红色的花",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "hitbox":[920,594,66,66]
+        },
+        {
+            "type":"item",
+            "itemname":"绿色的花",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "hitbox":[1014,588,85,85]
+        },
+        {
+            "type":"item",
+            "itemname":"白色的花",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "hitbox":[1146,585,85,85]
+        },
     ]
 }

@@ -2,6 +2,7 @@ class saveMap{
     constructor(){
         this.atelier=atelier;
         this.pathNearAtelier=pathNearAtelier;
+        this.pathToTheTown=pathToTheTown;
     }
 }
 class saveManager{
