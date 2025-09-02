@@ -123,7 +123,7 @@ var atelier={
             "type":"door",
             "destinationMap":"pathNearAtelier",
             "destinationX":0,
-            "destinationY":398,
+            "destinationY":438,
             "hitbox":[1200,240,80,480]
         },
         {
@@ -174,14 +174,14 @@ var pathNearAtelier={
             "type":"door",
             "destinationMap":"atelier",
             "destinationX":1168,
-            "destinationY":472,
+            "destinationY":518,
             "hitbox":[0,393,80,167]
         },
         {
             "type":"entrance",
             "destinationMap":"pathToTheTown",
             "destinationX":0,
-            "destinationY":472,
+            "destinationY":518,
             "hitbox":[1280,0,80,720]
         },
         {
@@ -274,8 +274,15 @@ var pathToTheTown={
             "type":"entrance",
             "destinationMap":"pathNearAtelier",
             "destinationX":1168,
-            "destinationY":472,
+            "destinationY":518,
             "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"CrystalCave",
+            "destinationX":250,
+            "destinationY":0,
+            "hitbox":[520,720,160,80]
         },
         {
             "type":"item",
@@ -316,6 +323,65 @@ var pathToTheTown={
             "quality":[],
             "trait":[],
             "hitbox":[1146,585,85,85]
+        }
+    ]
+}
+var CrystalCave={
+    "name":"CrystalCave",
+    "name1":"水晶洞穴",
+    "background":"CrystalCave.jpg",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[0,0,250,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[640,0,250,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[960,0,320,96]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[260,150,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[430,350,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[100,450,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1160,354,120,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1000,440,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"puni",
+            "name":"蓝噗尼",
+            "img":"blue-puni",
+            "hitbox":[180,366,64,84],
+            "actRange":[110,366,140,84],
+            "damage":1,
+            "hearts":8
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"pathToTheTown",
+            "destinationX":560,
+            "destinationY":398,
+            "hitbox":[250,-80,490,80]
         }
     ]
 }

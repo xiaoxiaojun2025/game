@@ -425,7 +425,7 @@ class enemy extends entity{
 class puni extends enemy{
     constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,damage,hearts,actRange){
         super(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,damage,hearts,actRange);
-        this.vx=2;
+        this.vx=1;
         this.face="left";
     }
     update(game,lilies,input){
