@@ -130,15 +130,21 @@ h1 {
 }
 
 .card-front {
-    background-color: #3498db;
-    color: white;
+    background-image: url('./imgs/card_back.png');
+    /* 背景图片不重复 */
+    background-repeat: no-repeat;
+    /* 背景图片覆盖整个背景区域 */
+    background-size: cover;
+    /* 背景图片居中 */
+    background-position: center;
+    /* color: white; */
 }
 
 .card-back {
-    background-color: #fff;
+    background-color: white;
     color: #333;
     transform: rotateY(180deg);
-    border: 2px solid #3498db;
+    border: 2px solid burlywood;
 }
 
 /* 游戏结束模态框 */
