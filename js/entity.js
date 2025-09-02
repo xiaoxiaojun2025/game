@@ -466,7 +466,7 @@ class sellstore extends entity{
                 document.getElementById("continue").style.display="block";
                 game.status="pause";
                 for(let i=0;i<game.storage.item.length;i++){
-                    if(game.storage.item[i].amount>0){
+                    if(game.storage.item[i].amount>0&&game.storage.item[i].price!=undefined){
                         let item=document.createElement("div");
                         item.className="itemContainer";
                         item.innerHTML="<img src=../img/item/"+game.storage.item[i].img+">"+game.storage.item[i].name[0]+"x"+game.storage.item[i].amount;
@@ -501,6 +501,107 @@ class sellstore extends entity{
                                     newItem.style.display="none";
                                     game.cash+=price;
                                     game.storage.useItem(storage.item[i].name[0],storage.item[i].quality[j],storage.item[i].trait[j]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    draw(){}
+}
+class buyStore extends entity{
+    constructor(gameWidth,gameHeight,x,y,width,height,map,name,goods){
+        super(gameWidth,gameHeight,0,x,y,width,height);
+        this.map=map;
+        this.name=name;
+        this.goods=goods;
+        this.nowGoods=goods;
+        this.lasttimer=[];
+        for(let i=0;i<this.goods.length;i++){
+            this.lasttimer.push(0);
+        }
+    }
+    update(game,lilies,input){
+        if(game.Map.name==this.map){
+            for(let i=0;i<this.goods.length;i++){
+                if(this.goods[i].refreshTime!=-1&&game.timer-this.lasttimer[i]>=this.goods[i].refreshTime){
+                    this.lasttimer[i]=game.timer;
+                    this.nowGoods[i]=this.goods[i];
+                }
+            }
+            if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+                if(input.key.indexOf(config.interact)>-1){
+                    document.getElementById("innerCanvasContainer").style.display="block";
+                    document.getElementById("continue").onclick=function(){
+                        document.getElementById("innerCanvas").innerHTML="";
+                        document.getElementById("innerCanvasContainer").style.display="none";
+                        game.PauseButtonGroup.hideAll();
+                        game.status="running";
+                        document.getElementById("continue").onclick=function(){
+                            game.status="running";
+                            game.PauseButtonGroup.hideAll();
+                        }
+                    }
+                    document.getElementById("continue").style.display="block";
+                    game.status="pause";
+                    for(let i=0;i<this.nowGoods.length;i++){
+                        if(this.nowGoods[i].amount>0){
+                            let item=document.createElement("div");
+                            item.className="itemContainer";
+                            item.innerHTML="<img src=../img/item/"+this.nowGoods[i].img+">"+this.nowGoods[i].name+"x"+this.nowGoods[i].amount;
+                            document.getElementById("innerCanvas").appendChild(item);
+                            item.onclick=()=>{
+                                document.getElementById("innerCanvas").innerHTML="";
+                                let nowgoods=JSON.parse(JSON.stringify(this.nowGoods));
+                                for(let j=0;j<nowgoods[i].amount;j++){
+                                    let newItem=document.createElement("div");
+                                    newItem.className="itemContainer";
+                                    let price=Math.floor(nowgoods[i].price*(1+nowgoods[i].quality[j]/333));
+                                    switch(nowgoods[i].trait[j]){
+                                        case "低价":
+                                            price=Math.floor(price*0.9);
+                                            break;
+                                        case "低价+":
+                                            price=Math.floor(price*0.75);
+                                            break;
+                                        case "低价++":
+                                            price=Math.floor(price*0.5);
+                                            break;
+                                        case "量产品":
+                                            price=Math.floor(price*0.4);
+                                            break;
+                                        case "无价":
+                                            price=Math.floor(price*0.25);
+                                            break;
+                                    }
+                                    newItem.innerHTML="<img src=../img/item/"+nowgoods[i].img+">"+nowgoods[i].name+"<br>品质"+nowgoods[i].quality[j]+"<br>价格"+price+"<br>"+nowgoods[i].trait[j];
+                                    document.getElementById("innerCanvas").appendChild(newItem);
+                                    newItem.onclick=()=>{
+                                        if(game.cash>=price){
+                                            game.cash-=price;
+                                            game.bag.addItem(nowgoods[i].name,1,[nowgoods[i].quality[j]],[nowgoods[i].trait[j]]);
+                                            for(let k=0;k<this.nowGoods[i].amount;k++){
+                                                if(this.nowGoods[i].quality[k]==nowgoods[i].quality[j]&&this.nowGoods[i].trait[k]==nowgoods[i].trait[j]){
+                                                    this.nowGoods[i].quality.splice(k,1);
+                                                    this.nowGoods[i].trait.splice(k,1);
+                                                    break;
+                                                }
+                                            }
+                                            this.nowgoods[i].amount--;
+                                        }
+                                        else{
+                                            if(timeout){
+                                                clearTimeout(timeout);
+                                            }
+                                            game.Talk.see("钱不够");
+                                            timeout=setTimeout(function(){
+                                                game.Talk.clear();
+                                                game.Talk.hide();
+                                            },1000);
+                                        }
+                                    }
                                 }
                             }
                         }

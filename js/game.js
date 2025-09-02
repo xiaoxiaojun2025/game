@@ -4,6 +4,7 @@ var config=JSON.parse(localStorage.getItem("LA-config-"+localStorage.getItem("LA
 var fps=60;
 var FrameRate=1000/fps;
 var Frame=0;
+var timeout=null;
 
 class game{
     constructor(){
@@ -12,6 +13,7 @@ class game{
         this.cash=0;
         this.createCanvas();
         this.initContainer();
+        this.creatPermanentEntities();
         this.storage=new bag(5000);
         this.bag=new bag(50);
         this.storage.putin(this.bag);
@@ -85,6 +87,10 @@ class game{
             }
         });
     }
+    creatPermanentEntities(){
+        this.permanentEntity=[];
+        buystore.forEach(e=>this.permanentEntity.push(new buyStore(gameWidth,gameHeight,e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.map,e.name,e.goods)));
+    }
     animate(timestamp){
         this.sumTimestamp+=timestamp-this.prevTimestamp;
         this.prevTimestamp=timestamp;
@@ -103,9 +109,15 @@ class game{
                 this.Entity.forEach(e=>{
                     e.draw(this.ctx);
                 });
+                this.permanentEntity.forEach(e=>{
+                    e.draw(this.ctx);
+                });
                 this.Lilies.draw(this.ctx);
                 this.Lilies.update(this.input,this.Entity);
                 this.Entity.forEach(e=>{
+                    e.update(this,this.Lilies,this.input);
+                });
+                this.permanentEntity.forEach(e=>{
                     e.update(this,this.Lilies,this.input);
                 });
             }
