@@ -123,7 +123,7 @@ var atelier={
             "type":"door",
             "destinationMap":"pathNearAtelier",
             "destinationX":0,
-            "destinationY":406,
+            "destinationY":398,
             "hitbox":[1200,240,80,480]
         },
         {
@@ -174,14 +174,14 @@ var pathNearAtelier={
             "type":"door",
             "destinationMap":"atelier",
             "destinationX":1168,
-            "destinationY":486,
+            "destinationY":472,
             "hitbox":[0,393,80,167]
         },
         {
             "type":"entrance",
             "destinationMap":"pathToTheTown",
             "destinationX":0,
-            "destinationY":486,
+            "destinationY":472,
             "hitbox":[1280,0,80,720]
         },
         {
@@ -274,7 +274,7 @@ var pathToTheTown={
             "type":"entrance",
             "destinationMap":"pathNearAtelier",
             "destinationX":1168,
-            "destinationY":486,
+            "destinationY":472,
             "hitbox":[-80,0,80,720]
         },
         {
@@ -316,6 +316,6 @@ var pathToTheTown={
             "quality":[],
             "trait":[],
             "hitbox":[1146,585,85,85]
-        },
+        }
     ]
 }

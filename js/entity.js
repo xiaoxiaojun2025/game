@@ -69,8 +69,8 @@ class atk extends entity{
 class lilies extends entity{
     constructor(gameWidth,gameHeight,img,x,y,width,height){
         super(gameWidth,gameHeight,img,x,y,0,0);
-        this.spriteWidth=55.75;
-        this.spriteHeight=77;
+        this.spriteWidth=56;
+        this.spriteHeight=81;
         this.width=this.spriteWidth*width;
         this.height=this.spriteHeight*height;
         this.weight=1;
@@ -128,13 +128,12 @@ class lilies extends entity{
             }
             this.vx=0;
         }
-        if(input.key.indexOf(config.jump)>-1&&this.isOnFloor){
-            if(!this.jumped){
-                this.jumped=true;
-                this.vy-=20;
-            }
+        if(input.key.indexOf(config.jump)>-1&&this.isOnFloor&&!this.jumped){
+            this.jumped=true;
+            this.vy-=20;
         }
         else if(!this.isOnFloor){
+            this.frameY=2;
             this.vy+=this.weight;
         }
         else{
@@ -142,6 +141,9 @@ class lilies extends entity{
                 this.jumped=false;
             }
             this.vy=0;
+            if(this.frameY==2){
+                this.frameY=0;
+            }
         }
         if(input.key.indexOf(config.attack)>-1&&this.atk==null){
             this.atk=new atk(this.gameWidth,this.gameHeight,document.getElementById("atk"),this.x+this.width,this.y+this.height/2-this.height*1.5,this.width/2,this.height*1.5);
@@ -151,7 +153,17 @@ class lilies extends entity{
         }
     }
     draw(ctx){
-        this.frameX=Math.floor(Frame/10)%4;
+        switch(this.frameY){
+            case 0:
+                this.frameX=Math.floor(Frame/20)%4;
+                break;
+            case 1:
+                this.frameX=Math.floor(Frame/20)%4;
+                break;
+            case 2:
+                this.frameX=0;
+                break;
+        }
         if(this.face=="right"){
             super.draw(ctx);
         }
@@ -224,7 +236,9 @@ class entrance extends entity{
             if(game.Map.name!="atelier"){
                 game.timer=Number(game.timer)+4;
             }
-            input.key.splice(input.key.indexOf(config.interact),1);
+            if(input.key.indexOf(config.interact)>-1){
+                input.key.splice(input.key.indexOf(config.interact),1);
+            }
             game.changeMap(eval(this.destinationMap));
             lilies.setX(this.destinationX);
             lilies.setY(this.destinationY);
@@ -635,27 +649,32 @@ class item extends entity{
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
-            if(!this.displayed){
-                game.Talk.see(this.name+"x"+this.amount);
-            }
-            this.displayed=true;
             if(input.key.indexOf(config.interact)>-1){
                 if(game.bag.itemAmount()+this.amount>game.bag.size){
                     game.Talk.see("背包已满");
+                    if(timeout){
+                        clearTimeout(timeout);
+                    }
+                    timeout=setTimeout(function(){
+                        game.Talk.clear();
+                        game.Talk.hide();
+                        clearTimeout(timeout);
+                    },1000);
                     return;
                 }
+                game.Talk.see("获得"+this.name+"x"+this.amount);
+                if(timeout){
+                    clearTimeout(timeout);
+                }
+                timeout=setTimeout(function(){
+                    game.Talk.clear();
+                    game.Talk.hide();
+                    clearTimeout(timeout);
+                },1000);
                 game.timer=Number(game.timer)+4;
                 game.bag.addItem(this.name,this.amount,this.quality,this.trait);
                 game.Entity.splice(game.Entity.indexOf(this),1);
-                this.displayed=false;
-                game.Talk.clear();
-                game.Talk.hide();
             }
-        }
-        else if(game.Talk.displayed&&this.displayed){
-            this.displayed=false;
-            game.Talk.clear();
-            game.Talk.hide();
         }
     }
     draw(ctx){
@@ -670,24 +689,25 @@ class recipeItem extends item{
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
-            this.displayed=true;
             game.Talk.see(this.recipe.name);
             if(input.key.indexOf(config.interact)>-1){
+                game.Talk.see("获得了"+this.name);
+                if(timeout){
+                    clearTimeout(timeout);
+                }
+                timeout=setTimeout(function(){
+                    game.Talk.clear();
+                    game.Talk.hide();
+                    clearTimeout(timeout);
+                },1000);
+                game.timer=Number(game.timer)+4;
                 this.recipe.recipe.forEach(it=>{
                     game.RecipeGroup.recipe.push(it);
                 });
                 game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(this.recipe),1);
                 game.Entity.splice(game.Entity.indexOf(this),1);
                 globalThis[game.Map.name].entity=game.Map.entityGroup;
-                this.displayed=false;
-                game.Talk.clear();
-                game.Talk.hide();
             }
-        }
-        else if(game.Talk.displayed&&this.displayed){
-            this.displayed=false;
-            game.Talk.clear();
-            game.Talk.hide();
         }
     }
 }
