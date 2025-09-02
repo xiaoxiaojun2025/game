@@ -612,6 +612,15 @@ class buyStore extends entity{
         }
     }
     draw(){}
+    save(){
+        let username=localStorage.getItem("LA-username");
+        localStorage.setItem("LA-save-buystore-"+username+this.name,JSON.stringify(this));
+    }
+    load(){
+        let username=localStorage.getItem("LA-username");
+        this.nowGoods=JSON.parse(localStorage.getItem("LA-save-buystore-"+username+this.name)).nowGoods;
+        this.lasttimer=JSON.parse(localStorage.getItem("LA-save-buystore-"+username+this.name)).lasttimer;
+    }
 }
 class item extends entity{
     constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,amount,quality,trait){

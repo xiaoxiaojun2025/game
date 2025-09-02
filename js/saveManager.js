@@ -42,6 +42,9 @@ class saveManager{
         localStorage.setItem("LA-save-"+this.username+"cash",JSON.stringify(this.cash));
         localStorage.setItem("LA-save-"+this.username+"hearts",JSON.stringify(this.hearts));
         localStorage.setItem("LA-save-"+this.username+"damage",JSON.stringify(this.damage));
+        for(let i=0;i<game.permanentEntity.length;i++){
+            game.permanentEntity[i].save();
+        }
     }
     load(game){
         this.storage=JSON.parse(localStorage.getItem("LA-save-"+this.username+"storage"));
@@ -70,6 +73,9 @@ class saveManager{
         game.cash=this.cash;
         game.Lilies.hearts=this.hearts;
         game.Lilies.damage=this.damage;
+        for(let i=0;i<game.permanentEntity.length;i++){
+            game.permanentEntity[i].load();
+        }
         game.changeMap(eval(this.position));
     }
 }
