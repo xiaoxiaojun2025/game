@@ -414,7 +414,23 @@ var CrystalCave={
             "amount":3,
             "quality":[],
             "trait":[],
-            "hitbox":[1076,354,85,85]
+            "hitbox":[1076,354,81,81]
+        },
+        {
+            "type":"item",
+            "itemname":"艾森矿",
+            "amount":3,
+            "quality":[],
+            "trait":[],
+            "hitbox":[105,555,81,81]
+        },
+        {
+            "type":"item",
+            "itemname":"白砂",
+            "amount":4,
+            "quality":[],
+            "trait":[],
+            "hitbox":[130,365,81,81]
         },
     ]
 }

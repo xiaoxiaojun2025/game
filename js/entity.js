@@ -39,18 +39,18 @@ class atk extends entity{
     }
     update(lilies){
         this.frame++;
-        this.frameX=Math.floor(this.frame/30);
+        this.frameX=Math.floor(this.frame/20);
         if(lilies.face=="right"){
             this.face="right";
             this.x=lilies.x+lilies.width;
-            this.y=lilies.y+lilies.height/2-this.height/2;
+            this.y=lilies.y+lilies.height-this.height;
         }
         if(lilies.face=="left"){
             this.face="left";
             this.x=lilies.x-this.width;
-            this.y=lilies.y+lilies.height/2-this.height/2;
+            this.y=lilies.y+lilies.height-this.height;
         }
-        if(this.frameX>=3){
+        if(this.frameX>=4){
             lilies.atk=null;
         }
     }
@@ -80,6 +80,7 @@ class lilies extends entity{
         this.hearts=5;
         this.atk=null;
         this.invincible=false;
+        this.innerframe=0;
     }
     update(input,hitboxGroup){
         this.isOnFloor=false;
@@ -108,14 +109,14 @@ class lilies extends entity{
                 }
             }
         });
-        if(input.key.indexOf(config.left)>-1){
+        if(input.key.indexOf(config.left)>-1&&this.atk==null){
             if(this.frameY==0){
                 this.frameY=1;
             }
             this.face="left";
             this.vx=-5;
         }
-        else if(input.key.indexOf(config.right)>-1){
+        else if(input.key.indexOf(config.right)>-1&&this.atk==null){
             if(this.frameY==0){
                 this.frameY=1;
             }
@@ -128,12 +129,14 @@ class lilies extends entity{
             }
             this.vx=0;
         }
-        if(input.key.indexOf(config.jump)>-1&&this.isOnFloor&&!this.jumped){
+        if(input.key.indexOf(config.jump)>-1&&this.isOnFloor&&!this.jumped&&this.atk==null){
             this.jumped=true;
             this.vy-=20;
         }
         else if(!this.isOnFloor){
-            this.frameY=2;
+            if(this.frameY!=3){
+                this.frameY=2;
+            }
             this.vy+=this.weight;
         }
         else{
@@ -146,10 +149,14 @@ class lilies extends entity{
             }
         }
         if(input.key.indexOf(config.attack)>-1&&this.atk==null){
-            this.atk=new atk(this.gameWidth,this.gameHeight,document.getElementById("atk"),this.x+this.width,this.y+this.height/2-this.height*1.5,this.width/2,this.height*1.5);
+            this.frameY=3;
+            this.atk=new atk(this.gameWidth,this.gameHeight,document.getElementById("atk"),this.x+this.width,this.y+this.height-this.height*1.5,this.width/2,this.height*1.5);
         }
         if(this.atk!=null){
             this.atk.update(this);
+        }
+        else if(this.frameY==3){
+            this.frameY=0;
         }
     }
     draw(ctx){
@@ -162,6 +169,14 @@ class lilies extends entity{
                 break;
             case 2:
                 this.frameX=0;
+                break;
+            case 3:
+                this.innerframe++;
+                this.frameX=Math.floor(this.innerframe/20)%4;
+                if(this.innerframe>=80){
+                    this.frameY=0;
+                    this.innerframe=0;
+                }
                 break;
         }
         if(this.face=="right"){
@@ -260,7 +275,7 @@ class pot extends entity{
             if(input.key.indexOf(config.interact)>-1){
                 lilies.frameY=0;
                 game.status="talking";
-                game.achievement.getAchievement(ceshi,game);
+                game.achievement.getAchievement("打开炼金釜",game);
                 var recipeContainer=document.getElementById("innerCanvas");
                 document.getElementById("innerCanvasContainer").style.display="block";
                 for(let i=0;i<game.RecipeGroup.recipe.length;i++){
@@ -360,6 +375,7 @@ class pot extends entity{
                                             game.storage.addItem(game.RecipeGroup.recipe[i].name,1,[newQuality],[newTrait]);
                                             game.status="running";
                                             game.Talk.see("成功制作"+game.RecipeGroup.recipe[i].name+"&emsp;消耗时间"+game.RecipeGroup.recipe[i].time+"小时"+"<br>品质："+newQuality);
+                                            game.achievement.getAchievement("第一次调和",game);
                                             setTimeout(() => {
                                                 game.Talk.clear();
                                                 game.Talk.hide();

@@ -5,9 +5,23 @@
         <link rel="icon" href="../icon.ico">
         <title>Lilies' atelier</title>
         <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <script src="../js/achievementManager.js"></script>
     </head>
     <body class="background">
         <div class="index-button" onclick="window.location.href='../index.html'">返回</div>
-        <div class="bigContainer"></div>
+        <div class="bigContainer"><div class="flow" id="achievements"></div></div>
+        <script>
+            let AllAchievements=JSON.parse(localStorage.getItem("LA-AllAchievements-"+localStorage.getItem("LA-username")));
+            achievements.forEach(e=>{
+                let achievement=document.createElement("div");
+                achievement.className="achievementContainer";
+                achievement.innerHTML="<img src=../img/achievement/"+e.img+">"+e.name;
+                achievement.id=e.name;
+                document.getElementById("achievements").appendChild(achievement);
+            });
+            AllAchievements.forEach(e=>{
+                document.getElementById(e.name).style.backgroundColor="rgba(247, 203, 83, 0.8)";
+            });
+        </script>
     </body>
 </html>
