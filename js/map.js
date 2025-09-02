@@ -75,6 +75,18 @@ var mapTraitGroup={
         "低价+",
         "高价",
         "高价"
+    ],
+    "CrystalCave":[
+        "",
+        "",
+        "",
+        "",        
+        "品质提升",
+        "品质提升",
+        "品质提升",
+        "品质提升+",
+        "品质提升+",
+        "品质提升++",
     ]
 }
 var mapQualityGroup={
@@ -95,6 +107,19 @@ var mapQualityGroup={
         15,
         20,
         25
+    ],
+    "CrystalCave":[
+        10,
+        20,
+        20,
+        20,
+        20,
+        25,
+        25,
+        30,
+        30,
+        35,
+        35
     ]
 }
 
@@ -382,6 +407,14 @@ var CrystalCave={
             "destinationX":560,
             "destinationY":398,
             "hitbox":[250,-80,490,80]
-        }
+        },
+        {
+            "type":"item",
+            "itemname":"艾森矿",
+            "amount":3,
+            "quality":[],
+            "trait":[],
+            "hitbox":[1076,354,85,85]
+        },
     ]
 }

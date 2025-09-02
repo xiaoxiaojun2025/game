@@ -447,9 +447,11 @@ class puni extends enemy{
     }
     draw(ctx){
         if(this.face=="right"){
+            ctx.font="20px Lolita";
             super.draw(ctx);
         }
         else{
+            ctx.font="20px Lolita";
             ctx.fillText(this.name+" "+this.hearts+"/"+this.maxHearths,this.x,this.y-this.height/2);
             ctx.save();
             ctx.scale(-1,1);
