@@ -69,7 +69,7 @@ function initGame() {
         // 卡片正面 (背面朝上)
         const cardFront = document.createElement('div');
         cardFront.classList.add('card-face', 'card-front');
-        cardFront.textContent = '?';
+        // cardFront.textContent = '?';
         
         // 卡片背面 (符号面)
         const cardBack = document.createElement('div');
