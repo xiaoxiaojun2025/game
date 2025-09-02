@@ -517,7 +517,7 @@ class buyStore extends entity{
         this.map=map;
         this.name=name;
         this.goods=goods;
-        this.nowGoods=goods;
+        this.nowGoods=JSON.parse(JSON.stringify(goods));
         this.lasttimer=[];
         for(let i=0;i<this.goods.length;i++){
             this.lasttimer.push(0);
@@ -580,6 +580,7 @@ class buyStore extends entity{
                                     document.getElementById("innerCanvas").appendChild(newItem);
                                     newItem.onclick=()=>{
                                         if(game.cash>=price){
+                                            newItem.style.display="none";
                                             game.cash-=price;
                                             game.bag.addItem(nowgoods[i].name,1,[nowgoods[i].quality[j]],[nowgoods[i].trait[j]]);
                                             for(let k=0;k<this.nowGoods[i].amount;k++){
@@ -589,7 +590,7 @@ class buyStore extends entity{
                                                     break;
                                                 }
                                             }
-                                            this.nowgoods[i].amount--;
+                                            this.nowGoods[i].amount--;
                                         }
                                         else{
                                             if(timeout){

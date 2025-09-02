@@ -33,22 +33,22 @@ class map{
     }
 }
 var buystore=[
-    // {
-    //     map:"pathNearAtelier",
-    //     "name":"",
-    //     "hitbox":[0,0,600,720],
-    //     "goods":[
-    //         {
-    //             "name":"饮用水",
-    //             "img":"drinking-water.webp",
-    //             "amount":3,
-    //             "quality":[10,10,10],
-    //             "trait":["","",""],
-    //             "price":10,
-    //             "refreshTime":72
-    //         }
-    //     ],
-    // }
+    {
+        map:"pathNearAtelier",
+        "name":"",
+        "hitbox":[0,0,600,720],
+        "goods":[
+            {
+                "name":"饮用水",
+                "img":"drinking-water.webp",
+                "amount":3,
+                "quality":[10,10,10],
+                "trait":["","",""],
+                "price":10,
+                "refreshTime":72
+            }
+        ],
+    }
 ]
 var mapTraitGroup={
     "pathNearAtelier":[

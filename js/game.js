@@ -10,7 +10,7 @@ class game{
     constructor(){
         this.status="running";
         this.timer=8;
-        this.cash=0;
+        this.cash=100;
         this.createCanvas();
         this.initContainer();
         this.creatPermanentEntities();
