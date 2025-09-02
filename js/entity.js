@@ -348,11 +348,32 @@ class pot extends entity{
                                             newQuality=Math.floor(newQuality/usedItem.length+Math.random()*5);
                                             newTrait=usedItem[0].trait;
                                             for(let l=1;l<usedItem.length;l++){
-                                                if([newTrait,usedItem[l].trait].includes("品质提升")||[newTrait,usedItem[l].trait].includes("品质提升+")){
+                                                if([newTrait,usedItem[l].trait].includes("品质提升")&&[newTrait,usedItem[l].trait].includes("品质提升+")){
                                                     newTrait="品质提升++";
                                                 }
-                                                else if([newTrait,usedItem[l].trait].includes("品质提升+")||[newTrait,usedItem[l].trait].includes("品质提升++")){
+                                                else if([newTrait,usedItem[l].trait].includes("品质提升+")&&[newTrait,usedItem[l].trait].includes("品质提升++")){
                                                     newTrait="超级品质";
+                                                }
+                                                else if([newTrait,usedItem[l].trait].includes("超级品质")&&[newTrait,usedItem[l].trait].includes("究极之力")){
+                                                    newTrait="究极的逸品";
+                                                }
+                                                else if([newTrait,usedItem[l].trait].includes("低价")&&[newTrait,usedItem[l].trait].includes("低价+")){
+                                                    newTrait="低价++";
+                                                }
+                                                else if([newTrait,usedItem[l].trait].includes("低价+")&&[newTrait,usedItem[l].trait].includes("低价++")){
+                                                    newTrait="量产品";
+                                                }
+                                                else if([newTrait,usedItem[l].trait].includes("量产品")&&[newTrait,usedItem[l].trait].includes("究极之力")){
+                                                    newTrait="无价";
+                                                }
+                                                else if([newTrait,usedItem[l].trait].includes("高价")&&[newTrait,usedItem[l].trait].includes("高价+")){
+                                                    newTrait="高价++";
+                                                }
+                                                else if([newTrait,usedItem[l].trait].includes("高价+")&&[newTrait,usedItem[l].trait].includes("高价++")){
+                                                    newTrait="限定价格";
+                                                }
+                                                else if([newTrait,usedItem[l].trait].includes("限定价格")&&[newTrait,usedItem[l].trait].includes("究极之力")){
+                                                    newTrait="稀少的逸品";
                                                 }
                                             }
                                             switch(newTrait){
@@ -524,6 +545,21 @@ class sellstore extends entity{
                                     case "无价":
                                         price=0;
                                         break;
+                                    case "高价":
+                                        price=Math.floor(price*1.1);
+                                        break;
+                                    case "高价+":
+                                        price=Math.floor(price*1.3);
+                                        break;
+                                    case "高价++":
+                                        price=Math.floor(price*1.5);
+                                        break;
+                                    case "限定价格":
+                                        price=Math.floor(price*1.8);
+                                        break;
+                                    case "稀少的逸品":
+                                        price=Math.floor(price*2.5);
+                                        break;
                                 }
                                 let newItem=document.createElement("div");
                                 newItem.className="itemContainer";
@@ -606,6 +642,21 @@ class buyStore extends entity{
                                             break;
                                         case "无价":
                                             price=Math.floor(price*0.25);
+                                            break;
+                                        case "高价":
+                                            price=Math.floor(price*1.2);
+                                            break;
+                                        case "高价+":
+                                            price=Math.floor(price*1.5);
+                                            break;
+                                        case "高价++":
+                                            price=Math.floor(price*2);
+                                            break;
+                                        case "限定价格":
+                                            price=Math.floor(price*2.5);
+                                            break;
+                                        case "稀少的逸品":
+                                            price=Math.floor(price*4);
                                             break;
                                     }
                                     newItem.innerHTML="<img src=../img/item/"+nowgoods[i].img+">"+nowgoods[i].name+"<br>品质"+nowgoods[i].quality[j]+"<br>价格"+price+"<br>"+nowgoods[i].trait[j];

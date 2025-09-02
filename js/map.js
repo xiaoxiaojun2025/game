@@ -58,7 +58,8 @@ var mapTraitGroup={
         "",
         "",
         "品质提升",
-        "低价"
+        "低价",
+        "高价"
     ],
     "pathToTheTown":[
         "",
@@ -212,10 +213,18 @@ var pathNearAtelier={
         {
             "type":"item",
             "itemname":"饮用水",
-            "amount":3,
+            "amount":4,
             "quality":[],
             "trait":[],
             "hitbox":[732,504,128,128]
+        },
+        {
+            "type":"item",
+            "itemname":"寻常草",
+            "amount":3,
+            "quality":[],
+            "trait":[],
+            "hitbox":[465,550,90,90]
         },
         // {
         //     "type":"recipeItem",
