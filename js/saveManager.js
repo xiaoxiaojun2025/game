@@ -29,6 +29,7 @@ class saveManager{
         this.cash=game.cash;
         this.hearts=game.Lilies.hearts;
         this.damage=game.Lilies.damage;
+        this.getteditems=game.getteditems;
         localStorage.setItem("LA-save-"+this.username,true);
         localStorage.setItem("LA-save-"+this.username+"storage",JSON.stringify(this.storage));
         localStorage.setItem("LA-save-"+this.username+"bag",JSON.stringify(this.bag));
@@ -42,6 +43,7 @@ class saveManager{
         localStorage.setItem("LA-save-"+this.username+"cash",JSON.stringify(this.cash));
         localStorage.setItem("LA-save-"+this.username+"hearts",JSON.stringify(this.hearts));
         localStorage.setItem("LA-save-"+this.username+"damage",JSON.stringify(this.damage));
+        localStorage.setItem("LA-save-"+this.username+"getteditems",JSON.stringify(this.getteditems));
         for(let i=0;i<game.permanentEntity.length;i++){
             game.permanentEntity[i].save();
         }
@@ -59,6 +61,7 @@ class saveManager{
         this.cash=JSON.parse(localStorage.getItem("LA-save-"+this.username+"cash"));
         this.hearts=JSON.parse(localStorage.getItem("LA-save-"+this.username+"hearts"));
         this.damage=JSON.parse(localStorage.getItem("LA-save-"+this.username+"damage"));
+        this.getteditems=JSON.parse(localStorage.getItem("LA-save-"+this.username+"getteditems"));
         game.storage.item=this.storage;
         game.bag.item=this.bag;
         game.Lilies.x=this.pos[0];
@@ -77,5 +80,15 @@ class saveManager{
             game.permanentEntity[i].load();
         }
         game.changeMap(eval(this.position));
+        game.getteditems=this.getteditems;
+        for(let i=0;i<game.Entity.length;i++){
+            if(game.Entity[i] instanceof item){
+                for(let j=0;j<this.getteditems.length;j++){
+                    if(game.Entity[i].name==this.getteditems[j].name&&game.Entity[i].x==this.getteditems[j].x&&game.Entity[i].y==this.getteditems[j].y){
+                        game.Entity.splice(i,1);
+                    }
+                }
+            }
+        }
     }
 }

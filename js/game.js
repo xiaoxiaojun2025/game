@@ -44,6 +44,7 @@ class game{
     }
     changeMap(newMap){
         this.Map=new map(newMap);
+        this.getteditems=[];
         document.getElementById("mapname").innerHTML=newMap.name1;
         this.gameCanvas.style.backgroundImage="url(../img/map/"+newMap.background+")";
         this.Entity=[];

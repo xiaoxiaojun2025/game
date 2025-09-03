@@ -743,6 +743,7 @@ class item extends entity{
                 game.timer=Number(game.timer)+4;
                 game.bag.addItem(this.name,this.amount,this.quality,this.trait);
                 game.Entity.splice(game.Entity.indexOf(this),1);
+                game.getteditems.push(this);
             }
         }
     }
