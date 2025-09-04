@@ -33,22 +33,47 @@ class map{
     }
 }
 var buystore=[
-    // {
-    //     map:"pathNearAtelier",
-    //     "name":"",
-    //     "hitbox":[0,0,600,720],
-    //     "goods":[
-    //         {
-    //             "name":"饮用水",
-    //             "img":"drinking-water.webp",
-    //             "amount":3,
-    //             "quality":[10,10,10],
-    //             "trait":["","",""],
-    //             "price":10,
-    //             "refreshTime":72
-    //         }
-    //     ],
-    // }
+    {
+        map:"town",
+        "name":"1",
+        "hitbox":[452,340,375,300],
+        "goods":[
+            {
+                "name":"冶炼秘术",
+                "img":"stained-grimoire.webp",
+                "amount":1,
+                "quality":[100],
+                "trait":[""],
+                "price":1000,
+                "refreshTime":-1
+            },
+            {
+                "name":"高等冶炼术",
+                "img":"stained-grimoire.webp",
+                "amount":1,
+                "quality":[100],
+                "trait":[""],
+                "price":5000,
+                "refreshTime":-1
+            },
+        ],
+    },
+    {
+        map:"town",
+        "name":"2",
+        "hitbox":[231,348,151,293],
+        "goods":[
+            {
+                "name":"宝石雕刻术",
+                "img":"stained-grimoire.webp",
+                "amount":1,
+                "quality":[100],
+                "trait":[""],
+                "price":10000,
+                "refreshTime":-1
+            }
+        ],
+    }
 ]
 var mapTraitGroup={
     "pathNearAtelier":[
@@ -319,6 +344,13 @@ var pathToTheTown={
             "hitbox":[520,720,160,80]
         },
         {
+            "type":"entrance",
+            "destinationMap":"town",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,0,80,720]
+        },
+        {
             "type":"item",
             "itemname":"蓝色的花",
             "amount":2,
@@ -418,6 +450,27 @@ var CrystalCave={
             "hitbox":[250,-80,490,80]
         },
         {
+            "type":"entrance",
+            "destinationMap":"CrystalCaveRight",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,450,80,190]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"CrystalCaveRight",
+            "destinationX":0,
+            "destinationY":318,
+            "hitbox":[1280,95,80,260]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"CrystalCaveLeft",
+            "destinationX":1196,
+            "destinationY":518,
+            "hitbox":[-80,0,80,720]
+        },
+        {
             "type":"item",
             "itemname":"艾森矿",
             "amount":3,
@@ -440,6 +493,104 @@ var CrystalCave={
             "quality":[],
             "trait":[],
             "hitbox":[130,365,81,81]
+        },
+    ]
+}
+var CrystalCaveRight={
+    "name":"CrystalCaveRight",
+    "name1":"水晶洞穴右",
+    "background":"CrystalCaveRight.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[0,440,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[350,350,320,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[670,340,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[830,400,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1120,450,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"CrystalCave",
+            "destinationX":1168,
+            "destinationY":518,
+            "hitbox":[-80,0,80,440]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"CrystalCave",
+            "destinationX":1196,
+            "destinationY":232,
+            "hitbox":[-80,450,80,270]
+        },
+    ]
+}
+var CrystalCaveLeft={
+    "name":"CrystalCaveLeft",
+    "name1":"水晶洞穴左",
+    "background":"CrystalCaveLeft.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[370,260,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[550,430,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1000,380,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"CrystalCave",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,0,80,720]
+        },
+    ]
+}
+var town={
+    "name":"town",
+    "name1":"城镇",
+    "background":"town.png",
+    entity:[
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"sellstore",
+            "name":"1",
+            "hitbox":[996,348,151,293]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"pathToTheTown",
+            "destinationX":1196,
+            "destinationY":518,
+            "hitbox":[-80,0,80,720]
         },
     ]
 }

@@ -2,12 +2,14 @@ class inputManager{
     constructor(){
         this.key=[];
         window.addEventListener("keydown",e=>{
-            if(this.key.indexOf(e.key)==-1){
-                this.key.push(e.key);
+            let newKey=e.key.toLowerCase();
+            if(this.key.indexOf(newKey)==-1){
+                this.key.push(newKey);
             }
         });
         window.addEventListener("keyup",e=>{
-            this.key.splice(this.key.indexOf(e.key),1);
+            let newKey=e.key.toLowerCase();
+            this.key.splice(this.key.indexOf(newKey),1);
         });
     }
 }

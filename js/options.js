@@ -13,7 +13,7 @@ class config{
     }
     setOption(config,option,i){
         if(config.config[option]==" "){
-            config.optionButtons[i].innerHTML="Space";
+            config.optionButtons[i].innerHTML="space";
         }
         else{
             config.optionButtons[i].innerHTML=config.config[option];
@@ -21,7 +21,7 @@ class config{
         config.optionButtons[i].onclick=()=>{
             config.optionButtons[i].innerHTML="请按键";
             window.addEventListener("keydown",function keydown(e){
-                config.config[option]=e.key;
+                config.config[option]=e.key.toLowerCase();
                 localStorage.setItem("LA-config-"+config.username,JSON.stringify(config.config));
                 window.removeEventListener("keydown",keydown);
                 config.setOption(config,option,i);

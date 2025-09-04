@@ -84,7 +84,10 @@ class game{
                 this.Entity.push(new puni(gameWidth,gameHeight,document.getElementById(e.img),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],128,169,e.name,e.damage,e.hearts,e.actRange));
             }
             if(e.type=="sellstore"){
-                this.Entity.push(new sellstore(gameWidth,gameHeight,e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],"喵"));
+                this.Entity.push(new sellstore(gameWidth,gameHeight,e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.name));
+            }
+            if(e.type=="needToolItem"){
+                this.Entity.push(new needToolItem(gameWidth,gameHeight,document.getElementById("itemimg"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],512,512,e.itemname,e.amount,e.quality,e.trait,e.needTool));
             }
         });
     }
@@ -114,7 +117,7 @@ class game{
                     e.draw(this.ctx);
                 });
                 this.Lilies.draw(this.ctx);
-                this.Lilies.update(this.input,this.Entity);
+                this.Lilies.update(this,this.input,this.Entity);
                 this.Entity.forEach(e=>{
                     e.update(this,this.Lilies,this.input);
                 });

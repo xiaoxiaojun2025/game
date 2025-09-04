@@ -68,6 +68,46 @@ class bag{
                 "trait":[]
             },
             {
+                "name":["冶炼秘术"],
+                "intro":"",
+                "img":"stained-grimoire.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["高等冶炼术"],
+                "intro":"",
+                "img":"stained-grimoire.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["宝石雕刻术"],
+                "intro":"",
+                "img":"stained-grimoire.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["十字镐"],
+                "intro":"这是寻宝的必备之物对吧！",
+                "img":"pickaxe.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["旅人之鞋"],
+                "intro":"这鞋子真优秀，它会推着脚跟前进。",
+                "img":"traveler-s-shoes.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
                 "name":["饮用水","（水）"],
                 "intro":"咕噜咕噜……嗯～就是一般的水呢。",
                 "img":"drinking-water.webp",

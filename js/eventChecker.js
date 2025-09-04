@@ -1,4 +1,4 @@
-class event{
+class Event{
     constructor(){
         this.end=false;
         this.canEnd=false;
@@ -6,13 +6,79 @@ class event{
         this.end_2=false;
         this.end_3=false;
         this.end_4=false;
+        this.recipe1=false;
+        this.recipe2=false;
+        this.recipe3=false;
     }
 }
 class eventChecker{
     constructor(){
-        this.event=new event;
+        this.event=new Event;
     }
     update(game){
+        if(!this.event.recipe1&&game.bag.item[1].amount>0){
+            this.event.recipe1=true;
+            game.bag.subItem("冶炼秘术",1);
+            game.RecipeGroup.recipe.push(
+                {
+                    "name":"丝薇丽银",
+                    "time":8,
+                    "recipe":{
+                        "金属块":1,
+                        "中和剂（红）":2,
+                        "（石材）":2
+                    }
+                },
+                {
+                    "name":"黄金艾森矿",
+                    "time":16,
+                    "recipe":{
+                        "丝薇丽银":1,
+                        "中和剂（黄）":2,
+                        "黄金色之岩":4
+                    }
+                }
+            );
+        }
+        if(!this.event.recipe2&&game.bag.item[2].amount>0){
+            this.event.recipe2=true;
+            game.bag.subItem("高等冶炼术",1);
+            game.RecipeGroup.recipe.push(
+                {
+                    "name":"精灵银块",
+                    "time":32,
+                    "recipe":{
+                        "黄金艾森矿":1,
+                        "七色棱镜":1,
+                        "残破矿石":3
+                    }
+                }
+            );
+        }
+        if(!this.event.recipe3&&game.bag.item[3].amount>0){
+            this.event.recipe3=true;
+            game.bag.subItem("宝石雕刻术",1);
+            game.RecipeGroup.recipe.push(
+                {
+                    "name":"纯洁钻石",
+                    "time":128,
+                    "recipe":{
+                        "睿智绿宝石":1,
+                        "钻石原石":2,
+                        "（神秘之力）":3
+                    }
+                },
+                {
+                    "name":"百万水晶",
+                    "time":256,
+                    "recipe":{
+                        "纯洁钻石":1,
+                        "钻石原石":2,
+                        "（神秘之力）":3
+                    }
+                }
+            );
+        }
         if(game.timer>=2880){
             this.event.end=true;
         }

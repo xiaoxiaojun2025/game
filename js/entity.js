@@ -72,7 +72,7 @@ class lilies extends entity{
         this.spriteWidth=56;
         this.spriteHeight=81;
         this.width=this.spriteWidth*width;
-        this.height=this.spriteHeight*height;
+        this.height=this.spriteHeight*height;//84*122
         this.weight=1;
         this.face="right";
         this.jumped=false;
@@ -82,7 +82,7 @@ class lilies extends entity{
         this.invincible=false;
         this.innerframe=0;
     }
-    update(input,hitboxGroup){
+    update(game,input,hitboxGroup){
         this.isOnFloor=false;
         var originX=this.x;
         var originY=this.y;
@@ -114,14 +114,24 @@ class lilies extends entity{
                 this.frameY=1;
             }
             this.face="left";
-            this.vx=-5;
+            if(input.key.indexOf(config.run)>-1&&game.storage.item[5].amount>0){
+                this.vx=-10;
+            }
+            else{
+                this.vx=-5;
+            }
         }
         else if(input.key.indexOf(config.right)>-1&&this.atk==null){
             if(this.frameY==0){
                 this.frameY=1;
             }
             this.face="right";
-            this.vx=5;
+            if(input.key.indexOf(config.run)>-1&&game.storage.item[5].amount>0){
+                this.vx=10;
+            }
+            else{
+                this.vx=5;
+            }
         }
         else{
             if(this.frameY==1){
@@ -705,6 +715,23 @@ class buyStore extends entity{
         this.lasttimer=JSON.parse(localStorage.getItem("LA-save-buystore-"+username+this.name)).lasttimer;
     }
 }
+class trial extends entity{
+    constructor(gameWidth,gameHeight,img,x,y,width,height,map,item,refreshTime){
+        super(gameWidth,gameHeight,img,x,y,width,height);
+        this.map=map;
+        this.item=item;
+        this.refreshTime=refreshTime;
+        this.lasttimer=0;
+        this.ifdraw=false;
+    }
+    update(game,lilies,input){
+        if(game.Map.name==this.map){
+            if(game.timer-this.lasttimer>0){
+                
+            }
+        }
+    }
+}
 class item extends entity{
     constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,amount,quality,trait){
         super(gameWidth,gameHeight,img,x,y,width,height);
@@ -750,6 +777,30 @@ class item extends entity{
     draw(ctx){
         this.frameX=Math.floor(Frame/2)%19;
         super.draw(ctx);
+    }
+}
+class needToolItem extends item{
+    constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,amount,quality,trait,needTool){
+        super(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,amount,quality,trait);
+        this.needTool=needTool;
+    }
+    update(game,lilies,input){
+        if(game.storage.item[this.needTool].amount>0){
+            super.update(game,lilies,input);
+        }
+        else if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            if(input.key.indexOf(config.interact)>-1){
+                game.Talk.see("你需要"+game.storage[this.needTool].name[0]+"才能采集");
+                if(timeout){
+                    clearTimeout(timeout);
+                }
+                timeout=setTimeout(function(){
+                    game.Talk.clear();
+                    game.Talk.hide();
+                    clearTimeout(timeout);
+                },1000);
+            }
+        }
     }
 }
 class recipeItem extends item{
