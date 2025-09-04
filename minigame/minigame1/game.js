@@ -9,7 +9,6 @@ class Entity {
         this.frameX = 0;
         this.frameY = 0;
         this.weight = 0;
-        // 单帧尺寸，根据精灵图 223×154 计算（2行4列）
         this.spriteWidth = 55.75; 
         this.spriteHeight = 77; 
         this.width = width;
@@ -46,55 +45,50 @@ class Entity {
     }
 }
 
-// 莉莉丝玩家类 - 包含动画和移动逻辑
+// 莉莉丝玩家类
 class Lilies extends Entity {
     constructor(game, img) {
         super(
             game.canvas.width,
             game.canvas.height,
             img,
-            game.canvas.width / 2 - 50, // 初始X（居中）
-            game.canvas.height - 120, // 初始Y（靠下）
-            100, 100 // 显示尺寸
+            game.canvas.width / 2 - 50,
+            game.canvas.height - 120,
+            100, 100
         );
-        this.face = "right"; // 初始朝向
-        this.animationFrame = 0; // 动画帧计数器
+        this.face = "right";
+        this.animationFrame = 0;
         this.normalSpeed = 7 * 60;
         this.wSpeed = 14 * 60;
         this.game = game;
     }
 
     update(timeScale, keys) {
-        // 动画帧更新（每10帧切换一次）
         this.animationFrame++;
         this.frameX = Math.floor(this.animationFrame / 20) % 4;
 
-        // 重置水平速度
         this.vx = 0;
 
-        // 处理移动 & 切换动画行（frameY）
         if (keys["a"]) {
             this.face = "left";
-            this.frameY = 1; // 行走动画行（第2行）
+            this.frameY = 1;
             this.vx = -this.normalSpeed * timeScale;
             if (keys["w"]) {
                 this.vx = -this.wSpeed * timeScale;
             }
         } else if (keys["d"]) {
             this.face = "right";
-            this.frameY = 1; // 行走动画行（第2行）
+            this.frameY = 1;
             this.vx = this.normalSpeed * timeScale;
             if (keys["w"]) {
                 this.vx = this.wSpeed * timeScale;
             }
         } else {
-            this.frameY = 0; // 站立动画行（第1行）
+            this.frameY = 0;
         }
 
-        // 应用移动
         this.x += this.vx;
 
-        // 边界检查
         if (this.x < 0) this.x = 0;
         if (this.x + this.width > this.gameWidth) {
             this.x = this.gameWidth - this.width;
@@ -105,7 +99,6 @@ class Lilies extends Entity {
         if (this.face === "right") {
             super.draw(ctx);
         } else {
-            // 左侧翻转绘制
             ctx.save();
             ctx.scale(-1, 1);
             ctx.drawImage(
@@ -163,17 +156,18 @@ class Bean extends Entity {
         ctx.drawImage(image, this.x, this.y, this.width, this.height);
     }
 }
+
+// 护盾效果类
 class ShieldEffect {
     constructor(player) {
-        this.player = player; // 关联玩家对象（跟随玩家位置）
-        this.radius = player.width * 0.8; // 护盾初始半径（比玩家大20%）
-        this.maxRadius = this.radius; // 最大半径（用于动画计算）
-        this.opacity = 1; // 初始透明度（完全不透明）
-        this.remainingTime = 0; // 剩余显示时间
-        this.duration = 0; // 总持续时间（用于计算动画进度）
+        this.player = player;
+        this.radius = player.width * 0.8;
+        this.maxRadius = this.radius;
+        this.opacity = 1;
+        this.remainingTime = 0;
+        this.duration = 0;
     }
 
-    // 激活护盾（重置动画状态）
     activate(duration) {
         this.remainingTime = duration;
         this.duration = duration;
@@ -181,74 +175,62 @@ class ShieldEffect {
         this.radius = this.maxRadius;
     }
 
-    // 更新动画状态（随时间变化透明度和大小）
     update(deltaTime) {
         if (this.remainingTime <= 0) return;
 
-        // 减少剩余时间
         this.remainingTime -= deltaTime;
-
-        // 计算动画进度（0~1，0=刚激活，1=即将消失）
         const progress = 1 - (this.remainingTime / this.duration);
 
-        // 透明度随进度降低（最后0.3秒加速消失）
         if (progress > 0.7) {
-            this.opacity = 1 - ((progress - 0.7) / 0.3); // 最后30%时间内从1→0
+            this.opacity = 1 - ((progress - 0.7) / 0.3);
         } else {
-            this.opacity = 1 - (progress * 0.3); // 前70%时间保持较高透明度
+            this.opacity = 1 - (progress * 0.3);
         }
 
-        // 半径随进度轻微放大（营造"消散"感）
-        this.radius = this.maxRadius * (1 + progress * 0.15); // 最大放大20%
+        this.radius = this.maxRadius * (1 + progress * 0.15);
     }
 
-    // 绘制护盾（环形+闪烁效果）
     draw(ctx) {
         if (this.remainingTime <= 0 || this.opacity <= 0) return;
 
-        // 获取玩家中心位置（护盾跟随玩家）
         const centerX = this.player.x + this.player.width / 2;
         const centerY = this.player.y + this.player.height / 2;
 
-        // 绘制外圆环（半透明蓝色）
         ctx.beginPath();
         ctx.arc(centerX, centerY, this.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(0, 180, 255, ${this.opacity})`; // 蓝色护盾
+        ctx.strokeStyle = `rgba(0, 180, 255, ${this.opacity})`;
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        // 绘制内圆环（更亮的蓝色，增强层次感）
         ctx.beginPath();
         ctx.arc(centerX, centerY, this.radius * 0.8, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(100, 200, 255, ${this.opacity * 0.7})`; // 亮蓝色内环
+        ctx.strokeStyle = `rgba(100, 200, 255, ${this.opacity * 0.7})`;
         ctx.lineWidth = 1.5;
         ctx.stroke();
 
-        // 绘制闪烁点（随机位置的亮点，增强动态感）
-        if (Math.random() > 0.7) { // 30%概率绘制一个亮点
+        if (Math.random() > 0.7) {
             const angle = Math.random() * Math.PI * 2;
-            const dotRadius = this.radius * (0.8 + Math.random() * 0.2); // 在内环和外环之间
+            const dotRadius = this.radius * (0.8 + Math.random() * 0.2);
             const dotX = centerX + Math.cos(angle) * dotRadius;
             const dotY = centerY + Math.sin(angle) * dotRadius;
             
             ctx.beginPath();
             ctx.arc(dotX, dotY, 1.5, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`; // 白色亮点
+            ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
             ctx.fill();
         }
     }
 }
-// 游戏主类
+
+// 游戏主类 - 核心修改在endGame方法
 class Game {
     constructor() {
-        // DOM元素获取（依赖HTML中的对应元素）
         this.canvas = document.getElementById("canvasOfGame");
         this.ctx = this.canvas.getContext("2d");
         this.bgm = document.getElementById('alchemyBgm');
         this.startButton = document.getElementById("startButton");
         this.startScreen = document.getElementById("startScreen");
 
-        // 游戏状态
         this.isGameRunning = false;
         this.isGameStarted = false;
         this.gameStartTime = null;
@@ -261,7 +243,6 @@ class Game {
         this.showTimeAdderText = false;
         this.lastTimeAdderTime = 0;
 
-        // 游戏配置
         this.GAME_DURATION = 40;
         this.winScore = 120;
         this.loseScore = -80;
@@ -270,37 +251,32 @@ class Game {
         this.shieldDuration = 5000;
         this.time_adderDuration = 5000;
 
-        // 资源加载
         this.images = {
-            player: new Image(), // 精灵图
+            player: new Image(),
             good: new Image(),
             bad: new Image(),
             time_adder: new Image(),
             shield: new Image(),
             background: new Image(),
         };
-        this.images.player.src = "精灵图.png"; // 你的精灵图路径，需与HTML同级或正确相对路径
+        this.images.player.src = "精灵图.png";
         this.images.good.src = "./小道具/蓝宝石.png";
         this.images.bad.src = "./小道具/毒药瓶.png";
         this.images.time_adder.src = "./小道具/沙漏.png";
         this.images.shield.src = "./小道具/护盾.png";
         this.images.background.src = "atelier.png";
 
-        // 初始化玩家和道具
         this.player = new Lilies(this, this.images.player);
         this.beans = [new Bean(this)];
 
-        // 事件监听
         this.keys = {};
         this.initEventListeners();
 
-        // 画布适配
         this.resizeCanvas();
         this.shieldEffect = new ShieldEffect(this.player);
     }
 
     initEventListeners() {
-        // 键盘控制
         document.addEventListener("keydown", (e) => {
             this.keys[e.key] = true;
         });
@@ -308,7 +284,6 @@ class Game {
             this.keys[e.key] = false;
         });
 
-        // 开始游戏
         this.startButton.addEventListener("click", () => {
             this.startScreen.style.display = "none";
             this.isGameStarted = true;
@@ -330,7 +305,6 @@ class Game {
         this.canvas.width = parseInt(style.width);
         this.canvas.height = parseInt(style.height);
 
-        // 调整玩家位置
         if (this.player) {
             this.player.gameWidth = this.canvas.width;
             this.player.gameHeight = this.canvas.height;
@@ -346,6 +320,7 @@ class Game {
             a.y + a.height > b.y;
     }
 
+    // 核心修改：存储试炼结果到localStorage
     endGame(isWin) {
         if (!this.isGameRunning) return;
         this.isGameRunning = false;
@@ -360,7 +335,29 @@ class Game {
             }
         }, 100);
 
-        setTimeout(() => window.location.reload(), 2000);
+        // 获取用户名并设置localStorage键名
+        const username = localStorage.getItem("LA-username") || "default";
+        const trialResultKey = `LA-trial-${username}`;
+
+        
+        // 存储结果：胜利存true，失败存false
+        localStorage.setItem(trialResultKey, JSON.stringify(isWin));
+        // 3. 关键修复：定义并读取“大游戏页面路径”（从 localStorage 中获取）
+        const preTrialPageKey = `LA-pre-trial-page-${username}`; // 和大游戏中存储的键名保持一致
+        const preTrialPageUrl = localStorage.getItem(preTrialPageKey); // 读取大游戏页面路径
+
+        // 3. 跳转逻辑：优先返回原页面，无原页面时用默认大游戏页面（避免异常）
+        setTimeout(() => {
+            if (preTrialPageUrl) {
+                // 原路返回：跳回进小游戏前的大游戏页面
+                window.location.href = preTrialPageUrl;
+                // 可选：删除已使用的路径存储（避免重复使用）
+                localStorage.removeItem(preTrialPageKey);
+            } else {
+                // 异常情况：无存储路径时，跳大游戏默认页面（需替换为你的大游戏默认路径）
+                window.location.href = "../../index.html";
+            }
+        }, 2000); // 延迟2秒，让玩家看到“试炼成功/失败”提示
     }
 
     update() {
@@ -371,16 +368,13 @@ class Game {
         this.lastUpdateTime = now;
         const timeScale = deltaTime / 1000;
 
-        // 生成新道具
         if (now - this.lastBeanSpawnTime > this.beanSpawnInterval && this.beans.length < this.maxBeans) {
             this.beans.push(new Bean(this));
             this.lastBeanSpawnTime = now;
         }
 
-        // 更新玩家（包含动画）
         this.player.update(timeScale, this.keys);
 
-        // 更新道具
         for (let i = this.beans.length - 1; i >= 0; i--) {
             const bean = this.beans[i];
             bean.update(timeScale);
@@ -390,14 +384,12 @@ class Game {
                 continue;
             }
 
-            // 碰撞检测
             if (this.isColliding(this.player, bean)) {
                 this.handleBeanCollision(bean);
                 this.beans.splice(i, 1);
             }
         }
 
-        // 更新护盾状态
         if (this.isShieldActive) {
             this.shieldRemainingTime -= deltaTime;
             if (this.shieldRemainingTime <= 0) {
@@ -405,7 +397,6 @@ class Game {
             }
         }
 
-        // 检查胜负条件
         if (this.scoreValue >= this.winScore) {
             this.endGame(true);
         }
@@ -413,7 +404,6 @@ class Game {
             this.endGame(false);
         }
 
-        // 检查时间结束
         if (this.isGameStarted && this.isGameRunning &&
             (now - this.gameStartTime) >= this.GAME_DURATION * 1000) {
             this.endGame(false);
@@ -451,17 +441,13 @@ class Game {
 
         if (!this.isGameStarted) return;
 
-        // 绘制玩家（带动画）
         this.player.draw(this.ctx);
-
-        // 绘制道具
         this.beans.forEach(bean => bean.draw(this.ctx, this.images));
-        // 绘制护盾特效（在玩家上方，道具下方）
+        
         if (this.isShieldActive) {
             this.shieldEffect.draw(this.ctx);
         }
 
-        // 绘制游戏信息
         this.drawTimer();
         this.drawTimeAdderHint();
         this.drawShieldHint();
@@ -528,11 +514,14 @@ class Game {
 
     drawGameResult() {
         if (this.scoreValue >= this.winScore) {
-            this.ctx.fillStyle = "black";
-            this.ctx.font = "48px Lolita, sans-serif";
+            this.ctx.fillStyle = "#2ecc71";
+            this.ctx.font = "60px Lolita, sans-serif";
             this.ctx.textAlign = "center";
             this.ctx.textBaseline = "middle";
             this.ctx.fillText("试炼成功!", this.canvas.width / 2, this.canvas.height / 2);
+            this.ctx.font = "24px Lolita, sans-serif";
+            this.ctx.fillStyle = "#34495e";
+            this.ctx.fillText("即将返回大地图...", this.canvas.width / 2, this.canvas.height / 2 + 80);
         }
         if (this.scoreValue <= this.loseScore) {
             this.ctx.fillStyle = "red";
@@ -540,6 +529,8 @@ class Game {
             this.ctx.textAlign = "center";
             this.ctx.textBaseline = "middle";
             this.ctx.fillText("试炼失败!", this.canvas.width / 2, this.canvas.height / 2);
+            this.ctx.font = "20px Arial";
+            this.ctx.fillText("点击页面重新挑战", this.canvas.width / 2, this.canvas.height / 2 + 60);
         }
     }
 
