@@ -264,7 +264,7 @@ class Game {
         this.images.bad.src = "./小道具/毒药瓶.png";
         this.images.time_adder.src = "./小道具/沙漏.png";
         this.images.shield.src = "./小道具/护盾.png";
-        this.images.background.src = "atelier.png";
+        this.images.background.src = "CrystalCave.jpg";
 
         this.player = new Lilies(this, this.images.player);
         this.beans = [new Bean(this)];
@@ -477,7 +477,7 @@ class Game {
     }
 
     drawTimer() {
-        this.ctx.fillStyle = "black";
+        this.ctx.fillStyle = "white";
         this.ctx.font = "24px Lolita, sans-serif";
         let timeText = this.isGameRunning
             ? `试炼时间: ${Math.max(0, this.GAME_DURATION - Math.floor((Date.now() - this.gameStartTime) / 1000))}s`
@@ -494,7 +494,7 @@ class Game {
             }
 
             if (this.showTimeAdderText && (Date.now() - this.lastTimeAdderTime <= this.time_adderDuration)) {
-                this.ctx.fillStyle = "black";
+                this.ctx.fillStyle = "white";
                 this.ctx.font = "30px Lolita, sans-serif";
                 this.ctx.fillText(`+${Math.ceil(this.time_adderDuration / 1000)}s!!!`, this.canvas.width / 2 + 50, 30);
             } else {
@@ -506,7 +506,7 @@ class Game {
 
     drawShieldHint() {
         if (this.isShieldActive) {
-            this.ctx.fillStyle = "rgba(128, 0, 128, 0.7)";
+            this.ctx.fillStyle = "white";
             this.ctx.font = "24px Lolita, sans-serif";
             this.ctx.fillText(`护盾生效中: ${Math.ceil(this.shieldRemainingTime / 1000)}秒`, this.canvas.width - 180, 30);
         }
@@ -535,7 +535,7 @@ class Game {
     }
 
     drawScore() {
-        this.ctx.fillStyle = "black";
+        this.ctx.fillStyle = "white";
         this.ctx.font = "24px Lolita, sans-serif";
         this.ctx.fillText("元素能量值: " + this.scoreValue, 70, 30);
     }
