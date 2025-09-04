@@ -94,6 +94,7 @@ class game{
     creatPermanentEntities(){
         this.permanentEntity=[];
         buystore.forEach(e=>this.permanentEntity.push(new buyStore(gameWidth,gameHeight,e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.map,e.name,e.goods)));
+        Trial.forEach(e=>this.permanentEntity.push(new trial(gameWidth,gameHeight,document.getElementById("itemimg"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],512,512,e.name,e.map,e.item,e.refreshTime)));
     }
     animate(timestamp){
         this.sumTimestamp+=timestamp-this.prevTimestamp;

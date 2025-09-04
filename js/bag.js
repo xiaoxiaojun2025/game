@@ -103,9 +103,9 @@ class bag{
                 "name":["旅人之鞋"],
                 "intro":"这鞋子真优秀，它会推着脚跟前进。",
                 "img":"traveler-s-shoes.webp",
-                "amount":0,
-                "quality":[],
-                "trait":[]
+                "amount":1,
+                "quality":[0],
+                "trait":[""]
             },
             {
                 "name":["饮用水","（水）"],
@@ -409,6 +409,87 @@ class bag{
                 "intro":"其实这个也能拿来制作引爆装置。",
                 "img":"passion-ruby.webp",
                 "price":150,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["野兽毛皮","（动物素材）"],
+                "intro":"该说是充满野性的味道么……有一股野兽的臭味呢。",
+                "img":"beast-pelt.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["鞣制皮革","（动物素材）","杂货"],
+                "intro":"这才是这种皮革真正的模样！",
+                "img":"leather.webp",
+                "price":50,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["纯水","（水）"],
+                "intro":"最后要用这个把炼金釜洗干净。如果留有杂质的话，就会对釜里残留的药品产生反应。",
+                "img":"pure-water.webp",
+                "price":5,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["抛光液","（砂）"],
+                "intro":"水龙头的打扫，就交给这个莉莉丝牌抛光液！",
+                "img":"polish.webp",
+                "price":20,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["红宝石原石","（原石）","（火药）"],
+                "intro":"虽然它现在的颜色很吓人，但听说经过加工处理就会变得很漂亮。",
+                "img":"rubis-gemstone.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["蓝宝石原石","（原石）","（矿石）"],
+                "intro":"有传闻称这里面含有圣水……",
+                "img":"saphir-gemstone.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["黄宝石原石","（原石）","（砂）"],
+                "intro":"好可爱的颜色。光是看着它，就让我充满活力。",
+                "img":"topacio-gemstone.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["绿宝石原石","（原石）","（气体）"],
+                "intro":"这个能用来骗过蛇类魔物的眼睛……",
+                "img":"emeraude-gemstone.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["钻石原石","（原石）","（万灵药）"],
+                "intro":"精美绝伦又价格昂贵的果然还是这种石头！",
+                "img":"diamant-gemstone.webp",
+                "price":1,
                 "amount":0,
                 "quality":[],
                 "trait":[]

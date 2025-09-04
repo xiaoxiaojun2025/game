@@ -141,7 +141,12 @@ class lilies extends entity{
         }
         if(input.key.indexOf(config.jump)>-1&&this.isOnFloor&&!this.jumped&&this.atk==null){
             this.jumped=true;
-            this.vy-=20;
+            if(input.key.indexOf(config.up)>-1&&game.storage.item[5].amount>0){
+                this.vy=-30;
+            }
+            else{
+                this.vy-=20;
+            }
         }
         else if(!this.isOnFloor){
             if(this.frameY!=3){
@@ -716,20 +721,54 @@ class buyStore extends entity{
     }
 }
 class trial extends entity{
-    constructor(gameWidth,gameHeight,img,x,y,width,height,map,item,refreshTime){
+    constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,map,item,refreshTime){
         super(gameWidth,gameHeight,img,x,y,width,height);
+        this.spriteWidth=spriteWidth;
+        this.spriteHeight=spriteHeight;
+        this.name=name;
         this.map=map;
         this.item=item;
         this.refreshTime=refreshTime;
         this.lasttimer=0;
+        this.ifupdate=true;
         this.ifdraw=false;
     }
     update(game,lilies,input){
         if(game.Map.name==this.map){
-            if(game.timer-this.lasttimer>0){
-                
+            if(game.timer-this.lasttimer>=this.refreshTime){
+                this.lasttimer=this.timer;
+                this.ifupdate=true;
+            }
+            if(this.ifupdate){
+                this.ifdraw=true;
+            }
+            if(this.ifupdate){
+                if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+                    if(input.key.indexOf(config.interact)>-1){
+                        game.SaveManager.save(game);
+                        window.location.href="../minigame/minigame1/index.html";
+                    }
+                }
             }
         }
+        else{
+            this.ifdraw=false;
+        }
+    }
+    draw(ctx){
+        if(this.ifdraw){
+            this.frameX=this.frameX=Math.floor(Frame/2)%19;
+            super.draw(ctx);
+        }
+    }
+    save(){
+        let username=localStorage.getItem("LA-username");
+        localStorage.setItem("LA-save-trial-"+username+this.name,JSON.stringify(this));
+    }
+    load(){
+        let username=localStorage.getItem("LA-username");
+        this.ifupdate=JSON.parse(localStorage.getItem("LA-save-trial-"+username+this.name)).ifupdate;
+        this.lasttimer=JSON.parse(localStorage.getItem("LA-save-trial-"+username+this.name)).lasttimer;
     }
 }
 class item extends entity{

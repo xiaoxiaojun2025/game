@@ -32,9 +32,25 @@ class map{
         });
     }
 }
+var Trial=[
+    {
+        "map":"CrystalCaveLeft",
+        "name":"1",
+        "hitbox":[1013,247,134,133],
+        "item":[
+            {
+                "name":"野兽毛皮",
+                "amount":2,
+                "quality":[50,50,50,50],
+                "trait":["品质提升","品质提升","品质提升","品质提升"]
+            }
+        ],
+        "refreshTime":504
+    }
+]
 var buystore=[
     {
-        map:"town",
+        "map":"town",
         "name":"1",
         "hitbox":[452,340,375,300],
         "goods":[
@@ -59,7 +75,7 @@ var buystore=[
         ],
     },
     {
-        map:"town",
+        "map":"town",
         "name":"2",
         "hitbox":[231,348,151,293],
         "goods":[
@@ -160,15 +176,19 @@ var atelier={
         },
         {
             "type":"hitbox",//左侧墙
-            "hitbox":[0,0,80,720]
+            "hitbox":[0,-240,80,960]
         },
         {
             "type":"hitbox",//右侧墙
-            "hitbox":[1200,0,80,370]
+            "hitbox":[1200,-240,80,610]
         },
         {
             "type":"hitbox",//门右边的碰撞箱
             "hitbox":[1280,240,80,480]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-240,1280,80]
         },
         {
             "type":"door",
@@ -222,6 +242,10 @@ var pathNearAtelier={
             "hitbox":[-80,393,80,167]
         },
         {
+            "type":"hitbox",
+            "hitbox":[0,-240,1280,80]
+        },
+        {
             "type":"door",
             "destinationMap":"atelier",
             "destinationX":1168,
@@ -257,39 +281,39 @@ var pathNearAtelier={
         //     "hitbox":[600,400,200,200],
         //     "recipe":[
         //         {
-        //             "name":"丝薇丽银",
+        //             "name":"热情红宝石",
         //             "time":8,
         //             "recipe":{
-        //                 "金属块":1,
-        //                 "中和剂（红）":2,
-        //                 "（石材）":2
+        //                 "红宝石原石":4,
+        //                 "抛光液":4,
+        //                 "（燃料）":2
         //             }
         //         },
         //         {
-        //             "name":"黄金艾森矿",
+        //             "name":"高贵蓝宝石",
         //             "time":16,
         //             "recipe":{
-        //                 "丝薇丽银":1,
-        //                 "中和剂（黄）":2,
-        //                 "黄金色之岩":4
+        //                 "热情红宝石":1,
+        //                 "蓝宝石原石":4,
+        //                 "纯水":4
         //             }
         //         },
         //         {
-        //             "name":"精灵银块",
+        //             "name":"诚实黄宝石",
         //             "time":32,
         //             "recipe":{
-        //                 "黄金艾森矿":1,
-        //                 "七色棱镜":1,
-        //                 "残破矿石":3
+        //                 "高贵蓝宝石":1,
+        //                 "黄宝石原石":4,
+        //                 "（金属)":3
         //             }
         //         },
         //         {
-        //             "name":"海银",
+        //             "name":"睿智绿宝石",
         //             "time":64,
         //             "recipe":{
-        //                 "精灵银块":1,
-        //                 "黑洞":1,
-        //                 "（神秘之力）":3
+        //                 "诚实黄宝石":1,
+        //                 "绿宝石原石":4,
+        //                 "（气体）":3
         //             }
         //         }
         //     ]
@@ -320,6 +344,10 @@ var pathToTheTown={
         {
             "type":"hitbox",//下侧碰撞箱
             "hitbox":[520,800,160,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-240,1280,80]
         },
         {
             "type":"item",
@@ -434,6 +462,10 @@ var CrystalCave={
             "hitbox":[0,640,1280,80]
         },
         {
+            "type":"hitbox",
+            "hitbox":[0,-240,1280,80]
+        },
+        {
             "type":"puni",
             "name":"蓝噗尼",
             "img":"blue-puni",
@@ -526,6 +558,10 @@ var CrystalCaveRight={
             "hitbox":[0,640,1280,80]
         },
         {
+            "type":"hitbox",
+            "hitbox":[0,-240,1280,80]
+        },
+        {
             "type":"entrance",
             "destinationMap":"CrystalCave",
             "destinationX":1168,
@@ -563,6 +599,10 @@ var CrystalCaveLeft={
             "hitbox":[0,640,1280,80]
         },
         {
+            "type":"hitbox",
+            "hitbox":[0,-240,1280,80]
+        },
+        {
             "type":"entrance",
             "destinationMap":"CrystalCave",
             "destinationX":0,
@@ -575,10 +615,14 @@ var town={
     "name":"town",
     "name1":"城镇",
     "background":"town.png",
-    entity:[
+    "entity":[
         {
             "type":"hitbox",
             "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-240,1280,80]
         },
         {
             "type":"sellstore",
@@ -588,6 +632,251 @@ var town={
         {
             "type":"entrance",
             "destinationMap":"pathToTheTown",
+            "destinationX":1196,
+            "destinationY":518,
+            "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"townRight",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,0,80,720]
+        }
+    ]
+}
+var townRight={
+    "name":"townRight",
+    "name1":"城镇右",
+    "background":"townRight.jpg",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[90,270,160,16]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[270,420,320,16]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[960,400,160,16]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1120,380,160,16]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,960,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[960,700,320,20]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-240,1280,80]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"town",
+            "destinationX":1196,
+            "destinationY":518,
+            "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"mountainCave1",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,396,80,340]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"peak",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,0,80,380]
+        }
+    ]
+}
+var peak={
+    "name":"peak",
+    "name1":"山顶",
+    "background":"peak.jpg",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[60,180,480,16]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[800,230,160,16]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[240,370,160,16]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[400,400,160,16]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[800,455,160,16]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1280,0,80,720]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-240,1280,80]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"townRight",
+            "destinationX":1196,
+            "destinationY":258,
+            "hitbox":[-80,0,80,720]
+        }
+    ]
+}
+var mountainCave1={
+    "name":"mountainCave1",
+    "name1":"山洞",
+    "background":"mountainCave1.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[0,272,176,58]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[431,154,187,29]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[633,325,318,25]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[482,474,186,27]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-240,1280,80]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"townRight",
+            "destinationX":1196,
+            "destinationY":518,
+            "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"mountainCave2",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,0,80,720]
+        },
+    ]
+}
+var mountainCave2={
+    "name":"mountainCave2",
+    "name1":"山洞",
+    "background":"mountainCave2.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[159,317,287,22]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[650,194,259,26]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1069,320,187,21]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[919,494,253,23]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,0,355,50]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-240,1280,80]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"mountainCave1",
+            "destinationX":1196,
+            "destinationY":518,
+            "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"mountainCave3",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,0,80,720]
+        },
+    ]
+}
+var mountainCave3={
+    "name":"mountainCave3",
+    "name1":"山洞",
+    "background":"mountainCave3.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[885,0,393,78]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[598,170,257,13]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[274,319,315,27]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[771,422,344,22]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1280,0,80,720]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-240,1280,80]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"mountainCave2",
             "destinationX":1196,
             "destinationY":518,
             "hitbox":[-80,0,80,720]
