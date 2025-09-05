@@ -53,7 +53,6 @@ class pauseButtonGroup{
                 }.bind(this);
             }
             else if(this.buttonGroup[e].id=="bag"){
-                this.buttonGroup[e].innerHTML="材料箱";
                 this.buttonGroup[e].onclick=function(){
                     document.getElementById("innerCanvasContainer").style.display="block";
                     this.hideAll("continue");
