@@ -11,7 +11,7 @@ class map{
     }
     randomTrait(){
         this.entityGroup.forEach(e=>{
-            if(e.type=="item"){
+            if(e.type=="item"||e.type=="needToolItem"){
                 let trait=[];
                 for(let i=0;i<e.amount;i++){
                     trait.push(mapTraitGroup[this.name][Math.floor(Math.random()*mapTraitGroup[this.name].length)]);
@@ -22,7 +22,7 @@ class map{
     }
     randonmQuality(){
         this.entityGroup.forEach(e=>{
-            if(e.type=="item"){
+            if(e.type=="item"||e.type=="needToolItem"){
                 let quality=[];
                 for(let i=0;i<e.amount;i++){
                     quality.push(mapQualityGroup[this.name][Math.floor(Math.random()*mapQualityGroup[this.name].length)]);
@@ -129,7 +129,19 @@ var mapTraitGroup={
         "品质提升+",
         "品质提升+",
         "品质提升++",
-    ]
+    ],
+    "CrystalCaveRight":[
+        "低价",
+        "高价",
+        "高价+",
+        "高价+",        
+        "品质提升",
+        "品质提升",
+        "品质提升",
+        "品质提升+",
+        "品质提升+",
+        "品质提升++",
+    ],
 }
 var mapQualityGroup={
     "pathNearAtelier":[
@@ -162,6 +174,15 @@ var mapQualityGroup={
         30,
         35,
         35
+    ],
+    "CrystalCaveRight":[
+        30,
+        30,
+        40,
+        40,
+        50,
+        50,
+        50,
     ]
 }
 
@@ -575,6 +596,15 @@ var CrystalCaveRight={
             "destinationY":232,
             "hitbox":[-80,450,80,270]
         },
+        {
+            "type":"needToolItem",
+            "itemname":"黄金色之岩",
+            "amount":1,
+            "quality":[],
+            "trait":[],
+            "needTool":4,
+            "hitbox":[682,496,103,103]
+        }
     ]
 }
 var CrystalCaveLeft={
@@ -698,7 +728,15 @@ var townRight={
             "destinationX":0,
             "destinationY":518,
             "hitbox":[1280,0,80,380]
-        }
+        },
+        {
+            "type":"dog",
+            "name":"狗",
+            "img":"dog",
+            "hitbox":[754,550,90,90],
+            "damage":2,
+            "hearts":20
+        },
     ]
 }
 var peak={

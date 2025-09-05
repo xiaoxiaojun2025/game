@@ -443,6 +443,18 @@ class pot extends entity{
         super.draw(ctx);
     }
 }
+class dragon extends entity{
+    constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight){
+        super(gameWidth,gameHeight,img,x,y,width,height);
+        this.spriteWidth=spriteWidth;
+        this.spriteHeight=spriteHeight;
+    }
+    update(game,lilies,input){
+        if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            
+        }
+    }
+}
 class enemy extends entity{
     constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,damage,hearts,actRange){
         super(gameWidth,gameHeight,img,x,y,width,height);
@@ -454,6 +466,15 @@ class enemy extends entity{
         this.hearts=hearts;
         this.actRange=actRange;
         this.invincible=false;
+    }
+    update(game,lilies,input){
+        super.update();
+        if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            lilies.getDamaged(this.damage,game);
+        }
+        if(lilies.atk!=null&&this.y<=lilies.atk.y+lilies.atk.height&&this.y+this.height>=lilies.atk.y&&this.x+this.width>lilies.atk.x&&this.x<lilies.atk.x+lilies.atk.width){
+            this.getDamaged(lilies.damage,game);
+        }
     }
     draw(ctx){
         ctx.fillText(this.name+" "+this.hearts+"/"+this.maxHearths,this.x,this.y-this.height/2);
@@ -474,6 +495,26 @@ class enemy extends entity{
         }
     }
 }
+class dog extends enemy{
+    constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,damage,hearts){
+        super(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,damage,hearts,0);
+    }
+    getDamaged(damage,game){
+        if(!this.invincible){
+            if(this.hearts-damage>0){
+                this.hearts-=damage;
+                this.invincible=true;
+                setTimeout(()=>{
+                    this.invincible=false;
+                },1500);
+            }
+            else{
+                game.bag.addItem("野兽毛皮",2,[30,30],["",""]);
+                game.Entity.splice(game.Entity.indexOf(this),1);
+            }
+        }
+    }
+}
 class puni extends enemy{
     constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,damage,hearts,actRange){
         super(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,damage,hearts,actRange);
@@ -489,12 +530,6 @@ class puni extends enemy{
         if(this.x<=this.actRange[0]||this.x<=0){
             this.face="left";
             this.vx=-this.vx;
-        }
-        if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
-            lilies.getDamaged(this.damage,game);
-        }
-        if(lilies.atk!=null&&this.y<=lilies.atk.y+lilies.atk.height&&this.y+this.height>=lilies.atk.y&&this.x+this.width>lilies.atk.x&&this.x<lilies.atk.x+lilies.atk.width){
-            this.getDamaged(lilies.damage,game);
         }
     }
     draw(ctx){
@@ -746,6 +781,8 @@ class trial extends entity{
                 if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
                     if(input.key.indexOf(config.interact)>-1){
                         game.SaveManager.save(game);
+                        this.ifupdate=false;
+                        this.ifdraw=false;
                         window.location.href="../minigame/minigame1/index.html";
                     }
                 }
@@ -829,7 +866,7 @@ class needToolItem extends item{
         }
         else if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
             if(input.key.indexOf(config.interact)>-1){
-                game.Talk.see("你需要"+game.storage[this.needTool].name[0]+"才能采集");
+                game.Talk.see("你需要"+game.storage.item[this.needTool].name[0]+"才能采集");
                 if(timeout){
                     clearTimeout(timeout);
                 }

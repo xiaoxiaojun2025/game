@@ -83,6 +83,9 @@ class game{
             if(e.type=="puni"){
                 this.Entity.push(new puni(gameWidth,gameHeight,document.getElementById(e.img),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],128,169,e.name,e.damage,e.hearts,e.actRange));
             }
+            if(e.type=="dog"){
+                this.Entity.push(new dog(gameWidth,gameHeight,document.getElementById(e.img),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],256,256,e.name,e.damage,e.hearts));
+            }
             if(e.type=="sellstore"){
                 this.Entity.push(new sellstore(gameWidth,gameHeight,e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.name));
             }
