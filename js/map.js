@@ -72,6 +72,15 @@ var buystore=[
                 "price":5000,
                 "refreshTime":-1
             },
+            {
+                "name":"炸弹的制作方法",
+                "img":"stained-grimoire.webp",
+                "amount":1,
+                "quality":[100],
+                "trait":[""],
+                "price":3000,
+                "refreshTime":-1
+            },
         ],
     },
     {
@@ -612,7 +621,7 @@ var CrystalCaveRight={
             "amount":1,
             "quality":[],
             "trait":[],
-            "needTool":4,
+            "needTool":"十字镐",
             "hitbox":[682,496,103,103]
         }
     ]
@@ -678,8 +687,8 @@ var dragonHole={
         {
             "type":"entrance",
             "destinationMap":"CrystalCaveLeft",
-            "destinationX":0,
-            "destinationY":518,
+            "destinationX":587,
+            "destinationY":306,
             "hitbox":[1280,0,80,720]
         },
     ]
@@ -872,6 +881,15 @@ var mountainCave1={
             "hitbox":[1280,0,80,720]
         },
         {
+            "type":"needToolItem",
+            "itemname":"蓝宝石原石",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "needTool":"十字镐",
+            "hitbox":[818,185,138,138]
+        },
+        {
             "type":"recipeItem",
             "name":"皮革鞣制技巧",
             "hitbox":[0,149,121,121],
@@ -951,7 +969,7 @@ var mountainCave2={
             "amount":2,
             "quality":[],
             "trait":[],
-            "needTool":4,
+            "needTool":"十字镐",
             "hitbox":[682,496,103,103]
         },
         {
@@ -960,7 +978,7 @@ var mountainCave2={
             "amount":2,
             "quality":[],
             "trait":[],
-            "needTool":4,
+            "needTool":"十字镐",
             "hitbox":[247,501,139,139]
         },
         {
@@ -1047,6 +1065,25 @@ var mountainCave3={
             "destinationX":1196,
             "destinationY":518,
             "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"needToolItem",
+            "itemname":"绿宝石原石",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "needTool":"十字镐",
+            "hitbox":[912,235,181,181]
+        },
+        {
+            "type":"needToolItem",
+            "itemname":"钻石原石",
+            "amount":1,
+            "quality":[],
+            "trait":[],
+            "needTool":"爆破用炎烧",
+            "hitbox":[1125,521,117,117],
+            "use":1
         },
     ]
 }

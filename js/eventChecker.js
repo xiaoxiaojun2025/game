@@ -9,6 +9,7 @@ class Event{
         this.recipe1=false;
         this.recipe2=false;
         this.recipe3=false;
+        this.recipe4=false;
     }
 }
 class eventChecker{
@@ -83,6 +84,21 @@ class eventChecker{
                         "纯洁钻石":1,
                         "纯水":4,
                         "（神秘之力）":16
+                    }
+                }
+            );
+        }
+        if(!this.event.recipe4&&game.bag.item[7].amount>0){
+            this.event.recipe4=true;
+            game.bag.subItem("炸弹的制作方法",1);
+            game.RecipeGroup.recipe.push(
+                {
+                    "name":"爆破用炎烧",
+                    "time":24,
+                    "recipe":{
+                        "中和剂（红）":2,
+                        "（火药）":3,
+                        "（燃料）":2
                     }
                 }
             );

@@ -57,6 +57,13 @@ class bag{
             this.item[i].trait=[];
         }
     }
+    itemID(name){
+        for(let i=0;i<this.item.length;i++){
+            if(this.item[i].name[0]==name){
+                return i;
+            }
+        }
+    }
     init(){
         this.item=[
             {
@@ -106,6 +113,22 @@ class bag{
                 "amount":1,
                 "quality":[0],
                 "trait":[""]
+            },
+            {
+                "name":["爆破用炎烧"],
+                "intro":"火药的量真的很难把握呢。",
+                "img":"demolition-bomb.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["炸弹的制作方法"],
+                "intro":"",
+                "img":"stained-grimoire.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
             },
             {
                 "name":["饮用水","（水）"],
@@ -282,7 +305,7 @@ class bag{
                 "name":["金属块","（金属）"],
                 "intro":"接下来会用它做出各种各样的东西！",
                 "img":"ingot.webp",
-                "price":15,
+                "price":50,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -291,7 +314,7 @@ class bag{
                 "name":["丝薇丽银","（金属）"],
                 "intro":"银色果然很帅气啊。",
                 "img":"silvalia.webp",
-                "price":40,
+                "price":100,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -300,7 +323,7 @@ class bag{
                 "name":["黄金艾森矿","（金属）","（原石）"],
                 "intro":"金条！",
                 "img":"gold-eisen.webp",
-                "price":200,
+                "price":500,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -309,7 +332,7 @@ class bag{
                 "name":["精灵银块","（金属）"],
                 "intro":"要把这个拿来锻造东西？",
                 "img":"harmonium.webp",
-                "price":500,
+                "price":1000,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -318,7 +341,7 @@ class bag{
                 "name":["海银","（金属）"],
                 "intro":"让人联想到海底的深蓝色……我是第一次见到这种金属。<br>据说它是只存在于传说里的金属。原来颜色这么漂亮。",
                 "img":"okeagyrn.webp",
-                "price":1000,
+                "price":2000,
                 "amount":0,
                 "quality":[],
                 "trait":[]

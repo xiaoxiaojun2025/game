@@ -880,17 +880,19 @@ class item extends entity{
     }
 }
 class needToolItem extends item{
-    constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,amount,quality,trait,needTool){
+    constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,amount,quality,trait,needTool,use){
         super(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,amount,quality,trait);
         this.needTool=needTool;
+        this.use=use;
     }
     update(game,lilies,input){
-        if(game.storage.item[this.needTool].amount>0){
+        this.toolID=game.storage.itemID(this.needTool);
+        if(game.storage.item[this.toolID].amount>0){
             super.update(game,lilies,input);
         }
         else if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
             if(input.key.indexOf(config.interact)>-1){
-                game.Talk.see("你需要"+game.storage.item[this.needTool].name[0]+"才能采集");
+                game.Talk.see("你需要"+this.needTool+"才能采集");
                 if(timeout){
                     clearTimeout(timeout);
                 }
