@@ -780,6 +780,10 @@ class trial extends entity{
             if(this.ifupdate){
                 if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
                     if(input.key.indexOf(config.interact)>-1){
+                        // 关键新增：存储大游戏当前页面路径到localStorage
+                        const username = localStorage.getItem("LA-username") || "default";
+                        const preTrialPageKey = `LA-pre-trial-page-${username}`; // 存储“进小游戏前页面”的键
+                        localStorage.setItem(preTrialPageKey, window.location.href); // 存当前大游戏页面URL
                         game.SaveManager.save(game);
                         this.ifupdate=false;
                         this.ifdraw=false;

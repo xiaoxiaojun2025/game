@@ -10,6 +10,7 @@ let moves = 0;
 let timer = 0;
 let gameStarted = false;
 let timerInterval;
+let isWin=false;
 
 // DOM元素
 const gameBoard = document.querySelector('.game-board');
@@ -35,7 +36,7 @@ function initGame() {
     
     // 更新显示
     movesElement.textContent = '0 步';
-    timerElement.textContent = '时间: 0秒';
+    timerElement.textContent = '试炼时间: 0秒';
     
     // 准备卡牌数据 (8对，总共16张)
     const cardSymbols = [...symbols, ...symbols];
@@ -139,6 +140,7 @@ function checkMatch() {
         
         // 检查游戏是否结束
         if (matchedPairs === symbols.length) {
+            isWin=true;
             setTimeout(() => {
                 endGame();
             }, 500);
@@ -157,7 +159,7 @@ function checkMatch() {
 function startTimer() {
     timerInterval = setInterval(() => {
         timer++;
-        timerElement.textContent = `时间: ${timer}秒`;
+        timerElement.textContent = `试炼时间: ${timer}秒`;
     }, 1000);
 }
 
@@ -176,19 +178,35 @@ function endGame() {
             <h2>恭喜你赢了！</h2>
             <p>你用了 ${moves} 步</p>
             <p>耗时 ${timer} 秒</p>
-            <button class="play-again">再玩一次</button>
         </div>
     `;
     
     // 添加到页面
     document.body.appendChild(modal);
     
-    // 再玩一次按钮事件
-    const playAgainButton = modal.querySelector('.play-again');
-    playAgainButton.addEventListener('click', () => {
-        document.body.removeChild(modal);
-        initGame();
-    });
+        // 获取用户名并设置localStorage键名
+        const username = localStorage.getItem("LA-username") || "default";
+        const trialResultKey = `LA-trial-${username}`;
+
+        
+        // 存储结果：胜利存true，失败存false
+        localStorage.setItem(trialResultKey, JSON.stringify(isWin));
+        // 3. 关键修复：定义并读取“大游戏页面路径”（从 localStorage 中获取）
+        const preTrialPageKey = `LA-pre-trial-page-${username}`; // 和大游戏中存储的键名保持一致
+        const preTrialPageUrl = localStorage.getItem(preTrialPageKey); // 读取大游戏页面路径
+
+        // 3. 跳转逻辑：优先返回原页面，无原页面时用默认大游戏页面（避免异常）
+        setTimeout(() => {
+            if (preTrialPageUrl) {
+                // 原路返回：跳回进小游戏前的大游戏页面
+                window.location.href = preTrialPageUrl;
+                // 可选：删除已使用的路径存储（避免重复使用）
+                localStorage.removeItem(preTrialPageKey);
+            } else {
+                // 异常情况：无存储路径时，跳大游戏默认页面（需替换为你的大游戏默认路径）
+                window.location.href = "../../index.html";
+            }
+        }, 2000); // 延迟2秒，让玩家看到“试炼成功/失败”提示
 }
 
 // 重新开始按钮事件
