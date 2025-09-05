@@ -831,6 +831,7 @@ class item extends entity{
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
             if(input.key.indexOf(config.interact)>-1){
+                game.achievement.getAchievement("第一次采集",game);
                 if(game.bag.itemAmount()+this.amount>game.bag.size){
                     game.Talk.see("背包已满");
                     if(timeout){

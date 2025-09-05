@@ -41,4 +41,8 @@ var achievements=[
         "name":"第一次调和",
         "img":"achievement1.png"
     },
+    {
+        "name":"第一次采集",
+        "img":"achievement1.png"
+    }
 ]
