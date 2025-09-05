@@ -526,6 +526,15 @@ class bag{
                 "quality":[],
                 "trait":[]
             },
+            {
+                "name":["黄金色之岩","（原石）","（矿石）","（石材）"],
+                "intro":"这、这是货真价实的宝藏……我要仔细观察观察。",
+                "img":"golden-rock.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
         ]
     }
 }

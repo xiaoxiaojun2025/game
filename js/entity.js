@@ -887,20 +887,49 @@ class needToolItem extends item{
     }
     update(game,lilies,input){
         this.toolID=game.storage.itemID(this.needTool);
-        if(game.storage.item[this.toolID].amount>0){
-            super.update(game,lilies,input);
-        }
-        else if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+        if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
             if(input.key.indexOf(config.interact)>-1){
-                game.Talk.see("你需要"+this.needTool+"才能采集");
-                if(timeout){
-                    clearTimeout(timeout);
+                if(game.storage.item[this.toolID].amount>0){
+                    if(game.bag.itemAmount()+this.amount>game.bag.size){
+                        game.Talk.see("背包已满");
+                        if(timeout){
+                            clearTimeout(timeout);
+                        }
+                        timeout=setTimeout(function(){
+                            game.Talk.clear();
+                            game.Talk.hide();
+                            clearTimeout(timeout);
+                        },1000);
+                        return;
+                    }
+                    game.Talk.see("获得"+this.name+"x"+this.amount);
+                    if(this.use!=undefined){
+                        game.storage.subItem(this.needTool,this.use);
+                    }
+                    if(timeout){
+                        clearTimeout(timeout);
+                    }
+                    timeout=setTimeout(function(){
+                        game.Talk.clear();
+                        game.Talk.hide();
+                        clearTimeout(timeout);
+                    },1000);
+                    game.timer=Number(game.timer)+4;
+                    game.bag.addItem(this.name,this.amount,this.quality,this.trait);
+                    game.Entity.splice(game.Entity.indexOf(this),1);
+                    game.getteditems.push(this);
                 }
-                timeout=setTimeout(function(){
-                    game.Talk.clear();
-                    game.Talk.hide();
-                    clearTimeout(timeout);
-                },1000);
+                else{
+                    game.Talk.see("你需要"+this.needTool+"才能采集");
+                    if(timeout){
+                        clearTimeout(timeout);
+                    }
+                    timeout=setTimeout(function(){
+                        game.Talk.clear();
+                        game.Talk.hide();
+                        clearTimeout(timeout);
+                    },1000);
+                }
             }
         }
     }
