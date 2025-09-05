@@ -87,7 +87,16 @@ var buystore=[
                 "trait":[""],
                 "price":10000,
                 "refreshTime":-1
-            }
+            },
+            {
+                "name":"鞣皮液",
+                "img":"stained-grimoire.webp",
+                "amount":2,
+                "quality":[20],
+                "trait":["高价"],
+                "price":10,
+                "refreshTime":72
+            },
         ],
     }
 ]
@@ -142,6 +151,24 @@ var mapTraitGroup={
         "品质提升+",
         "品质提升++",
     ],
+    "mountainCave1":[
+        "",
+        "",
+        "",
+        "",
+        "",
+        "品质提升",
+        "低价",
+        "高价"
+    ],
+    "mountainCave2":[
+        "",
+        "",
+        ""
+    ],
+    "mountainCave3":[
+        "",
+    ]
 }
 var mapQualityGroup={
     "pathNearAtelier":[
@@ -183,6 +210,17 @@ var mapQualityGroup={
         50,
         50,
         50,
+    ],
+    "mountainCave1":[
+        10,
+        20,
+    ],
+    "mountainCave2":[
+        10,
+        20,
+    ],
+    "mountainCave3":[
+        10,
     ]
 }
 
@@ -311,49 +349,6 @@ var pathNearAtelier={
             "trait":[],
             "hitbox":[465,550,90,90]
         },
-        // {
-        //     "type":"recipeItem",
-        //     "name":"喵",
-        //     "hitbox":[600,400,200,200],
-        //     "recipe":[
-        //         {
-        //             "name":"热情红宝石",
-        //             "time":8,
-        //             "recipe":{
-        //                 "红宝石原石":4,
-        //                 "抛光液":4,
-        //                 "（燃料）":2
-        //             }
-        //         },
-        //         {
-        //             "name":"高贵蓝宝石",
-        //             "time":16,
-        //             "recipe":{
-        //                 "热情红宝石":1,
-        //                 "蓝宝石原石":4,
-        //                 "纯水":4
-        //             }
-        //         },
-        //         {
-        //             "name":"诚实黄宝石",
-        //             "time":32,
-        //             "recipe":{
-        //                 "高贵蓝宝石":1,
-        //                 "黄宝石原石":4,
-        //                 "（金属)":3
-        //             }
-        //         },
-        //         {
-        //             "name":"睿智绿宝石",
-        //             "time":64,
-        //             "recipe":{
-        //                 "诚实黄宝石":1,
-        //                 "绿宝石原石":4,
-        //                 "（气体）":3
-        //             }
-        //         }
-        //     ]
-        // }
     ]
 }
 var pathToTheTown={
@@ -876,6 +871,31 @@ var mountainCave1={
             "destinationY":518,
             "hitbox":[1280,0,80,720]
         },
+        {
+            "type":"recipeItem",
+            "name":"皮革鞣制技巧",
+            "hitbox":[0,149,121,121],
+            "recipe":[
+                {
+                    "name":"鞣制皮革",
+                    "time":16,
+                    "recipe":{
+                        "动物毛皮":2,
+                        "鞣皮液":2,
+                        "纯水":4
+                    }
+                },
+                {
+                    "name":"旅人之鞋",
+                    "time":24,
+                    "recipe":{
+                        "鞣制皮革":2,
+                        "寻常草":2,
+                        "(中和剂）":1
+                    }
+                },
+            ]
+        }
     ]
 }
 var mountainCave2={
@@ -925,6 +945,67 @@ var mountainCave2={
             "destinationY":518,
             "hitbox":[1280,0,80,720]
         },
+        {
+            "type":"needToolItem",
+            "itemname":"黄宝石原石",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "needTool":4,
+            "hitbox":[682,496,103,103]
+        },
+        {
+            "type":"needToolItem",
+            "itemname":"红宝石原石",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "needTool":4,
+            "hitbox":[247,501,139,139]
+        },
+        {
+            "type":"recipeItem",
+            "name":"基础宝石雕刻手册",
+            "hitbox":[222,155,163,163],
+            "recipe":[
+                {
+                    "name":"热情红宝石",
+                    "time":8,
+                    "recipe":{
+                        "红宝石原石":4,
+                        "抛光液":4,
+                        "（燃料）":2
+                    }
+                },
+                {
+                    "name":"高贵蓝宝石",
+                    "time":16,
+                    "recipe":{
+                        "热情红宝石":1,
+                        "蓝宝石原石":4,
+                        "纯水":4
+                    }
+                },
+                {
+                    "name":"诚实黄宝石",
+                    "time":32,
+                    "recipe":{
+                        "高贵蓝宝石":1,
+                        "黄宝石原石":4,
+                        "（金属)":3
+                    }
+                },
+                {
+                    "name":"睿智绿宝石",
+                    "time":64,
+                    "recipe":{
+                        "诚实黄宝石":1,
+                        "绿宝石原石":4,
+                        "（气体）":3
+                    }
+                }
+            ]
+        }
     ]
 }
 var mountainCave3={

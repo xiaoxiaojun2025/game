@@ -135,6 +135,15 @@ class bag{
                 "trait":[""]
             },
             {
+                "name":["鞣皮液","（有毒材料）"],
+                "intro":"好密实的容器。",
+                "img":"tanning-fluid.webp",
+                "price":5,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
                 "name":["红色的花","（植物）","（燃料）"],
                 "intro":"啊，我见过这种花！名字叫……什么来着？<br>总之先叫它红色的花吧。",
                 "img":"red-flower.webp",

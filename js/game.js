@@ -75,7 +75,7 @@ class game{
                 this.Entity.push(new item(gameWidth,gameHeight,document.getElementById("itemimg"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],512,512,e.itemname,e.amount,e.quality,e.trait));
             }
             if(e.type=="recipeItem"){
-                this.Entity.push(new recipeItem(gameWidth,gameHeight,document.getElementById("itemimg"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],512,512,e));
+                this.Entity.push(new recipeItem(gameWidth,gameHeight,document.getElementById("itemimg"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],512,512,e.name,e));
             }
             if(e.type=="entrance"){
                 this.Entity.push(new entrance(gameWidth,gameHeight,e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],e.destinationMap,e.destinationX,e.destinationY));

@@ -904,13 +904,12 @@ class needToolItem extends item{
     }
 }
 class recipeItem extends item{
-    constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,recipe){
-        super(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,recipe.recipe.name,1,[0],[""]);
+    constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,recipe){
+        super(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,1,[0],[""]);
         this.recipe=recipe;
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
-            game.Talk.see(this.recipe.name);
             if(input.key.indexOf(config.interact)>-1){
                 game.Talk.see("获得了"+this.name);
                 if(timeout){
@@ -983,7 +982,7 @@ class text extends hitbox{
                     this.fast=true;
                     this.slow=false;
                     clearTimeout(game.Talk.timeout);
-                    game.Talk.display(this.text[this.index]?this.text[this.index]:"",100,game.Talk);
+                    game.Talk.display(this.text[this.index]?this.text[this.index]:"",1000,game.Talk);
                 }
             }
             else if(!this.slow){
