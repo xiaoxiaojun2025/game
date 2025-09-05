@@ -444,14 +444,28 @@ class pot extends entity{
     }
 }
 class dragon extends entity{
-    constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight){
+    constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,DRAGON){
         super(gameWidth,gameHeight,img,x,y,width,height);
         this.spriteWidth=spriteWidth;
         this.spriteHeight=spriteHeight;
+        this.DRAGON=DRAGON;
+        localStorage.setItem("LA-dragon-started-"+localStorage.getItem("LA-username"),JSON.stringify(false));
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
-            
+            if(JSON.parse(localStorage.getItem("LA-dragon-started-"+localStorage.getItem("LA-username")))==false){
+                localStorage.setItem("LA-dragon-started-"+localStorage.getItem("LA-username"),JSON.stringify(true));
+                game.SaveManager.save(game);
+                window.location.href="../minigame/战斗游戏/战斗游戏/战斗游戏plus.html";
+            }
+            else{
+                lilies.getDamaged(999999,game);
+            }
+        }
+        if(JSON.parse(localStorage.getItem("LA-trial-"+localStorage.getItem("LA-username")))==true){
+            game.Entity.splice(game.Entity.indexOf(this),1);
+            game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(DRAGON),1);
+            globalThis[game.Map.name].entity=game.Map.entityGroup;
         }
     }
 }

@@ -92,6 +92,9 @@ class game{
             if(e.type=="needToolItem"){
                 this.Entity.push(new needToolItem(gameWidth,gameHeight,document.getElementById("itemimg"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],512,512,e.itemname,e.amount,e.quality,e.trait,e.needTool));
             }
+            if(e.type=="dragon"){
+                this.Entity.push(new dragon(gameWidth,gameHeight,document.getElementById("dragon"),e.hitbox[0],e.hitbox[1],e.hitbox[2],e.hitbox[3],1362,1114,e));
+            }
         });
     }
     creatPermanentEntities(){

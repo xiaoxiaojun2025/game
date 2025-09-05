@@ -654,6 +654,39 @@ var CrystalCaveLeft={
             "destinationY":518,
             "hitbox":[1280,0,80,720]
         },
+        {
+            "type":"door",
+            "destinationMap":"dragonHole",
+            "destinationX":1196,
+            "destinationY":518,
+            "hitbox":[552,272,158,158]
+        },
+    ]
+}
+var dragonHole={
+    "name":"dragonHole",
+    "name1":"龙洞",
+    "background":"dragonHole.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[350,300,160,50]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"dragon",
+            "hitbox":[0,0,800,640]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"CrystalCaveLeft",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,0,80,720]
+        },
     ]
 }
 var town={
