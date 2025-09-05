@@ -178,20 +178,6 @@ h1 {
     margin-bottom: 15px;
 }
 
-.play-again {
-    background-color: #2ecc71;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: bold;
-}
-
-.play-again:hover {
-    background-color: #27ae60;
-}
 
 /* 响应式设计 */
 @media (max-width: 480px) {

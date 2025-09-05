@@ -135,7 +135,7 @@ class Bean extends Entity {
 
     getRandomType() {
         const rand = Math.random();
-        if (rand < 0.17) return "good";
+        if (rand < 0.2) return "good";
         else if (rand < 0.93) return "bad";
         else if (rand < 0.95) return "time_adder";
         else return "shield";
