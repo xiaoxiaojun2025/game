@@ -43,13 +43,17 @@ class game{
         this.gameCanvas=document.getElementById("canvas1");
         this.gameCanvas.width=gameWidth;
         this.gameCanvas.height=gameHeight;
-        const scaleX=this.gameCanvas.parentElement.offsetWidth/gameWidth;
-        const scaleY=this.gameCanvas.parentElement.offsetHeight/gameHeight;
+        this.gameCanvas.style.width=gameWidth+"px";
+        this.gameCanvas.style.height=gameHeight+"px";
+        const scaleX=this.gameCanvas.parentElement.parentElement.offsetWidth/gameWidth;
+        const scaleY=this.gameCanvas.parentElement.parentElement.offsetHeight/gameHeight;
         const scale=Math.min(scaleX,scaleY);
         if(scale<1){
             this.gameCanvas.style.width=(gameWidth*scale)+"px";
             this.gameCanvas.style.height=(gameHeight*scale)+"px";
         }
+        document.getElementById("canvasContainerContainer").style.width=this.gameCanvas.style.width;
+        document.getElementById("canvasContainerContainer").style.height=this.gameCanvas.style.height;
     }
     changeMap(newMap){
         this.Map=new map(newMap);

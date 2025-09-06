@@ -2,10 +2,6 @@ class Event{
     constructor(){
         this.end=false;
         this.canEnd=false;
-        this.end_1=false;
-        this.end_2=false;
-        this.end_3=false;
-        this.end_4=false;
         this.recipe1=false;
         this.recipe2=false;
         this.recipe3=false;
@@ -85,7 +81,16 @@ class eventChecker{
                         "纯水":4,
                         "（神秘之力）":16
                     }
-                }
+                },
+                {
+                    "name":"七色棱镜",
+                    "time":256,
+                    "recipe":{
+                        "万能中和剂（虹）":1,
+                        "纯水":4,
+                        "（原石）":2
+                    }
+                },
             );
         }
         if(!this.event.recipe4&&game.bag.item[7].amount>0){
@@ -108,6 +113,21 @@ class eventChecker{
         }
         if(game.storage.item[0].amount>=1){
             this.event.canEnd=true;
+        }
+        if(this.event.end){
+            localStorage.removeItem("LA-save-"+localStorage.getItem("LA-username"));
+            if(game.storage.item[0].amount==0){
+                window.location.href="../html/BadEnd.html";
+            }
+            else if(Math.max(...game.storage.item[0].quality)<=500){
+                window.location.href="../html/NormalEnd.html";
+            }
+            else if(Math.max(...game.storage.item[0].quality)>500&&game.storage.item[game.storage.itemID("贤者之石")].amount==0){
+                window.location.href="../html/GoodEnd.html";
+            }
+            else{
+                window.location.href="../html/BestEnd.html";
+            }
         }
         if(game.status=="paused"&&this.event.canEnd){
             document.getElementById("ender").style.display="block";

@@ -638,7 +638,15 @@ var CrystalCaveRight={
             "trait":[],
             "needTool":"十字镐",
             "hitbox":[682,496,103,103]
-        }
+        },
+        {
+            "type":"item",
+            "itemname":"可燃灰砂",
+            "amount":4,
+            "quality":[],
+            "trait":[],
+            "hitbox":[469,0,112,112]
+        },
     ]
 }
 var CrystalCaveLeft={
@@ -881,6 +889,15 @@ var peak={
                         "(石材）":2,
                         "（水）":3,
                         "(中和剂）":1
+                    }
+                },
+                {
+                    "name":"黑洞",
+                    "time":128,
+                    "recipe":{
+                        "(星幻钥匙）":1,
+                        "（龙素材）":1,
+                        "(宝石）":2
                     }
                 },
             ]

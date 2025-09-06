@@ -110,9 +110,9 @@ class bag{
                 "name":["旅人之鞋"],
                 "intro":"这鞋子真优秀，它会推着脚跟前进。",
                 "img":"traveler-s-shoes.webp",
-                "amount":1,
-                "quality":[0],
-                "trait":[""]
+                "amount":0,
+                "quality":[],
+                "trait":[]
             },
             {
                 "name":["爆破用炎烧"],
@@ -275,7 +275,7 @@ class bag{
                 "trait":[]
             },
             {
-                "name":["直木","（木材）","（火药）"],
+                "name":["直木","（木材）","（燃料）"],
                 "intro":"偶尔～会有弯曲的长出来，那种也能卖到相当高价呢。<br>弯曲的直木……也太莫名其妙了。",
                 "img":"straight-baum.webp",
                 "price":1,

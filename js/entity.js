@@ -14,6 +14,7 @@ class entity{
         this.height=height;
         this.x=x;
         this.y=y;
+        this.hitbox=false;
     }
     update(){
         this.x+=this.vx;
@@ -234,6 +235,8 @@ class door extends entity{
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            this.in=true;
+            document.getElementById("Ehint").style.display="block";
             if(input.key.indexOf(config.interact)>-1){
                 if(this.destinationMap=="atelier"){
                     game.storage.putin(game.bag);
@@ -246,6 +249,10 @@ class door extends entity{
                 lilies.setX(this.destinationX);
                 lilies.setY(this.destinationY);
             }
+        }
+        else if(this.in){
+            this.in=false;
+            document.getElementById("Ehint").style.display="none";
         }
     }
     draw(){}
@@ -287,6 +294,8 @@ class pot extends entity{
     }
     update(game,lilies,input){
         if(lilies.isOnFloor&&this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            this.in=true;
+            document.getElementById("Ehint").style.display="block";
             if(input.key.indexOf(config.interact)>-1){
                 lilies.frameY=0;
                 game.status="talking";
@@ -437,6 +446,10 @@ class pot extends entity{
                 }
             }
         }
+        else if(this.in){
+            this.in=false;
+            document.getElementById("Ehint").style.display="none";
+        }
     }
     draw(ctx){
         this.frameX=Math.floor(Frame/5)%3;
@@ -569,6 +582,8 @@ class sellstore extends entity{
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            this.in=true;
+            document.getElementById("Ehint").style.display="block";
             if(input.key.indexOf(config.interact)>-1){
                 document.getElementById("innerCanvasContainer").style.display="block";
                 document.getElementById("continue").onclick=function(){
@@ -641,6 +656,10 @@ class sellstore extends entity{
                 }
             }
         }
+        else if(this.in){
+            this.in=false;
+            document.getElementById("Ehint").style.display="none";
+        }
     }
     draw(){}
 }
@@ -665,6 +684,8 @@ class buyStore extends entity{
                 }
             }
             if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+                this.in=true;
+                document.getElementById("Ehint").style.display="block";
                 if(input.key.indexOf(config.interact)>-1){
                     document.getElementById("innerCanvasContainer").style.display="block";
                     document.getElementById("continue").onclick=function(){
@@ -757,6 +778,10 @@ class buyStore extends entity{
                     }
                 }
             }
+            else if(this.in){
+                this.in=false;
+                document.getElementById("Ehint").style.display="none";
+            }
         }
     }
     draw(){}
@@ -794,15 +819,22 @@ class trial extends entity{
             }
             if(this.ifupdate){
                 if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+                    this.in=true;
+                    document.getElementById("Ehint").style.display="block";
                     if(input.key.indexOf(config.interact)>-1){
                         const username = localStorage.getItem("LA-username");
                         const preTrialPageKey = `LA-pre-trial-page-${username}`;
                         localStorage.setItem(preTrialPageKey, window.location.href);
                         this.ifupdate=false;
                         this.ifdraw=false;
+                        document.getElementById("Ehint").style.display="none";
                         game.SaveManager.save(game);
                         window.location.href="../minigame/minigame1/index.html";
                     }
+                }
+                else if(this.in){
+                    this.in=false;
+                    document.getElementById("Ehint").style.display="none";
                 }
             }
             if(JSON.parse(localStorage.getItem("LA-trial-"+localStorage.getItem("LA-username")))==true){
@@ -845,6 +877,8 @@ class item extends entity{
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            this.in=true;
+            document.getElementById("Ehint").style.display="block";
             if(input.key.indexOf(config.interact)>-1){
                 game.achievement.getAchievement("第一次采集",game);
                 if(game.bag.itemAmount()+this.amount>game.bag.size){
@@ -859,6 +893,7 @@ class item extends entity{
                     },1000);
                     return;
                 }
+                document.getElementById("Ehint").style.display="none";
                 game.Talk.see("获得"+this.name+"x"+this.amount);
                 if(timeout){
                     clearTimeout(timeout);
@@ -873,6 +908,10 @@ class item extends entity{
                 game.Entity.splice(game.Entity.indexOf(this),1);
                 game.getteditems.push(this);
             }
+        }
+        else if(this.in){
+            this.in=false;
+            document.getElementById("Ehint").style.display="none";
         }
     }
     draw(ctx){
@@ -889,6 +928,8 @@ class needToolItem extends item{
     update(game,lilies,input){
         this.toolID=game.storage.itemID(this.needTool);
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            this.in=true;
+            document.getElementById("Ehint").style.display="block";
             if(input.key.indexOf(config.interact)>-1){
                 if(game.storage.item[this.toolID].amount>0){
                     if(game.bag.itemAmount()+this.amount>game.bag.size){
@@ -903,6 +944,7 @@ class needToolItem extends item{
                         },1000);
                         return;
                     }
+                    document.getElementById("Ehint").style.display="none";
                     game.Talk.see("获得"+this.name+"x"+this.amount);
                     if(this.use!=undefined){
                         game.storage.subItem(this.needTool,this.use);
@@ -933,6 +975,10 @@ class needToolItem extends item{
                 }
             }
         }
+        else if(this.in){
+            this.in=false;
+            document.getElementById("Ehint").style.display="none";
+        }
     }
 }
 class recipeItem extends item{
@@ -942,7 +988,10 @@ class recipeItem extends item{
     }
     update(game,lilies,input){
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            this.in=true;
+            document.getElementById("Ehint").style.display="block";
             if(input.key.indexOf(config.interact)>-1){
+                document.getElementById("Ehint").style.display="none";
                 game.Talk.see("获得了"+this.name);
                 if(timeout){
                     clearTimeout(timeout);
@@ -960,6 +1009,10 @@ class recipeItem extends item{
                 game.Entity.splice(game.Entity.indexOf(this),1);
                 globalThis[game.Map.name].entity=game.Map.entityGroup;
             }
+        }
+        else if(this.in){
+            this.in=false;
+            document.getElementById("Ehint").style.display="none";
         }
     }
 }
@@ -988,13 +1041,20 @@ class chest extends recipeItem{
             globalThis[game.Map.name].entity=game.Map.entityGroup;
         }
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            this.in=true;
+            document.getElementById("Ehint").style.display="block";
             if(input.key.indexOf(config.interact)>-1){
                 const username = localStorage.getItem("LA-username");
                 const preTrialPageKey = `LA-pre-trial-page-${username}`;
                 localStorage.setItem(preTrialPageKey, window.location.href);
+                document.getElementById("Ehint").style.display="none";
                 game.SaveManager.save(game);
                 window.location.href="../minigame/minigame2/index.html";
             }
+        }
+        else if(this.in){
+            this.in=false;
+            document.getElementById("Ehint").style.display="none";
         }
     }
 }

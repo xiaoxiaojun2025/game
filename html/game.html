@@ -18,7 +18,8 @@
         <script src="../js/game.js"></script>
     </head>
     <body>
-        <div class="canvasContainer">
+        <div class="canvasContainer"><div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);" id="canvasContainerContainer">
+            <div class="Ehint" style="display: none;" id="Ehint">E</div>
             <div class="timer" id="timer"></div>
             <div class="mapname" id="mapname"></div>
             <div class="pauseButton" style="display: none;" id="continue">继续游戏</div>
@@ -30,7 +31,7 @@
             <canvas id="canvas1"></canvas>
             <div class="innerCanvasContainer" id="innerCanvasContainer" style="display: none;"><div class="flow" id="innerCanvas"></div></div>
             <div class="talkContainer" style="display: none;"></div>
-        </div>
+        </div></div>
         <img src="../img/Lilies.png" hidden id="Lilies">
         <img src="../img/atk.png" hidden id="atk">
         <img src="../img/pot.png" hidden id="pot">
