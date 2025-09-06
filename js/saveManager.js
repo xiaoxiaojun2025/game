@@ -7,6 +7,7 @@ class saveMap{
         this.CrystalCaveRight=CrystalCaveRight;
         this.CrystalCaveLeft=CrystalCaveLeft;
         this.dragonHole=dragonHole;
+        this.dragonLeft=dragonLeft;
         this.town=town;
         this.townRight=townRight;
         this.peak=peak;

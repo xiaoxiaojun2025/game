@@ -46,7 +46,27 @@ var Trial=[
             }
         ],
         "refreshTime":504
-    }
+    },
+    {
+        "map":"dragonLeft",
+        "name":"1",
+        "hitbox":[906,450,182,182],
+        "item":[
+            {
+                "name":"龙眼",
+                "amount":1,
+                "quality":[80],
+                "trait":["究极之力"]
+            },
+            {
+                "name":"龙之血晶",
+                "amount":1,
+                "quality":[80],
+                "trait":["究极之力"]
+            },
+        ],
+        "refreshTime":504
+    },
 ]
 var buystore=[
     {
@@ -675,6 +695,10 @@ var CrystalCaveLeft={
             "hitbox":[0,-240,1280,80]
         },
         {
+            "type":"hitbox",
+            "hitbox":[-80,0,80,720]
+        },
+        {
             "type":"entrance",
             "destinationMap":"CrystalCave",
             "destinationX":0,
@@ -715,6 +739,13 @@ var dragonHole={
             "hitbox":[1280,0,80,720]
         },
         {
+            "type":"entrance",
+            "destinationMap":"dragonLeft",
+            "destinationX":1196,
+            "destinationY":518,
+            "hitbox":[-80,0,80,720]
+        },
+        {
             "type":"needToolItem",
             "itemname":"残破矿石",
             "amount":2,
@@ -724,6 +755,48 @@ var dragonHole={
             "hitbox":[342,405,187,187],
             "use":1
         },
+    ]
+}
+var dragonLeft={
+    "name":"dragonLeft",
+    "name1":"龙洞左",
+    "background":"dragonLeft.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[501,480,288,160]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"dragonHole",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,0,80,720]
+        },
+        {
+            "type":"recipeItem",
+            "name":"传说中的冶炼法",
+            "hitbox":[507,156,272,272],
+            "recipe":[
+                {
+                    "name":"海银",
+                    "time":16,
+                    "recipe":{
+                        "精灵银块":1,
+                        "黑洞":1,
+                        "（神秘之力）":2
+                    }
+                },
+            ]
+        }
     ]
 }
 var town={
