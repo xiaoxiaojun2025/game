@@ -238,6 +238,7 @@ class door extends entity{
             this.in=true;
             document.getElementById("Ehint").style.display="block";
             if(input.key.indexOf(config.interact)>-1){
+                document.getElementById("Ehint").style.display="none";
                 if(this.destinationMap=="atelier"){
                     game.storage.putin(game.bag);
                 }
