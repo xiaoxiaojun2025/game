@@ -257,6 +257,15 @@ class bag{
                 "trait":[]
             },
             {
+                "name":["万能中和剂（虹）","（中和剂）"],
+                "intro":"啊啊，真希望它的作法可以再简单一点。",
+                "img":"rainbow-neutralizer.webp",
+                "price":200,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
                 "name":["炼金黏土","（砂）","（万灵药）"],
                 "intro":"哎呀～玩黏土一不小心就会忘了时间对吧？",
                 "img":"alchemic-clay.webp",
@@ -530,6 +539,24 @@ class bag{
                 "name":["黄金色之岩","（原石）","（矿石）","（石材）"],
                 "intro":"这、这是货真价实的宝藏……我要仔细观察观察。",
                 "img":"golden-rock.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["残破矿石"],
+                "intro":"或许是由于这种矿石多层的结构，做成剑后会浮现出复杂的刀纹。恐怕每一层的性质都有细微差异……",
+                "img":"atelis-ore.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["星幻钥匙"],
+                "intro":"这是从外太空坠落下来的陨石……",
+                "img":"key-to-the-stars.webp",
                 "price":1,
                 "amount":0,
                 "quality":[],

@@ -99,12 +99,21 @@ var buystore=[
             },
             {
                 "name":"鞣皮液",
-                "img":"stained-grimoire.webp",
+                "img":"tanning-fluid.webp",
                 "amount":2,
-                "quality":[20],
-                "trait":["高价"],
-                "price":10,
+                "quality":[20,30],
+                "trait":["品质提升","高价"],
+                "price":15,
                 "refreshTime":72
+            },
+            {
+                "name":"星幻钥匙",
+                "img":"key-to-the-stars.webp",
+                "amount":2,
+                "quality":[100,100],
+                "trait":["品质提升+","品质提升+"],
+                "price":1000,
+                "refreshTime":-1
             },
         ],
     }
@@ -159,6 +168,9 @@ var mapTraitGroup={
         "品质提升+",
         "品质提升+",
         "品质提升++",
+    ],
+    "dragonHole":[
+        "",
     ],
     "mountainCave1":[
         "",
@@ -218,6 +230,9 @@ var mapQualityGroup={
         40,
         50,
         50,
+        50,
+    ],
+    "dragonHole":[
         50,
     ],
     "mountainCave1":[
@@ -691,6 +706,16 @@ var dragonHole={
             "destinationY":306,
             "hitbox":[1280,0,80,720]
         },
+        {
+            "type":"needToolItem",
+            "itemname":"残破矿石",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "needTool":"爆破用炎烧",
+            "hitbox":[342,405,187,187],
+            "use":1
+        },
     ]
 }
 var town={
@@ -834,6 +859,31 @@ var peak={
             "destinationX":1196,
             "destinationY":258,
             "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"chest",
+            "name":"炼金术的奥义",
+            "hitbox":[886,165,128,128],
+            "recipe":[
+                {
+                    "name":"万能中和剂（虹）",
+                    "time":128,
+                    "recipe":{
+                        "纯水":2,
+                        "龙之血晶":1,
+                        "（中和剂）":4
+                    }
+                },
+                {
+                    "name":"炼金黏土",
+                    "time":24,
+                    "recipe":{
+                        "(石材）":2,
+                        "（水）":3,
+                        "(中和剂）":1
+                    }
+                },
+            ]
         }
     ]
 }

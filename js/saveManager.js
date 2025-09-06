@@ -3,6 +3,16 @@ class saveMap{
         this.atelier=atelier;
         this.pathNearAtelier=pathNearAtelier;
         this.pathToTheTown=pathToTheTown;
+        this.CrystalCave=CrystalCave;
+        this.CrystalCaveRight=CrystalCaveRight;
+        this.CrystalCaveLeft=CrystalCaveLeft;
+        this.dragonHole=dragonHole;
+        this.town=town;
+        this.townRight=townRight;
+        this.peak=peak;
+        this.mountainCave1=mountainCave1;
+        this.mountainCave2=mountainCave2;
+        this.mountainCave3=mountainCave3;
     }
 }
 class saveManager{

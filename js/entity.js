@@ -452,6 +452,12 @@ class dragon extends entity{
         localStorage.setItem("LA-dragon-started-"+localStorage.getItem("LA-username"),JSON.stringify(false));
     }
     update(game,lilies,input){
+        if(JSON.parse(localStorage.getItem("LA-trial-"+localStorage.getItem("LA-username")))==true){
+            localStorage.setItem("LA-trial-"+localStorage.getItem("LA-username"),JSON.stringify(false));
+            game.Entity.splice(game.Entity.indexOf(this),1);
+            game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(this.DRAGON),1);
+            globalThis[game.Map.name].entity=game.Map.entityGroup;
+        }
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
             if(JSON.parse(localStorage.getItem("LA-dragon-started-"+localStorage.getItem("LA-username")))==false){
                 localStorage.setItem("LA-dragon-started-"+localStorage.getItem("LA-username"),JSON.stringify(true));
@@ -461,11 +467,6 @@ class dragon extends entity{
             else{
                 lilies.getDamaged(999999,game);
             }
-        }
-        if(JSON.parse(localStorage.getItem("LA-trial-"+localStorage.getItem("LA-username")))==true){
-            game.Entity.splice(game.Entity.indexOf(this),1);
-            game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(DRAGON),1);
-            globalThis[game.Map.name].entity=game.Map.entityGroup;
         }
     }
 }
@@ -958,6 +959,41 @@ class recipeItem extends item{
                 game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(this.recipe),1);
                 game.Entity.splice(game.Entity.indexOf(this),1);
                 globalThis[game.Map.name].entity=game.Map.entityGroup;
+            }
+        }
+    }
+}
+class chest extends recipeItem{
+    constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,recipe,CHEST){
+        super(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,recipe);
+        this.CHEST=CHEST;
+    }
+    update(game,lilies,input){
+        if(JSON.parse(localStorage.getItem("LA-trial-"+localStorage.getItem("LA-username")))==true){
+            localStorage.setItem("LA-trial-"+localStorage.getItem("LA-username"),JSON.stringify(false));
+            this.recipe.forEach(it=>{
+                game.RecipeGroup.recipe.push(it);
+            });
+            game.Talk.see("获得了"+this.name);
+            if(timeout){
+                clearTimeout(timeout);
+            }
+            timeout=setTimeout(function(){
+                game.Talk.clear();
+                game.Talk.hide();
+                clearTimeout(timeout);
+            },1000);
+            game.Entity.splice(game.Entity.indexOf(this),1);
+            game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(this.CHEST),1);
+            globalThis[game.Map.name].entity=game.Map.entityGroup;
+        }
+        if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
+            if(input.key.indexOf(config.interact)>-1){
+                const username = localStorage.getItem("LA-username");
+                const preTrialPageKey = `LA-pre-trial-page-${username}`;
+                localStorage.setItem(preTrialPageKey, window.location.href);
+                game.SaveManager.save(game);
+                window.location.href="../minigame/minigame2/index.html";
             }
         }
     }
