@@ -466,17 +466,18 @@ class dragon extends entity{
         localStorage.setItem("LA-dragon-started-"+localStorage.getItem("LA-username"),JSON.stringify(false));
     }
     update(game,lilies,input){
-        if(JSON.parse(localStorage.getItem("LA-trial-"+localStorage.getItem("LA-username")))==true){
-            localStorage.setItem("LA-trial-"+localStorage.getItem("LA-username"),JSON.stringify(false));
+        if(JSON.parse(localStorage.getItem("LA-trial-final_fight"+localStorage.getItem("LA-username")))==true){
+            localStorage.setItem("LA-trial-final_fight"+localStorage.getItem("LA-username"),JSON.stringify(false));
             game.Entity.splice(game.Entity.indexOf(this),1);
             game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(this.DRAGON),1);
             globalThis[game.Map.name].entity=game.Map.entityGroup;
+            return;
         }
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
             if(JSON.parse(localStorage.getItem("LA-dragon-started-"+localStorage.getItem("LA-username")))==false){
                 localStorage.setItem("LA-dragon-started-"+localStorage.getItem("LA-username"),JSON.stringify(true));
                 game.SaveManager.save(game);
-                window.location.href="../minigame/战斗游戏/战斗游戏/战斗游戏plus.html";
+                window.location.href="../minigame/final_fight/index.html";
             }
             else{
                 lilies.getDamaged(999999,game);
@@ -1025,6 +1026,7 @@ class chest extends recipeItem{
     update(game,lilies,input){
         if(JSON.parse(localStorage.getItem("LA-trial-"+localStorage.getItem("LA-username")))==true){
             localStorage.setItem("LA-trial-"+localStorage.getItem("LA-username"),JSON.stringify(false));
+            document.getElementById("Ehint").style.display="none";
             this.recipe.forEach(it=>{
                 game.RecipeGroup.recipe.push(it);
             });
@@ -1040,6 +1042,7 @@ class chest extends recipeItem{
             game.Entity.splice(game.Entity.indexOf(this),1);
             game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(this.CHEST),1);
             globalThis[game.Map.name].entity=game.Map.entityGroup;
+            return;
         }
         if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
             this.in=true;

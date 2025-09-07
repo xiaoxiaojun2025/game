@@ -49,7 +49,7 @@ var Trial=[
     },
     {
         "map":"dragonLeft",
-        "name":"1",
+        "name":"2",
         "hitbox":[906,450,182,182],
         "item":[
             {
@@ -760,7 +760,7 @@ var dragonHole={
 var dragonLeft={
     "name":"dragonLeft",
     "name1":"龙洞左",
-    "background":"dragonLeft.png",
+    "background":"dragonLeft.jpg",
     "entity":[
         {
             "type":"hitbox",
