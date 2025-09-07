@@ -96,7 +96,7 @@ function saveGameResult(isWin) {
   // 获取用户名，无则用默认值
   const username = localStorage.getItem("LA-username") || "defaultPlayer";
   // 按照约定的键名存储结果（胜利为true，失败为false）
-  const resultKey = `LA-trial-${username}`;
+  const resultKey = `LA-trial-final_fight${username}`;
   localStorage.setItem(resultKey, JSON.stringify(isWin));
   console.log("游戏结果已存储：", resultKey, "=", isWin);
 }
