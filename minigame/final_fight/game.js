@@ -118,34 +118,15 @@ canvas.addEventListener('click', function(e) {
     const rect = canvas.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const clickY = e.clientY - rect.top;
-    
     // 检查是否点击了返回按钮区域
     if (clickX >= canvas.width / 2 - 120 && 
         clickX <= canvas.width / 2 + 120 && 
         clickY >= canvas.height / 2 + 80 && 
         clickY <= canvas.height / 2 + 140) {
-      returnToMainGame();
+        window.location.href = "../../html/game.html";
     }
   }
 });
-
-// 新增：返回大游戏页面
-function returnToMainGame() {
-  const username = localStorage.getItem("LA-username") || "defaultPlayer";
-  // 读取进入小游戏前的页面路径
-  const preGamePathKey = `LA-pre-trial-page-${username}`;
-  const preGameUrl = localStorage.getItem(preGamePathKey);
-  
-  // 优先返回原页面，无则使用默认路径
-  if (preGameUrl) {
-    window.location.href = preGameUrl;
-    // 清除已使用的路径记录
-    localStorage.removeItem(preGamePathKey);
-  } else {
-    // 替换为你的大游戏首页路径
-    window.location.href = "../../index.html";
-  }
-}
 
 // 按钮功能
 function attack() {
