@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>回合制战斗小游戏</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-container">
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- 操作按钮 -->
+    <div class="controls">
+      <button onclick="attack()">攻击</button>
+      <button onclick="defend()">防御</button>
+      <button onclick="skill()">技能</button>
+    </div>
+
+    <!-- 战斗日志 -->
+    <div class="battle-log" id="battle-log"></div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
