@@ -110,7 +110,7 @@ class bag{
                 "name":["旅人之鞋"],
                 "intro":"这鞋子真优秀，它会推着脚跟前进。",
                 "img":"traveler-s-shoes.webp",
-                "amount":1,
+                "amount":0,
                 "quality":[],
                 "trait":[]
             },
