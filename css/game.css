@@ -95,13 +95,20 @@ body{
     top: 0;
     left: 0;
     background-image: linear-gradient(to right,white,rgba(0,0,0,0));
+    background-size: 20%;
+    background-position: left;
+    background-repeat: no-repeat;
     text-align: left;
-    height: 5%;
-    width: 40%;
+    width: 80%;
+    padding: 3% 0;
     font-size: 1.5em;
     user-select: none;
     font-family: "Lolita";
     z-index: 10;
+    transition: 0.5s;
+}
+.pauseButton:hover{
+    background-size: 100%;
 }
 .mapname{
     position: absolute;
