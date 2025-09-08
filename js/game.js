@@ -130,8 +130,13 @@ class game{
                     this.PauseButtonGroup.display();
                 }
             }
+            if(this.status=="paused"||this.status=="talking"){
+                document.getElementById("Ehint").style.display="none";
+                document.getElementById("mapname").style.display="none";
+            }
             if(this.status=="running"){
                 Frame++;
+                document.getElementById("mapname").style.display="block";
                 this.ctx.clearRect(0,0,gameWidth,gameHeight);
                 this.Entity.forEach(e=>{
                     e.draw(this.ctx);
