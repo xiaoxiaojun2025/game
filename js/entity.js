@@ -450,6 +450,15 @@ class pot extends entity{
                                                 game.storage.addItem(game.RecipeGroup.recipe[i].name,1,[newQuality],[newTrait]);
                                                 game.Talk.see("成功制作"+game.RecipeGroup.recipe[i].name+"&emsp;消耗时间"+game.RecipeGroup.recipe[i].time+"小时"+"<br>品质："+newQuality);
                                                 game.achievement.getAchievement("第一次调和",game);
+                                                if(game.RecipeGroup.recipe[i].name=="旅人之鞋"){
+                                                    game.achievement.getAchievement("跑得快！",game);
+                                                }
+                                                if(game.RecipeGroup.recipe[i].name=="十字镐"){
+                                                    game.achievement.getAchievement("这不是铁镐吗",game);
+                                                }
+                                                if(game.RecipeGroup.recipe[i].name=="爆破用炎烧"){
+                                                    game.achievement.getAchievement("艺术就是爆炸！",game);
+                                                }
                                                 setTimeout(() => {
                                                     game.Talk.clear();
                                                     game.Talk.hide();

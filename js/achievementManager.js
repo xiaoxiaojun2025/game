@@ -44,5 +44,17 @@ var achievements=[
     {
         "name":"第一次采集",
         "img":"achievement1.png"
-    }
+    },
+    {
+        "name":"跑得快！",
+        "img":"achievement2.png"
+    },
+    {
+        "name":"这不是铁镐吗",
+        "img":"achievement2.png"
+    },
+    {
+        "name":"艺术就是爆炸！",
+        "img":"achievement2.png"
+    },
 ]
