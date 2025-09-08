@@ -530,13 +530,14 @@ class enemy extends entity{
             }
             else{
                 game.Entity.splice(game.Entity.indexOf(this),1);
+                game.getteditems.push(this);
             }
         }
     }
 }
 class dog extends enemy{
     constructor(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,damage,hearts){
-        super(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,damage,hearts,0);
+        super(gameWidth,gameHeight,img,x,y,width,height,spriteWidth,spriteHeight,name,damage,hearts,[x,y,width,height]);
     }
     getDamaged(damage,game){
         if(!this.invincible){
@@ -550,6 +551,7 @@ class dog extends enemy{
             else{
                 game.bag.addItem("野兽毛皮",2,[30,30],["",""]);
                 game.Entity.splice(game.Entity.indexOf(this),1);
+                game.getteditems.push(this);
             }
         }
     }
