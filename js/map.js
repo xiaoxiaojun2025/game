@@ -1007,11 +1007,15 @@ var mountainCave1={
             "hitbox":[0,-240,1280,80]
         },
         {
+            "type":"hitbox",
+            "hitbox":[-80,-240,80,520]
+        },
+        {
             "type":"entrance",
             "destinationMap":"townRight",
             "destinationX":1196,
             "destinationY":518,
-            "hitbox":[-80,0,80,720]
+            "hitbox":[-80,310,80,410]
         },
         {
             "type":"entrance",

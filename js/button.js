@@ -53,22 +53,26 @@ class pauseButtonGroup{
                 }.bind(this);
             }
             else if(this.buttonGroup[e].id=="bag"){
-                this.buttonGroup[e].onclick=function(){
+                document.getElementById("bag").onclick=()=>{
+                    select.bind(this)();
+                }
+                function select(){
+                    document.getElementById("innerCanvas").innerHTML="";
                     document.getElementById("innerCanvasContainer").style.display="block";
                     this.hideAll("continue");
                     document.getElementById("continue").innerHTML="返回";
-                    document.getElementById("continue").onclick=function(){
+                    document.getElementById("continue").onclick=()=>{
                         game.Talk.clear();
                         game.Talk.hide();
                         document.getElementById("innerCanvasContainer").style.display="none";
                         document.getElementById("innerCanvas").innerHTML="";
                         document.getElementById("continue").innerHTML="继续游戏";
-                        document.getElementById("continue").onclick=function(){
+                        document.getElementById("continue").onclick=()=>{
                             game.status="running";
                             this.hideAll();
-                        }.bind(this);
+                        }
                         this.display();
-                    }.bind(this);
+                    }
                     if(game.Map.name=="atelier"){
                         for(let i=0;i<game.storage.item.length;i++){
                             if(game.storage.item[i].amount==0) continue;
@@ -76,7 +80,12 @@ class pauseButtonGroup{
                             item.className="itemContainer";
                             item.id=game.storage.item[i].name[0];
                             item.innerHTML="<img src=../img/item/"+game.bag.item[i].img+">"+game.storage.item[i].name[0]+"x"+game.storage.item[i].amount;
-                            item.onclick=function(){
+                            item.onclick=()=>{
+                                document.getElementById("continue").onclick=()=>{
+                                    game.Talk.clear();
+                                    game.Talk.hide();
+                                    select.bind(this)();
+                                }
                                 game.Talk.see(game.storage.item[i].intro);
                                 document.getElementById("innerCanvas").innerHTML="";
                                 for(let j=0;j<game.storage.item[i].amount;j++){
@@ -96,8 +105,13 @@ class pauseButtonGroup{
                             let item=document.createElement("div");
                             item.className="itemContainer";
                             item.innerHTML="<img src=../img/item/"+game.bag.item[i].img+">"+game.bag.item[i].name[0]+"x"+game.bag.item[i].amount;
-                            item.onclick=function(){
+                            item.onclick=()=>{
                                 document.getElementById("innerCanvas").innerHTML="";
+                                document.getElementById("continue").onclick=()=>{
+                                    game.Talk.clear();
+                                    game.Talk.hide();
+                                    select.bind(this)();
+                                }
                                 for(let j=0;j<game.bag.item[i].amount;j++){
                                     game.Talk.see(game.storage.item[i].intro);
                                     let newItem=document.createElement("div");
@@ -110,7 +124,7 @@ class pauseButtonGroup{
                             document.getElementById("innerCanvas").appendChild(item);
                         }
                     }
-                }.bind(this);
+                }
             }
             else if(this.buttonGroup[e].id=="ender"){
                 this.buttonGroup[e].onclick=function(){
