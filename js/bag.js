@@ -545,6 +545,15 @@ class bag{
                 "trait":[]
             },
             {
+                "name":["石灰岩","（石材）"],
+                "intro":"洗澡的时候把这个和香草一起放进水里，对于舒缓疲劳很有效呢。",
+                "img":"white-ash-stone.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
                 "name":["残破矿石"],
                 "intro":"或许是由于这种矿石多层的结构，做成剑后会浮现出复杂的刀纹。恐怕每一层的性质都有细微差异……",
                 "img":"atelis-ore.webp",

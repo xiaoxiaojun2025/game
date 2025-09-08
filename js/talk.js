@@ -12,7 +12,7 @@ class talk{
             talk.index++;
             talk.timeout=setTimeout(()=>{
                 talk.display(text,speed,talk);
-            },Math.floor(1000/speed));
+            },speed);
         }
         else{
             talk.displayed=true;

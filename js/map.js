@@ -80,7 +80,7 @@ var buystore=[
                 "amount":1,
                 "quality":[100],
                 "trait":[""],
-                "price":1000,
+                "price":250,
                 "refreshTime":-1
             },
             {
@@ -89,7 +89,7 @@ var buystore=[
                 "amount":1,
                 "quality":[100],
                 "trait":[""],
-                "price":5000,
+                "price":2500,
                 "refreshTime":-1
             },
             {
@@ -98,7 +98,7 @@ var buystore=[
                 "amount":1,
                 "quality":[100],
                 "trait":[""],
-                "price":3000,
+                "price":1000,
                 "refreshTime":-1
             },
         ],
@@ -114,7 +114,7 @@ var buystore=[
                 "amount":1,
                 "quality":[100],
                 "trait":[""],
-                "price":10000,
+                "price":5000,
                 "refreshTime":-1
             },
             {
@@ -380,7 +380,7 @@ var pathNearAtelier={
         {
             "type":"item",
             "itemname":"饮用水",
-            "amount":4,
+            "amount":6,
             "quality":[],
             "trait":[],
             "hitbox":[732,504,128,128]
@@ -388,7 +388,7 @@ var pathNearAtelier={
         {
             "type":"item",
             "itemname":"寻常草",
-            "amount":3,
+            "amount":4,
             "quality":[],
             "trait":[],
             "hitbox":[465,550,90,90]
@@ -661,11 +661,27 @@ var CrystalCaveRight={
         },
         {
             "type":"item",
+            "itemname":"石灰岩",
+            "amount":3,
+            "quality":[],
+            "trait":[],
+            "hitbox":[897,0,125,125]
+        },
+        {
+            "type":"item",
             "itemname":"可燃灰砂",
             "amount":4,
             "quality":[],
             "trait":[],
             "hitbox":[469,0,112,112]
+        },
+        {
+            "type":"item",
+            "itemname":"啪汽啪汽水",
+            "amount":3,
+            "quality":[],
+            "trait":[],
+            "hitbox":[992,509,125,125]
         },
     ]
 }
@@ -959,18 +975,18 @@ var peak={
                     "name":"炼金黏土",
                     "time":24,
                     "recipe":{
-                        "(石材）":2,
+                        "（石材）":2,
                         "（水）":3,
-                        "(中和剂）":1
+                        "（中和剂）":1
                     }
                 },
                 {
                     "name":"黑洞",
                     "time":128,
                     "recipe":{
-                        "(星幻钥匙）":1,
+                        "（星幻钥匙）":1,
                         "（龙素材）":1,
-                        "(宝石）":2
+                        "（宝石）":2
                     }
                 },
             ]
@@ -1042,9 +1058,9 @@ var mountainCave1={
                     "name":"鞣制皮革",
                     "time":16,
                     "recipe":{
-                        "动物毛皮":2,
+                        "野兽毛皮":2,
                         "鞣皮液":2,
-                        "纯水":4
+                        "纯水":2
                     }
                 },
                 {
@@ -1053,7 +1069,7 @@ var mountainCave1={
                     "recipe":{
                         "鞣制皮革":2,
                         "寻常草":2,
-                        "(中和剂）":1
+                        "（中和剂）":1
                     }
                 },
             ]
@@ -1154,7 +1170,7 @@ var mountainCave2={
                     "recipe":{
                         "高贵蓝宝石":1,
                         "黄宝石原石":4,
-                        "（金属)":3
+                        "（金属）":3
                     }
                 },
                 {

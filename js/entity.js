@@ -303,6 +303,7 @@ class pot extends entity{
                     game.status="talking";
                     game.achievement.getAchievement("打开炼金釜",game);
                     var recipeContainer=document.getElementById("innerCanvas");
+                    document.getElementById("innerCanvas").innerHTML="";
                     document.getElementById("innerCanvasContainer").style.display="block";
                     for(let i=0;i<game.RecipeGroup.recipe.length;i++){
                         var recipe=document.createElement("div");
@@ -390,7 +391,7 @@ class pot extends entity{
                                                     newQuality+=it.quality;
                                                 });
                                                 game.timer=Number(game.timer)+game.RecipeGroup.recipe[i].time;
-                                                newQuality=Math.floor(newQuality/usedItem.length+Math.random()*5);
+                                                newQuality=Math.floor(newQuality/usedItem.length);
                                                 newTrait=usedItem[0].trait;
                                                 for(let l=1;l<usedItem.length;l++){
                                                     if([newTrait,usedItem[l].trait].includes("品质提升")&&[newTrait,usedItem[l].trait].includes("品质提升+")){
@@ -535,6 +536,7 @@ class enemy extends entity{
         this.maxHearths=hearts;
         this.hearts=hearts;
         this.actRange=actRange;
+        this.hitbox=true;
         this.invincible=false;
     }
     update(game,lilies,input){
@@ -581,6 +583,15 @@ class dog extends enemy{
             }
             else{
                 game.bag.addItem("野兽毛皮",2,[30,30],["",""]);
+                game.Talk.see("获得野兽毛皮x2");
+                if(timeout){
+                    clearTimeout(timeout);
+                }
+                timeout=setTimeout(()=>{
+                    game.Talk.clear();
+                    game.Talk.hide();
+                    clearTimeout(timeout);
+                },1000);
                 game.Entity.splice(game.Entity.indexOf(this),1);
                 game.getteditems.push(this);
             }
@@ -657,7 +668,7 @@ class sellstore extends entity{
                                 document.getElementById("innerCanvas").innerHTML="";
                                 let storage=JSON.parse(JSON.stringify(game.storage));
                                 for(let j=0;j<storage.item[i].amount;j++){
-                                    let price=Math.floor(storage.item[i].price*(1+storage.item[i].quality[j]/333));
+                                    let price=Math.floor(storage.item[i].price*(1+storage.item[i].quality[j]/100));
                                     switch(storage.item[i].trait[j]){
                                         case "低价":
                                             price=Math.floor(price*0.8);
@@ -729,8 +740,9 @@ class buyStore extends entity{
         if(game.Map.name==this.map){
             for(let i=0;i<this.goods.length;i++){
                 if(this.goods[i].refreshTime!=-1&&game.timer-this.lasttimer[i]>=this.goods[i].refreshTime){
+                    console.log(this.goods[i]);
                     this.lasttimer[i]=game.timer;
-                    this.nowGoods[i]=this.goods[i];
+                    this.nowGoods[i]=JSON.parse(JSON.stringify(this.goods[i]));
                 }
             }
             if(this.y<=lilies.y+lilies.height&&this.y+this.height>=lilies.y&&this.x+this.width>lilies.x&&this.x<lilies.x+lilies.width){
@@ -1167,14 +1179,14 @@ class text extends hitbox{
                     this.fast=true;
                     this.slow=false;
                     clearTimeout(game.Talk.timeout);
-                    game.Talk.display(this.text[this.index]?this.text[this.index]:"",1000,game.Talk);
+                    game.Talk.display(this.text[this.index]?this.text[this.index]:"",0,game.Talk);
                 }
             }
             else if(!this.slow){
                 this.slow=true;
                 this.fast=false;
                 clearTimeout(game.Talk.timeout);
-                game.Talk.display(this.text[this.index]?this.text[this.index]:"",20,game.Talk);
+                game.Talk.display(this.text[this.index]?this.text[this.index]:"",25,game.Talk);
             }
         }
     }
