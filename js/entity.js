@@ -306,6 +306,7 @@ class pot extends entity{
                     document.getElementById("innerCanvasContainer").style.display="block";
                     for(let i=0;i<game.RecipeGroup.recipe.length;i++){
                         var recipe=document.createElement("div");
+                        let canCraft=true;
                         recipe.className="itemContainer";
                         let recipeNameInItemIndex=0;
                         for(let j=0;j<game.storage.item.length;j++){
@@ -317,9 +318,29 @@ class pot extends entity{
                         recipe.innerHTML="<img src=../img/item/"+game.storage.item[recipeNameInItemIndex].img+">"+game.RecipeGroup.recipe[i].name+"<br>配方:<br>";
                         for(let key in game.RecipeGroup.recipe[i].recipe){
                             recipe.innerHTML+=key+"x"+game.RecipeGroup.recipe[i].recipe[key]+"<br>";
+                            let itemAmount=0;
+                            for(let j=0;j<game.storage.item.length;j++){
+                                if(game.storage.item[j].name.includes(key)){
+                                    itemAmount+=game.storage.item[j].amount;
+                                }
+                            }
+                            if(itemAmount<game.RecipeGroup.recipe[i].recipe[key]){
+                                canCraft=false;
+                            }
                         }
                         recipeContainer.appendChild(recipe);
                         recipe.onclick=function(){
+                            if(!canCraft){
+                                game.Talk.see("材料不足");
+                                if(timeout){
+                                    clearTimeout(timeout);
+                                }
+                                timeout=setTimeout(()=>{
+                                    game.Talk.clear();
+                                    game.Talk.hide();
+                                },1000);
+                                return;
+                            }
                             recipeContainer.innerHTML="";
                             let page=0;
                             let itemID=[];
