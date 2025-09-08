@@ -60,7 +60,7 @@ function drawScene() {
     ctx.font = "60px 微软雅黑";
     ctx.textAlign = "center";
     ctx.fillText(
-      heroHP <= 0 ? "游戏失败！怪物胜利！" : "胜利！勇士打败了怪物！",
+      heroHP <= 0 ? "游戏失败！怪物胜利！" : "胜利！Lilies打败了怪物！",
       canvas.width / 2,
       canvas.height / 2
     );
@@ -132,14 +132,14 @@ canvas.addEventListener('click', function(e) {
 function attack() {
   if (gameOver) return;
   monsterHP = Math.max(0, monsterHP - 15);
-  logBattle("勇士攻击！怪物损失15点HP！");
+  logBattle("Lilies攻击！怪物损失15点HP！");
   checkGameOver();
   if (!gameOver) enemyTurn();
 }
 
 function defend() {
   if (gameOver) return;
-  logBattle("勇士防御！下回合受到的伤害减半！");
+  logBattle("Lilies防御！下回合受到的伤害减半！");
   enemyTurn(true);
 }
 
@@ -147,7 +147,7 @@ function skill() {
   if (gameOver) return;
   monsterHP = Math.max(0, monsterHP - 30);
   heroHP = Math.max(0, heroHP - 5);
-  logBattle("勇士释放技能！怪物-30 HP，自身-5 HP！");
+  logBattle("Lilies释放技能！怪物-30 HP，自身-5 HP！");
   checkGameOver();
   if (!gameOver) enemyTurn();
 }
@@ -158,7 +158,7 @@ function enemyTurn(defended = false) {
     if (gameOver) return;
     let dmg = defended ? 5 : 10;
     heroHP = Math.max(0, heroHP - dmg);
-    logBattle("怪物攻击！勇士损失" + dmg + "点HP！");
+    logBattle("怪物攻击！Lilies损失" + dmg + "点HP！");
     checkGameOver();
   }, 500);
 }
