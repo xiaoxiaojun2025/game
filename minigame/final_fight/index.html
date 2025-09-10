@@ -2,25 +2,28 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 适配移动端 -->
   <link rel="icon" href="../../icon.ico">
   <title>Lilies's atelier</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"> <!-- 关联CSS文件 -->
 </head>
 <body>
-  <div class="game-container">
-    <canvas id="gameCanvas"></canvas>
 
-    <!-- 操作按钮 -->
+  <div class="game-container">
+    <!-- 游戏画布（核心渲染区） -->
+    <canvas id="gameCanvas"></canvas>
+    <!-- 操作按钮区 -->
     <div class="controls">
-      <button onclick="attack()">攻击</button>
+      <button onclick="attack()">普通攻击</button>
       <button onclick="defend()">防御</button>
-      <button onclick="skill()">技能</button>
+      <button id="skill1Btn" class="skill-btn" onclick="skill1()">技能1：生命药剂</button>
+      <button id="skill2Btn" class="skill-btn" onclick="skill2()">技能2：魔焰药剂</button>
+      <button id="skill3Btn" class="skill-btn" onclick="skill3()">技能3：重伤药剂</button>
     </div>
 
-    <!-- 战斗日志 -->
+    <!-- 战斗日志区 -->
     <div class="battle-log" id="battle-log"></div>
   </div>
-
-  <script src="game.js"></script>
+  <script src="game.js"></script> <!-- 关联JS逻辑文件 -->
 </body>
 </html>
