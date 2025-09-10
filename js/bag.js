@@ -295,15 +295,6 @@ class bag{
                 "trait":[]
             },
             {
-                "name":["鞣皮液","（有毒材料）"],
-                "intro":"好密实的容器。",
-                "img":"tanning-fluid.webp",
-                "price":5,
-                "amount":0,
-                "quality":[],
-                "trait":[]
-            },
-            {
                 "name":["星之瓢虫","（虫）","（动物素材）"],
                 "intro":"这个花纹好可爱～而且还很粘人。",
                 "img":"lady-bug.webp",
