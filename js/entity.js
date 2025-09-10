@@ -830,7 +830,6 @@ class buyStore extends entity{
         if(game.Map.name==this.map){
             for(let i=0;i<this.goods.length;i++){
                 if(this.goods[i].refreshTime!=-1&&game.timer-this.lasttimer[i]>=this.goods[i].refreshTime){
-                    console.log(this.goods[i]);
                     this.lasttimer[i]=game.timer;
                     this.nowGoods[i]=JSON.parse(JSON.stringify(this.goods[i]));
                 }

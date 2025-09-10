@@ -103,7 +103,6 @@ class saveManager{
         }
         game.changeMap(eval(this.position));
         game.getteditems=this.getteditems;
-        console.log(game.getteditems);
         for(let i=0;i<game.Entity.length;i++){
             for(let j=0;j<this.getteditems.length;j++){
                 if((game.Entity[i].actRange!=undefined&&this.getteditems[j].actRange!=undefined&&JSON.stringify(game.Entity[i].actRange)==JSON.stringify(this.getteditems[j].actRange))||game.Entity[i].name==this.getteditems[j].name&&game.Entity[i].x==this.getteditems[j].x&&game.Entity[i].y==this.getteditems[j].y){
