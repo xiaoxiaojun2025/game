@@ -20,8 +20,10 @@
     <body>
         <div class="canvasContainer"><div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);" id="canvasContainerContainer">
             <div class="Ehint" style="display: none;" id="Ehint">E</div>
+            <div class="heart" id="heart"></div>
             <div class="timer" id="timer"></div>
             <div class="mapname" id="mapname"></div>
+            <div style="width: 100%;height: 100%;position: absolute;top: 0;left: 0;background-color: rgba(0,0,0,0.6);z-index: 4;" hidden id="pauseOverlay"></div>
             <div class="pauseButton" style="display: none;" id="continue">继续游戏</div>
             <div class="pauseButton" style="display: none;" id="bag"></div>
             <div class="pauseButton" style="display: none;" id="ender">前往王都</div>
@@ -32,6 +34,7 @@
             <div class="innerCanvasContainer" id="innerCanvasContainer" style="display: none;"><div class="flow" id="innerCanvas"></div></div>
             <div class="talkContainer" style="display: none;"></div>
         </div></div>
+        <audio loop id="bgm"></audio>
         <img src="../img/Lilies.png" hidden id="Lilies">
         <img src="../img/atk.png" hidden id="atk">
         <img src="../img/pot.png" hidden id="pot">

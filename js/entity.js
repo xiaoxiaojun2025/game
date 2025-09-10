@@ -77,7 +77,8 @@ class lilies extends entity{
         this.weight=1;
         this.face="right";
         this.jumped=false;
-        this.damage=5;
+        this.damage=3;
+        this.maxHearts=5;
         this.hearts=5;
         this.atk=null;
         this.invincible=false;
@@ -142,7 +143,7 @@ class lilies extends entity{
         }
         if(input.key.indexOf(config.jump)>-1&&this.isOnFloor&&!this.jumped&&this.atk==null){
             this.jumped=true;
-            if(input.key.indexOf(config.up)>-1&&game.storage.item[5].amount>0){
+            if(input.key.indexOf(config.up)>-1&&game.storage.item[9].amount>0){
                 this.vy=-30;
             }
             else{
@@ -218,9 +219,20 @@ class lilies extends entity{
                 },2000);
             }
             else{
+                game.Talk.see("你死了，丢失了采集篮中的全部物品");
+                if(timeout){
+                    clearTimeout(timeout);
+                }
+                timeout=setTimeout(()=>{
+                    game.Talk.clear();
+                    game.Talk.hide();
+                    clearTimeout(timeout);
+                },1000);
                 game.changeMap(atelier);
+                this.x=240;
+                this.y=518;
                 game.bag.clear();
-                game.timer+=72;
+                game.timer+=168;
             }
         }
     }
@@ -460,6 +472,85 @@ class pot extends entity{
                                                 if(game.RecipeGroup.recipe[i].name=="爆破用炎烧"){
                                                     game.achievement.getAchievement("艺术就是爆炸！",game);
                                                 }
+                                                if(game.RecipeGroup.recipe[i].name=="星导手杖"&&lilies.damage<5){
+                                                    lilies.damage=5;
+                                                    game.RecipeGroup.recipe.push(
+                                                        {
+                                                            "name":"苍蓝星笼",
+                                                            "time":4,
+                                                            "recipe":{
+                                                                "丝薇丽银":1,
+                                                                "闪亮原色砂":2,
+                                                                "安宁药膏":2,
+                                                                "星导手杖":1
+                                                            }
+                                                        }
+                                                    );
+                                                }
+                                                if(game.RecipeGroup.recipe[i].name=="苍蓝星笼"&&lilies.damage<8){
+                                                    lilies.damage=8;
+                                                    game.RecipeGroup.recipe.push(
+                                                        {
+                                                            "name":"银河星座",
+                                                            "time":4,
+                                                            "recipe":{
+                                                                "黄金艾森矿":1,
+                                                                "朔月暗雾":1,
+                                                                "（气体）":2,
+                                                                "苍蓝星笼":1
+                                                            }
+                                                        }
+                                                    );
+                                                }
+                                                if(game.RecipeGroup.recipe[i].name=="银河星座"&&lilies.damage<10){
+                                                    lilies.damage=10;
+                                                    game.RecipeGroup.recipe.push(
+                                                        {
+                                                            "name":"大地之母",
+                                                            "time":4,
+                                                            "recipe":{
+                                                                "精灵银块":1,
+                                                                "生命之蜜":1,
+                                                                "星之粉":2,
+                                                                "银河星座":1
+                                                            }
+                                                        }
+                                                    );
+                                                }
+                                                if(game.RecipeGroup.recipe[i].name=="大地之母"&&lilies.damage<15){
+                                                    lilies.damage=15;
+                                                    game.RecipeGroup.recipe.push(
+                                                        {
+                                                            "name":"天启与智慧之杖",
+                                                            "time":4,
+                                                            "recipe":{
+                                                                "海银":1,
+                                                                "翠岚之滴":1,
+                                                                "百万水晶":1,
+                                                                "大地之母":1
+                                                            }
+                                                        }
+                                                    );
+                                                }
+                                                if(game.RecipeGroup.recipe[i].name=="旅人背心"&&lilies.maxHearts<8){
+                                                    lilies.maxHearts=8;
+                                                    lilies.hearts=lilies.maxHearts;
+                                                    game.RecipeGroup.recipe.push(
+                                                        {
+                                                            "name":"飞翔之衣",
+                                                            "time":4,
+                                                            "recipe":{
+                                                                "天鹅绒布":2,
+                                                                "易熔金属":2,
+                                                                "（布料）":1
+                                                            }
+                                                        }
+                                                    );
+                                                }
+                                                if(game.RecipeGroup.recipe[i].name=="飞翔之衣"&&lilies.maxHearts<10){
+                                                    lilies.maxHearts=10;
+                                                    lilies.hearts=lilies.maxHearts;
+                                                }
                                                 setTimeout(() => {
                                                     game.Talk.clear();
                                                     game.Talk.hide();
@@ -533,10 +624,9 @@ class enemy extends entity{
         this.spriteHeight=spriteHeight;
         this.name=name;
         this.damage=damage;
-        this.maxHearths=hearts;
+        this.maxHearts=hearts;
         this.hearts=hearts;
         this.actRange=actRange;
-        this.hitbox=true;
         this.invincible=false;
     }
     update(game,lilies,input){
@@ -549,7 +639,7 @@ class enemy extends entity{
         }
     }
     draw(ctx){
-        ctx.fillText(this.name+" "+this.hearts+"/"+this.maxHearths,this.x,this.y-this.height/2);
+        ctx.fillText(this.name+" "+this.hearts+"/"+this.maxHearts,this.x,this.y-this.height/2);
         super.draw(ctx);
     }
     getDamaged(damage,game){
@@ -622,7 +712,7 @@ class puni extends enemy{
         }
         else{
             ctx.font="20px Lolita";
-            ctx.fillText(this.name+" "+this.hearts+"/"+this.maxHearths,this.x,this.y-this.height/2);
+            ctx.fillText(this.name+" "+this.hearts+"/"+this.maxHearts,this.x,this.y-this.height/2);
             ctx.save();
             ctx.scale(-1,1);
             ctx.drawImage(this.img,this.spriteWidth*this.frameX,this.spriteHeight*this.frameY,this.spriteWidth,this.spriteHeight,-this.x-this.width,this.y,this.width,this.height);
@@ -1179,7 +1269,7 @@ class text extends hitbox{
                     this.fast=true;
                     this.slow=false;
                     clearTimeout(game.Talk.timeout);
-                    game.Talk.display(this.text[this.index]?this.text[this.index]:"",0,game.Talk);
+                    game.Talk.display(this.text[this.index]?this.text[this.index]:"",10,game.Talk);
                 }
             }
             else if(!this.slow){
@@ -1187,6 +1277,19 @@ class text extends hitbox{
                 this.fast=false;
                 clearTimeout(game.Talk.timeout);
                 game.Talk.display(this.text[this.index]?this.text[this.index]:"",25,game.Talk);
+            }
+            if(input.key.indexOf("control")>-1){
+                clearTimeout(game.Talk.timeout);
+                if(this.once){
+                    game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(this.TEXT),1);
+                    game.Entity.splice(game.Entity.indexOf(this),1);
+                    globalThis[game.Map.name].entity=game.Map.entityGroup;
+                }
+                input.key.splice(input.key.indexOf(config.interact),1);
+                game.Talk.clear();
+                game.Talk.hide();
+                game.status="running";
+                return;
             }
         }
     }

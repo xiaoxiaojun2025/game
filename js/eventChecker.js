@@ -21,8 +21,8 @@ class eventChecker{
                     "name":"丝薇丽银",
                     "time":8,
                     "recipe":{
-                        "金属块":1,
-                        "中和剂（红）":2,
+                        "石灰岩":1,
+                        "中和剂（红）":1,
                         "（石材）":2
                     }
                 },
@@ -30,19 +30,11 @@ class eventChecker{
                     "name":"十字镐",
                     "time":16,
                     "recipe":{
-                        "金属块":3,
+                        "丝薇丽银":2,
+                        "金属块":1,
                         "直木":2
                     }
                 },
-                {
-                    "name":"黄金艾森矿",
-                    "time":16,
-                    "recipe":{
-                        "丝薇丽银":2,
-                        "中和剂（黄）":2,
-                        "黄金色之岩":4
-                    }
-                }
             );
         }
         if(!this.event.recipe2&&game.bag.item[2].amount>0){
@@ -50,12 +42,21 @@ class eventChecker{
             game.bag.subItem("高等冶炼术",1);
             game.RecipeGroup.recipe.push(
                 {
+                    "name":"黄金艾森矿",
+                    "time":16,
+                    "recipe":{
+                        "黄金色之岩":1,
+                        "雷电矿":2,
+                        "中和剂（黄）":2
+                    }
+                },
+                {
                     "name":"精灵银块",
                     "time":32,
                     "recipe":{
-                        "黄金艾森矿":1,
+                        "残破矿石":2,
                         "七色棱镜":1,
-                        "残破矿石":3
+                        "（龙素材）":1
                     }
                 }
             );
@@ -115,18 +116,19 @@ class eventChecker{
             this.event.canEnd=true;
         }
         if(this.event.end){
+            game.changeMap(atelier);
             localStorage.removeItem("LA-save-"+localStorage.getItem("LA-username"));
             if(game.storage.item[0].amount==0){
-                window.location.href="../html/BadEnd.html";
+                window.location.href="../html/end.html?ending=bad";
             }
             else if(Math.max(...game.storage.item[0].quality)<=500){
-                window.location.href="../html/NormalEnd.html";
+                window.location.href="../html/end.html?ending=normal";
             }
             else if(Math.max(...game.storage.item[0].quality)>500&&game.storage.item[game.storage.itemID("贤者之石")].amount==0){
-                window.location.href="../html/GoodEnd.html";
+                window.location.href="../html/end.html?ending=good";
             }
             else{
-                window.location.href="../html/BestEnd.html";
+                window.location.href="../html/end.html?ending=best";
             }
         }
         if(game.status=="paused"&&this.event.canEnd){

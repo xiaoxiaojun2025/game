@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilies' atelier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lolita', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-image: url("../img/index_background_0.png"),url("../img/index_background_1.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: auto 100%,cover;
+            background-attachment: fixed;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .end-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .end-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+        
+        .end-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        .end-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .end-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .return-btn {
+            padding: 0.8rem 2rem;
+            font-size: 1.2rem;
+            background: linear-gradient(to bottom, #6b3b1f, #3d2112);
+            color: #ffd700;
+            border: 2px solid #ffd700;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .return-btn:hover {
+            background: linear-gradient(to bottom, #8a4f2a, #523018);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        /* 不同结局的特殊样式 */
+        .bad-end .end-title {
+            color: #8b0000;
+            text-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
+        }
+        
+        .normal-end .end-title {
+            color: #c0c0c0;
+            text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+        }
+        
+        .good-end .end-title {
+            color: #daa520;
+            text-shadow: 0 0 10px rgba(218, 165, 32, 0.5);
+        }
+        
+        .best-end .end-title {
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <!-- 坏结局界面 -->
+    <div class="end-container bad-end" style="background-image: url('../img/endings/bad_end.jpg');">
+        <div class="end-overlay"></div>
+        <div class="end-content">
+            <h1 class="end-title">工房的终结</h1>
+            <div class="end-description">
+                <p>尽管你竭尽全力，但最终未能制作出符合要求的天启与智慧之杖。皇家炼金师的鉴定结果无情地宣告了工房的命运——执照被吊销，工房被永久关闭。</p>
+                <p>你站在空荡荡的工房前，看着封条被贴上大门。奶奶留下的炼金釜、笔记和所有回忆，都将随着工房的关闭而成为过去。晨雾依旧，但工房的烟囱再也不会升起袅袅炊烟。</p>
+                <p>或许炼金术的道路对你来说太过艰难，但这段经历将成为你人生中不可磨灭的一课。</p>
+            </div>
+            <a href="../index.html" class="return-btn">返回主菜单</a>
+        </div>
+    </div>
+
+    <!-- 普通结局界面 -->
+    <div class="end-container normal-end" style="background-image: url('../img/endings/normal_end.jpg'); display: none;">
+        <div class="end-overlay"></div>
+        <div class="end-content">
+            <h1 class="end-title">合格的炼金术士</h1>
+            <div class="end-description">
+                <p>你成功制作出了天启与智慧之杖，虽然品质只是勉强达标，但足以通过皇家炼金师的鉴定。工房得以保留，奶奶的心血没有白费。</p>
+                <p>国王的使者对你的作品点了点头，虽然没有过多赞美，但至少认可了你的炼金术能力。工房可以继续运营，但你明白这仅仅是达到了最低标准。</p>
+                <p>你知道自己还有很长的路要走，炼金术的奥秘远不止于此。但至少，今天你可以安心地坐在工房里，继续你的炼金之旅。</p>
+            </div>
+            <a href="../index.html" class="return-btn">返回主菜单</a>
+        </div>
+    </div>
+
+    <!-- 好结局界面 -->
+    <div class="end-container good-end" style="background-image: url('../img/endings/good_end.jpg'); display: none;">
+        <div class="end-overlay"></div>
+        <div class="end-content">
+            <h1 class="end-title">晨雾中的希望</h1>
+            <div class="end-description">
+                <p>你制作出了品质卓越的天启与智慧之杖，令皇家炼金师都为之惊叹。工房不仅得以保留，还获得了王室的认可和资助。</p>
+                <p>你的名字开始在炼金术士中小有名气，人们都知道有莉莉丝的炼金工房里有一位年轻有为的炼金术士。奶奶的工房焕发了新的生机，比以往任何时候都要繁荣。</p>
+                <p>每当晨雾弥漫之时，你总会想起奶奶的教诲和那段与时间赛跑的日子。你知道，这只是一个开始，炼金术的道路上还有更多奇迹等待你去发现。</p>
+            </div>
+            <a href="../index.html" class="return-btn">返回主菜单</a>
+        </div>
+    </div>
+
+    <!-- 真结局界面 -->
+    <div class="end-container best-end" style="background-image: url('../img/endings/best_end.jpg'); display: none;">
+        <div class="end-overlay"></div>
+        <div class="end-content">
+            <h1 class="end-title">传奇的继承者</h1>
+            <div class="end-description">
+                <p>你不仅制作出了完美无瑕的天启与智慧之杖，甚至成功炼制出了传说中的贤者之石！你的成就震动了整个王国，甚至传遍了周边诸国。</p>
+                <p>皇家炼金师协会亲自授予你"大师"称号，国王邀请你成为宫廷首席炼金术士。但你婉拒了这些荣誉，选择留在奶奶的工房里，继续追寻炼金术的终极奥秘。</p>
+                <p>你的工房成为了炼金术士们的圣地，每天都有来自远方的学徒前来求学。奶奶的名声不仅得以保存，更在你的手中发扬光大，成为了真正的传奇。</p>
+                <p>工房中的灯火比以往更加明亮，照亮着炼金术的未来之路。</p>
+            </div>
+            <a href="../index.html" class="return-btn">返回主菜单</a>
+        </div>
+    </div>
+
+    <script>
+        // 根据URL参数显示对应的结局界面
+        const urlParams = new URLSearchParams(window.location.search);
+        const endingType = urlParams.get('ending');
+        
+        // 隐藏所有结局界面
+        document.querySelectorAll('.end-container').forEach(container => {
+            container.style.display = 'none';
+        });
+        
+        // 显示对应的结局界面
+        if (endingType === 'bad') {
+            document.querySelector('.bad-end').style.display = 'flex';
+        } else if (endingType === 'normal') {
+            document.querySelector('.normal-end').style.display = 'flex';
+        } else if (endingType === 'good') {
+            document.querySelector('.good-end').style.display = 'flex';
+        } else if (endingType === 'best') {
+            document.querySelector('.best-end').style.display = 'flex';
+        } else {
+            // 默认显示坏结局
+            document.querySelector('.bad-end').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>

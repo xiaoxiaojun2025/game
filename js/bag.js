@@ -131,6 +131,62 @@ class bag{
                 "trait":[]
             },
             {
+                "name":["捕虫网"],
+                "intro":"像这样拿着捕虫网，会让我回想起跟奶奶一起玩的回忆呢。奶奶以前教过我怎么抓独角仙。",
+                "img":"bug-net.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["飞翔之衣"],
+                "intro":"这是承载炼金技术的优秀外套，称之为炼金外套也没问题！",
+                "img":"alchemy-mantle.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["旅人背心"],
+                "intro":"既轻又暖还很结实！",
+                "img":"traveler-s-vest.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["星导手杖"],
+                "intro":"这种手杖的优点是无论人在何处，它都会立即指示出方位！",
+                "img":"starguide-staff.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["苍蓝星笼"],
+                "intro":"这个设计既成熟又帅气呢。",
+                "img":"azure-cage.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["银河星座"],
+                "intro":"我也来学习天文学会比较好吗？",
+                "img":"milky-sign.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["大地之母"],
+                "intro":"据说用它攻击敌人时，它会借助月球的力量调整引力……",
+                "img":"tellus-mater.webp",
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
                 "name":["饮用水","（水）"],
                 "intro":"咕噜咕噜……嗯～就是一般的水呢。",
                 "img":"drinking-water.webp",
@@ -143,6 +199,33 @@ class bag{
                 "name":["啪汽啪汽水","（水）","（气体）"],
                 "intro":"直接喝也很好喝，不过冰镇后会更美味呢。",
                 "img":"crackling-water.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["不冻妙水","（水）","（万灵药）"],
+                "intro":"我会用这个做出更好的东西。",
+                "img":"anti-freeze-water.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["炙热喷水","（水）","（火药）"],
+                "intro":"哇，隔着瓶子都还有点温热……",
+                "img":"heatwave-water.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["根源之水","（水）","（神秘之力）","（万灵药）"],
+                "intro":"喝下去或许就能更了解它。它又不是毒药，颜色看起来对身体也很好。",
+                "img":"wurzel-aqua.webp",
                 "price":1,
                 "amount":0,
                 "quality":[],
@@ -162,6 +245,114 @@ class bag{
                 "intro":"好密实的容器。",
                 "img":"tanning-fluid.webp",
                 "price":5,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["微风香精油"],
+                "intro":"精油有舒缓的效果，让人很放松呢。",
+                "img":"breezy-aroma.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["安宁药膏","（药品）"],
+                "intro":"炼金术士总是割伤不断嘛。所以我都会随时准备这种东西。",
+                "img":"sedative-ointment.webp",
+                "price":25,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["生命之蜜","（药品）"],
+                "intro":"它跟蜂蜜有什么不同呢？甜度都差不多……",
+                "img":"nectar-of-life.webp",
+                "price":200,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["翠岚之滴","（药品）"],
+                "intro":"这是蕴含魔力的水。它不仅气味甘甜，吃起来还微带甜味。",
+                "img":"greenwood-dew.webp",
+                "price":500,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["朔月暗雾","（药品）"],
+                "intro":"好帅气的名字！",
+                "img":"moonless-mist.webp",
+                "price":500,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["鞣皮液","（有毒材料）"],
+                "intro":"好密实的容器。",
+                "img":"tanning-fluid.webp",
+                "price":5,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["星之瓢虫","（虫）","（动物素材）"],
+                "intro":"这个花纹好可爱～而且还很粘人。",
+                "img":"lady-bug.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["幼亚龙毛虫","（虫）","（动物素材）"],
+                "intro":"养到成虫就会知道它是什么了吗？",
+                "img":"baby-wyrm.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["雷电蜻蜓","（虫）","（药材）","（气体）"],
+                "intro":"打雷时它的行动力会变强，这是为什么？",
+                "img":"leiden-dragonfly.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["大鬼兜独角仙","（虫）","（矿石）"],
+                "intro":"自己体重的1000倍……意思是体重5g可以举起5kg！？",
+                "img":"big-horned-beetle.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["白雪菇","（植物）","（线材）"],
+                "intro":"这个怎么看都是人偶呢。实在很难相信它是天然形成的……",
+                "img":"schneekleid.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["毒杀蛙","（动物素材）","（有毒材料）"],
+                "intro":"虽然我也不是说喜欢待在暗处……但我好像能理解不想待在太阳底下的心情。",
+                "img":"yuqtul-frog.webp",
+                "price":1,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -212,6 +403,69 @@ class bag{
                 "trait":[]
             },
             {
+                "name":["唐木叶","（植物）","（药材）"],
+                "intro":"这个我之前都还只把它当作杂草呢。",
+                "img":"taun.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["夕阳草","（植物）","（燃料）"],
+                "intro":"草如其名，跟夕阳很像吧？",
+                "img":"sunset-grass.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["布料","（布料）","（杂货）"],
+                "intro":"我很喜欢这种可爱的花纹。 ",
+                "img":"cloth.webp",
+                "price":35,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["天鹅绒布","（布料）","（杂货）"],
+                "intro":"这种布料既光滑又有光泽。它看起来很脆弱，但出乎意料地结实，还不容易弄脏，可好用了。” ",
+                "img":"velvetis.webp",
+                "price":500,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["黏银丝","（线材）"],
+                "intro":"用这种线混纺编织的布料十分结实，而且会闪闪发光，很时髦呢。我也来买一件用这种线做成的衣服好了。",
+                "img":"silver-web.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["棉花","（植物）","（线材）"],
+                "intro":"没有这个就做不出衣服了嘛。",
+                "img":"cotton-wool.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["捆起来的金线","（线材）"],
+                "intro":"光是用上这种线，就会有超高级的感觉呢。",
+                "img":"golden-thread.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
                 "name":["中和剂（红）","（中和剂）","（燃料）"],
                 "intro":"炼金术基础中的基础，中和剂！",
                 "img":"red-neutralizer.webp",
@@ -251,7 +505,7 @@ class bag{
                 "name":["中和剂（白）","（中和剂）","（有毒材料）"],
                 "intro":"得小心不要把它当成牛奶喝掉。",
                 "img":"white-neutralizer.webp",
-                "price":10,
+                "price":100,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -260,7 +514,7 @@ class bag{
                 "name":["万能中和剂（虹）","（中和剂）"],
                 "intro":"啊啊，真希望它的作法可以再简单一点。",
                 "img":"rainbow-neutralizer.webp",
-                "price":200,
+                "price":500,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -275,7 +529,7 @@ class bag{
                 "trait":[]
             },
             {
-                "name":["直木","（木材）","（燃料）"],
+                "name":["直木","（木材）"],
                 "intro":"偶尔～会有弯曲的长出来，那种也能卖到相当高价呢。<br>弯曲的直木……也太莫名其妙了。",
                 "img":"straight-baum.webp",
                 "price":1,
@@ -311,10 +565,37 @@ class bag{
                 "trait":[]
             },
             {
+                "name":["闪亮原色砂","（砂）","（原石）"],
+                "intro":"好像有画家会用这种砂画画呢。",
+                "img":"sparkling-sand.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["星之粉","（砂）","（万灵药）","（神秘之力）"],
+                "intro":"听说这其实是龙的鳞粉。",
+                "img":"star-powder.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["易熔金属","（水）","（神秘之力）","（金属）"],
+                "intro":"碰碰是没问题，不过它的蒸气对人体有害，还请不要加热过头。",
+                "img":"tikometal.webp",
+                "price":200,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
                 "name":["金属块","（金属）"],
                 "intro":"接下来会用它做出各种各样的东西！",
                 "img":"ingot.webp",
-                "price":50,
+                "price":100,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -323,7 +604,7 @@ class bag{
                 "name":["丝薇丽银","（金属）"],
                 "intro":"银色果然很帅气啊。",
                 "img":"silvalia.webp",
-                "price":100,
+                "price":300,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -359,6 +640,24 @@ class bag{
                 "name":["艾森矿","（矿石）"],
                 "intro":"艾森矿随处可见，而且熔点又低，可以用家里的锅子进行加工呢。",
                 "img":"eisen-ore.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["雷电矿","（矿石）"],
+                "intro":"要有多少雷电矿才能做出霹麻霹麻水？",
+                "img":"leiden-ore.webp",
+                "price":1,
+                "amount":0,
+                "quality":[],
+                "trait":[]
+            },
+            {
+                "name":["银粉矿石","（矿石）","（神秘之力）"],
+                "intro":"这种矿石鲜少单独用来打造武器……原来它的颜色是这样啊。",
+                "img":"malgam-ore.webp",
                 "price":1,
                 "amount":0,
                 "quality":[],
@@ -404,7 +703,7 @@ class bag{
                 "name":["百万水晶","（宝石）","（神秘之力）"],
                 "intro":"原来如此，放在水里就没声音了。",
                 "img":"millio-quartz.webp",
-                "price":800,
+                "price":3000,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -413,7 +712,7 @@ class bag{
                 "name":["纯洁钻石","（宝石）","（万灵药）"],
                 "intro":"感觉我能改当宝石工匠呢。",
                 "img":"innocent-adamas.webp",
-                "price":650,
+                "price":2000,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -422,7 +721,7 @@ class bag{
                 "name":["睿智绿宝石","（宝石）","（植物）"],
                 "intro":"我盯……",
                 "img":"wise-smaragd.webp",
-                "price":400,
+                "price":900,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -431,7 +730,7 @@ class bag{
                 "name":["诚实黄宝石","（宝石）","（砂）","（石材）"],
                 "intro":"它在晚上也会发出耀眼的光芒，所以被人称为“夜晚的太阳”。<br>还有，据说只要改变调合的方式，它也能呼唤雷电。",
                 "img":"honest-topaz.webp",
-                "price":300,
+                "price":600,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -440,7 +739,7 @@ class bag{
                 "name":["高贵蓝宝石","（宝石）","（矿石）"],
                 "intro":"这种宝石似乎是贵族或王族的证明。",
                 "img":"noble-sapphire.webp",
-                "price":225,
+                "price":350,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -449,7 +748,7 @@ class bag{
                 "name":["热情红宝石","（宝石）","（燃料）"],
                 "intro":"其实这个也能拿来制作引爆装置。",
                 "img":"passion-ruby.webp",
-                "price":150,
+                "price":200,
                 "amount":0,
                 "quality":[],
                 "trait":[]
@@ -464,7 +763,7 @@ class bag{
                 "trait":[]
             },
             {
-                "name":["鞣制皮革","（动物素材）","杂货"],
+                "name":["鞣制皮革","（动物素材）","（杂货）"],
                 "intro":"这才是这种皮革真正的模样！",
                 "img":"leather.webp",
                 "price":50,
@@ -566,7 +865,6 @@ class bag{
                 "name":["星幻钥匙"],
                 "intro":"这是从外太空坠落下来的陨石……",
                 "img":"key-to-the-stars.webp",
-                "price":1,
                 "amount":0,
                 "quality":[],
                 "trait":[]

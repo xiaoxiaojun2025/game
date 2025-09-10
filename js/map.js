@@ -114,7 +114,7 @@ var buystore=[
                 "amount":1,
                 "quality":[100],
                 "trait":[""],
-                "price":5000,
+                "price":3000,
                 "refreshTime":-1
             },
             {
@@ -123,7 +123,7 @@ var buystore=[
                 "amount":2,
                 "quality":[20,30],
                 "trait":["品质提升","高价"],
-                "price":15,
+                "price":30,
                 "refreshTime":72
             },
             {
@@ -134,6 +134,24 @@ var buystore=[
                 "trait":["品质提升+","品质提升+"],
                 "price":1000,
                 "refreshTime":-1
+            },
+            {
+                "name":"微风香精油",
+                "img":"breezy-aroma.webp",
+                "amount":3,
+                "quality":[50,50,50],
+                "trait":["品质提升+","品质提升+","品质提升+"],
+                "price":100,
+                "refreshTime":72
+            },
+            {
+                "name":"棉花",
+                "img":"cotton-wool.webp",
+                "amount":5,
+                "quality":[25,25,30,30,40],
+                "trait":["","品质提升","高价","","品质提升"],
+                "price":15,
+                "refreshTime":48
             },
         ],
     }
@@ -209,7 +227,40 @@ var mapTraitGroup={
     ],
     "mountainCave3":[
         "",
-    ]
+    ],
+    "coldCave":[
+        "",
+    ],
+    "coldPlain":[
+        "",
+    ],
+    "coldPlainRight":[
+        "",
+    ],
+    "coldPalace":[
+        "",
+    ],
+    "coldPlainDown":[
+        "",
+    ],
+    "volcano":[
+        "",
+    ],
+    "forest":[
+        "",
+    ],
+    "deepForest":[
+        "",
+    ],
+    "deepestForest":[
+        "",
+    ],
+    "thunderIsland":[
+        "",
+    ],
+    "thunderRuins":[
+        "",
+    ],
 }
 var mapQualityGroup={
     "pathNearAtelier":[
@@ -265,13 +316,48 @@ var mapQualityGroup={
     ],
     "mountainCave3":[
         10,
-    ]
+    ],
+    "coldCave":[
+        10,
+    ],
+    "coldPlain":[
+        10,
+    ],
+    "coldPlainRight":[
+        10,
+    ],
+    "coldPalace":[
+        10,
+    ],
+    "coldPlainDown":[
+        10,
+    ],
+    "volcano":[
+        10,
+    ],
+    "forest":[
+        10,
+    ],
+    "deepForest":[
+        10,
+    ],
+    "deepestForest":[
+        10,
+    ],
+    "thunderIsland":[
+        10,
+    ],
+    "thunderRuins":[
+        10,
+    ],
 }
+
 
 var atelier={
     "name":"atelier",
     "name1":"炼金工房",
     "background":"atelier.png",
+    "bgm":"阿知波大輔 - 春風のポーレチカ.mp3",
     "entity":[
         {
             "type":"hitbox",//地板
@@ -326,6 +412,7 @@ var pathNearAtelier={
     "name":"pathNearAtelier",
     "name1":"工房旁小路",
     "background":"pathNearAtelier.png",
+    "bgm":"阿知波大輔 - 春風のポーレチカ.mp3",
     "entity":[
         {
             "type":"hitbox",//地板
@@ -399,6 +486,7 @@ var pathToTheTown={
     "name":"pathToTheTown",
     "name1":"通往城镇的小路",
     "background":"pathToTheTown.png",
+    "bgm":"矢野達也 - やってみよう!.mp3",
     "entity":[
         {
             "type":"hitbox",//地板左
@@ -427,7 +515,7 @@ var pathToTheTown={
         {
             "type":"item",
             "itemname":"直木",
-            "amount":5,
+            "amount":4,
             "quality":[],
             "trait":[],
             "hitbox":[160,512,128,128]
@@ -448,7 +536,7 @@ var pathToTheTown={
         },
         {
             "type":"entrance",
-            "destinationMap":"town",
+            "destinationMap":"forest",
             "destinationX":0,
             "destinationY":518,
             "hitbox":[1280,0,80,720]
@@ -499,6 +587,7 @@ var CrystalCave={
     "name":"CrystalCave",
     "name1":"水晶洞穴",
     "background":"CrystalCave.jpg",
+    "bgm":"矢野達也 - 古の風の跡.mp3",
     "entity":[
         {
             "type":"hitbox",
@@ -637,18 +726,29 @@ var CrystalCaveRight={
             "hitbox":[0,-240,1280,80]
         },
         {
-            "type":"entrance",
-            "destinationMap":"CrystalCave",
-            "destinationX":1168,
-            "destinationY":518,
-            "hitbox":[-80,0,80,440]
+            "type":"hitbox",
+            "hitbox":[1280,0,80,450]
         },
         {
             "type":"entrance",
             "destinationMap":"CrystalCave",
             "destinationX":1196,
             "destinationY":232,
+            "hitbox":[-80,0,80,440]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"CrystalCave",
+            "destinationX":1196,
+            "destinationY":518,
             "hitbox":[-80,450,80,270]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"coldCave",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,450,80,270]
         },
         {
             "type":"needToolItem",
@@ -730,6 +830,422 @@ var CrystalCaveLeft={
         },
     ]
 }
+var coldCave={
+    "name":"coldCave",
+    "name1":"冷洞",
+    "background":"coldCave.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[0,230,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[370,380,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[800,490,320,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[370,540,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-80,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[-80,0,80,240]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"CrystalCaveRight",
+            "destinationX":1196,
+            "destinationY":518,
+            "hitbox":[-80,240,80,480]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"coldPlain",
+            "destinationX":0,
+            "destinationY":228,
+            "hitbox":[1280,0,80,720]
+        },
+        {
+            "type":"recipeItem",
+            "name":"鞋匠手册",
+            "hitbox":[6,81,145,145],
+            "recipe":[
+                {
+                    "name":"旅人之鞋",
+                    "time":24,
+                    "recipe":{
+                        "鞣制皮革":2,
+                        "（布料）":2,
+                        "（线材）":1
+                    }
+                },
+            ]
+        },
+        {
+            "type":"item",
+            "itemname":"不冻妙水",
+            "amount":3,
+            "quality":[],
+            "trait":[],
+            "hitbox":[961,343,139,139]
+        },
+        {
+            "type":"needToolItem",
+            "itemname":"银粉矿石",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "needTool":"十字镐",
+            "hitbox":[164,437,132,132]
+        },
+    ]
+}
+var coldPlain={
+    "name":"coldPlain",
+    "name1":"寒冷平原",
+    "background":"coldPlain.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[0,350,160,16]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[160,480,320,16]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[810,400,160,16]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1120,300,160,340]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-80,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[-80,360,80,370]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"coldCave",
+            "destinationX":1196,
+            "destinationY":518,
+            "hitbox":[-80,0,80,350]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"coldPlainRight",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,0,80,720]
+        },
+        {
+            "type":"item",
+            "itemname":"白雪菇",
+            "amount":3,
+            "quality":[],
+            "trait":[],
+            "hitbox":[850,529,107,107]
+        },
+    ]
+}
+var coldPlainRight={
+    "name":"coldPlianRight",
+    "name1":"寒冷平原右",
+    "background":"coldPlainRight.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[290,260,320,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[890,380,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,650,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[880,640,400,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-80,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1280,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"coldPlain",
+            "destinationX":1196,
+            "destinationY":178,
+            "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"coldPlainDown",
+            "destinationX":767,
+            "destinationY":1,
+            "hitbox":[650,720,230,80]
+        },
+        {
+            "type":"door",
+            "destinationMap":"coldPalace",
+            "destinationX":0,
+            "destinationY":178,
+            "hitbox":[1078,399,202,240]
+        },
+    ]
+}
+var coldPalace={
+    "name":"coldPalace",
+    "name1":"冷宫",
+    "background":"coldPalace.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[480,186,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[750,316,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1050,450,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,300,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[300,450,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[460,530,320,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[870,640,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-80,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[-80,310,80,570]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1280,0,80,880]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"coldPlainRight",
+            "destinationX":1196,
+            "destinationY":518,
+            "hitbox":[-80,0,80,300]
+        },
+        {
+            "type":"dog",
+            "name":"",
+            "img":"dog",
+            "hitbox":[0,800,1280,80],
+            "damage":999,
+            "hearts":2000
+        },
+        {
+            "type":"item",
+            "itemname":"闪亮原色砂",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "hitbox":[319,323,120,120]
+        },
+        {
+            "type":"item",
+            "itemname":"闪亮原色砂",
+            "amount":1,
+            "quality":[],
+            "trait":[],
+            "hitbox":[509,75,101,101]
+        },
+        {
+            "type":"recipeItem",
+            "name":"洁白布料的编制方法",
+            "hitbox":[544,368,151,151],
+            "recipe":[
+                {
+                    "name":"天鹅绒布",
+                    "time":4,
+                    "recipe":{
+                        "白雪菇":2,
+                        "捆起来的金线":2,
+                        "（万灵药）":1
+                    }
+                },
+            ]
+        }
+    ]
+}
+var coldPlainDown={
+    "name":"coldPlainDown",
+    "name1":"寒冷平原下",
+    "background":"coldPlainDown.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[650,220,320,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[400,360,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,640,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[160,480,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1020,640,260,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-80,650,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[970,-80,310,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1280,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"coldPlainRight",
+            "destinationX":727,
+            "destinationY":423,
+            "hitbox":[650,-80,320,80]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"volcano",
+            "destinationX":1196,
+            "destinationY":518,
+            "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"dog",
+            "name":"",
+            "img":"dog",
+            "hitbox":[0,800,1280,80],
+            "damage":999,
+            "hearts":2000
+        },
+        {
+            "type":"item",
+            "itemname":"炙热喷水",
+            "amount":3,
+            "quality":[],
+            "trait":[],
+            "hitbox":[424,243,107,107]
+        },
+    ]
+}
+var volcano={
+    "name":"volcano",
+    "name1":"火山",
+    "background":"volcano.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[0,340,320,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[525,241,480,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[430,460,160,10]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[640,640,640,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[-160,-80,1440,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[-160,0,80,800]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"coldPlainDown",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,0,80,720]
+        },
+        {
+            "type":"dog",
+            "name":"",
+            "img":"dog",
+            "hitbox":[-160,800,1440,80],
+            "damage":999,
+            "hearts":2000
+        },
+        {
+            "type":"recipeItem",
+            "name":"如水一般的金属冶炼法",
+            "hitbox":[75,165,165,165],
+            "recipe":[
+                {
+                    "name":"易熔金属",
+                    "time":4,
+                    "recipe":{
+                        "银粉矿石":1,
+                        "炙热喷水":2,
+                        "（矿石）":2
+                    }
+                }
+            ]
+        }
+    ]
+}
 var dragonHole={
     "name":"dragonHole",
     "name1":"龙洞",
@@ -808,11 +1324,425 @@ var dragonLeft={
                     "recipe":{
                         "精灵银块":1,
                         "黑洞":1,
-                        "（神秘之力）":2
+                        "银粉矿石":2
                     }
                 },
             ]
         }
+    ]
+}
+var forest={
+    "name":"forest",
+    "name1":"森林",
+    "background":"forest.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[228,475,214,23]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[587,338,212,22]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[987,178,214,23]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[177,151,214,24]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-80,1280,80]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"pathToTheTown",
+            "destinationX":1168,
+            "destinationY":518,
+            "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"town",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,0,80,720]
+        },
+        {
+            "type":"door",
+            "destinationMap":"deepForest",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[511,421,218,218]
+        },
+        {
+            "type":"item",
+            "itemname":"红色的花",
+            "amount":3,
+            "quality":[],
+            "trait":[],
+            "hitbox":[69,540,96,96]
+        },
+        {
+            "type":"item",
+            "itemname":"唐木叶",
+            "amount":4,
+            "quality":[],
+            "trait":[],
+            "hitbox":[238,73,81,81]
+        },
+        {
+            "type":"item",
+            "itemname":"唐木叶",
+            "amount":3,
+            "quality":[],
+            "trait":[],
+            "hitbox":[1049,94,83,83]
+        },
+    ]
+}
+var deepForest={
+    "name":"deepForest",
+    "name1":"森林深处",
+    "background":"deepForest.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[735,521,195,19]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[371,366,190,18]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[69,229,194,21]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[650,177,190,18]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-80,1280,80]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"forest",
+            "destinationX":565,
+            "destinationY":518,
+            "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"deepestForest",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,0,80,720]
+        },
+        {
+            "type":"recipeItem",
+            "name":"捕虫网制作方法",
+            "hitbox":[133,505,121,121],
+            "recipe":[
+                {
+                    "name":"捕虫网",
+                    "time":4,
+                    "recipe":{
+                        "捆起来的金线":2,
+                        "（木材）":2,
+                        "（线材）":2
+                    }
+                },
+            ]
+        },
+        {
+            "type":"needToolItem",
+            "itemname":"星之瓢虫",
+            "amount":3,
+            "quality":[],
+            "trait":[],
+            "needTool":"捕虫网",
+            "hitbox":[543,507,104,104]
+        },
+        {
+            "type":"needToolItem",
+            "itemname":"毒杀蛙",
+            "amount":4,
+            "quality":[],
+            "trait":[],
+            "needTool":"捕虫网",
+            "hitbox":[1081,483,104,104]
+        },
+        {
+            "type":"item",
+            "itemname":"唐木叶",
+            "amount":3,
+            "quality":[],
+            "trait":[],
+            "hitbox":[684,54,110,10]
+        },
+        {
+            "type":"item",
+            "itemname":"黏银丝",
+            "amount":4,
+            "quality":[],
+            "trait":[],
+            "hitbox":[348,242,128,128]
+        },
+    ]
+}
+var deepestForest={
+    "name":"deepestForest",
+    "name1":"森林最深处",
+    "background":"deepestForest.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,399,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[732,640,546,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[430,515,268,19]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[781,324,268,19]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[53,329,268,19]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[414,149,268,19]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-80,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1280,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"deepForest",
+            "destinationX":1168,
+            "destinationY":518,
+            "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"deephole",
+            "destinationX":950,
+            "destinationY":0,
+            "hitbox":[0,720,1280,80]
+        },
+        {
+            "type":"recipeItem",
+            "name":"炼金蜂蜜制作方法",
+            "hitbox":[491,20,121,121],
+            "recipe":[
+                {
+                    "name":"生命之蜜",
+                    "time":4,
+                    "recipe":{
+                        "微风香精油":1,
+                        "（虫）":3,
+                        "（万灵药）":2,
+                        "（中和剂）":1
+                    }
+                },
+                {
+                    "name":"翠岚之滴",
+                    "time":4,
+                    "recipe":{
+                        "生命之蜜":1,
+                        "睿智绿宝石":1,
+                        "雷电蜻蜓":3,
+                        "（万灵药）":2,
+                        "（中和剂）":1
+                    }
+                },
+            ]
+        },
+        {
+            "type":"needToolItem",
+            "itemname":"幼亚龙毛虫",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "needTool":"捕虫网",
+            "hitbox":[97,475,121,121]
+        },
+        {
+            "type":"item",
+            "itemname":"夕阳草",
+            "amount":4,
+            "quality":[],
+            "trait":[],
+            "hitbox":[1085,475,121,121]
+        },
+        {
+            "type":"item",
+            "itemname":"夕阳草",
+            "amount":4,
+            "quality":[],
+            "trait":[],
+            "hitbox":[492,415,92,92]
+        },
+        {
+            "type":"item",
+            "itemname":"黏银丝",
+            "amount":3,
+            "quality":[],
+            "trait":[],
+            "hitbox":[122,184,134,134]
+        },
+        {
+            "type":"item",
+            "itemname":"黏银丝",
+            "amount":4,
+            "quality":[],
+            "trait":[],
+            "hitbox":[755,497,110,110]
+        },
+    ]
+}
+var thunderIsland={
+    "name":"thunderIsland",
+    "name1":"轰雷岛",
+    "bgm":"悠花ユカ - 星追いのルルア ～コーラス.mp3",
+    "background":"thunderIsland.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,265,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[473,640,267,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1018,640,261,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[281,466,179,16]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[795,362,179,17]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-80,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"townRight",
+            "destinationX":110,
+            "destinationY":0,
+            "hitbox":[265,720,208,80]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"townRight",
+            "destinationX":738,
+            "destinationY":0,
+            "hitbox":[738,720,280,80]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"thunderRuins",
+            "destinationX":0,
+            "destinationY":518,
+            "hitbox":[1280,0,80,720]
+        },
+        {
+            "type":"needToolItem",
+            "itemname":"雷电蜻蜓",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "needTool":"捕虫网",
+            "hitbox":[535,516,118,118]
+        },
+    ]
+}
+var thunderRuins={
+    "name":"thunderRuins",
+    "name1":"轰雷废墟",
+    "background":"thunderRuins.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[0,640,276,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[597,640,681,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[301,485,286,30]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[702,176,286,35]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-80,1280,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1280,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"thunderIsland",
+            "destinationX":1168,
+            "destinationY":518,
+            "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"deephole",
+            "destinationX":640,
+            "destinationY":0,
+            "hitbox":[0,720,1280,80]
+        },
+        {
+            "type":"needToolItem",
+            "itemname":"星之粉",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "needTool":"爆破用炎烧",
+            "use":1,
+            "hitbox":[774,40,129,129]
+        },
     ]
 }
 var town={
@@ -835,7 +1765,7 @@ var town={
         },
         {
             "type":"entrance",
-            "destinationMap":"pathToTheTown",
+            "destinationMap":"forest",
             "destinationX":1196,
             "destinationY":518,
             "hitbox":[-80,0,80,720]
@@ -853,6 +1783,7 @@ var townRight={
     "name":"townRight",
     "name1":"城镇右",
     "background":"townRight.jpg",
+    "bgm":"矢野達也 - やってみよう!.mp3",
     "entity":[
         {
             "type":"hitbox",
@@ -902,6 +1833,13 @@ var townRight={
             "destinationX":0,
             "destinationY":518,
             "hitbox":[1280,0,80,380]
+        },
+        {
+            "type":"entrance",
+            "destinationMap":"thunderIsland",
+            "destinationX":150,
+            "destinationY":518,
+            "hitbox":[0,-80,400,80]
         },
         {
             "type":"dog",
@@ -968,7 +1906,8 @@ var peak={
                     "recipe":{
                         "纯水":2,
                         "龙之血晶":1,
-                        "（中和剂）":4
+                        "中和剂（白）":1,
+                        "（中和剂）":3
                     }
                 },
                 {
@@ -984,9 +1923,19 @@ var peak={
                     "name":"黑洞",
                     "time":128,
                     "recipe":{
-                        "（星幻钥匙）":1,
-                        "（龙素材）":1,
+                        "星幻钥匙":1,
+                        "万能中和剂（虹）":1,
                         "（宝石）":2
+                    }
+                },
+                {
+                    "name":"朔月暗雾",
+                    "time":4,
+                    "recipe":{
+                        "中和剂（白）":1,
+                        "幼亚龙毛虫":2,
+                        "（有毒材料）":2,
+                        "夕阳草":3
                     }
                 },
             ]
@@ -1060,18 +2009,9 @@ var mountainCave1={
                     "recipe":{
                         "野兽毛皮":2,
                         "鞣皮液":2,
-                        "纯水":2
+                        "（水）":2
                     }
-                },
-                {
-                    "name":"旅人之鞋",
-                    "time":24,
-                    "recipe":{
-                        "鞣制皮革":2,
-                        "寻常草":2,
-                        "（中和剂）":1
-                    }
-                },
+                }
             ]
         }
     ]
@@ -1244,6 +2184,46 @@ var mountainCave3={
             "needTool":"爆破用炎烧",
             "hitbox":[1125,521,117,117],
             "use":1
+        },
+    ]
+}
+var deephole={
+    "name":"deephole",
+    "name1":"",
+    "background":"deephole.png",
+    "entity":[
+        {
+            "type":"hitbox",
+            "hitbox":[-240,0,880,80]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[1440,0,880,80]
+        },
+        {
+            "type":"dog",
+            "name":"",
+            "img":"dog",
+            "hitbox":[-160,800,1600,80],
+            "damage":999,
+            "hearts":2000
+        },
+        {
+            "type":"recipeItem",
+            "name":"",
+            "hitbox":[1280,600,200,200],
+            "recipe":[
+                {
+                    "name":"贤者之石",
+                    "time":4,
+                    "recipe":{
+                        "海银":2,
+                        "万能中和剂（虹）":2,
+                        "大地之母":1,
+                        "百万水晶":1
+                    }
+                },
+            ]
         },
     ]
 }

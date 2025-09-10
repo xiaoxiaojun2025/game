@@ -10,7 +10,8 @@ class game{
     constructor(){
         this.status="running";
         this.timer=8;
-        this.cash=100;
+        this.cash=0;
+        this.bgm="";
         this.createCanvas=this.createCanvas.bind(this);
         this.createCanvas();
         this.ctx=this.gameCanvas.getContext("2d");
@@ -62,9 +63,13 @@ class game{
         this.gameCanvas.style.backgroundImage="url(../img/map/"+newMap.background+")";
         this.Entity=[];
         this.createEntities();
+        if(newMap.bgm!=undefined&&this.bgm!=newMap.bgm){
+            this.bgm=newMap.bgm;
+            document.getElementById("bgm").src="../mp3/"+this.bgm;
+        }
         if(this.Map.name=="atelier"){
             document.getElementById("bag").innerHTML="材料箱";
-            this.Lilies.hearts=5;
+            this.Lilies.hearts=this.Lilies.maxHearts;
         }
         else{
             document.getElementById("bag").innerHTML="采集篮";
@@ -121,22 +126,30 @@ class game{
     animate(timestamp){
         this.sumTimestamp+=timestamp-this.prevTimestamp;
         this.prevTimestamp=timestamp;
-        document.getElementById("timer").innerHTML=Math.floor(this.timer/24).toString()+"天"+Math.floor(this.timer%24).toString()+"时<br>金币："+this.cash.toString()+"<br>生命："+this.Lilies.hearts.toString()+"❤";
+        document.getElementById("timer").innerHTML=Math.floor(this.timer/24).toString()+"天"+Math.floor(this.timer%24).toString()+"时<br>金币："+this.cash.toString()+"<br>攻击："+this.Lilies.damage.toString();
+        document.getElementById("heart").innerHTML="❤"+this.Lilies.hearts.toString()+"/"+this.Lilies.maxHearts.toString();
+        document.getElementById("heart").style.backgroundSize=(this.Lilies.hearts/this.Lilies.maxHearts*100)+"% 100%";
         if(this.sumTimestamp>=FrameRate){
             this.sumTimestamp-=FrameRate;
             if(this.input.key.indexOf(config.pause)>-1){
                 if(this.status=="running"){
                     this.status="paused";
                     this.PauseButtonGroup.display();
+                    document.getElementById("bgm").pause();
+                    //document.getElementById("pauseOverlay").style.display="block";
                 }
             }
             if(this.status=="paused"||this.status=="talking"){
+                document.getElementById("heart").style.display="none";
                 document.getElementById("Ehint").style.display="none";
                 document.getElementById("mapname").style.display="none";
             }
             if(this.status=="running"){
                 Frame++;
+                document.getElementById("bgm").play();
                 document.getElementById("mapname").style.display="block";
+                document.getElementById("heart").style.display="block";
+                document.getElementById("pauseOverlay").style.display="none";
                 this.ctx.clearRect(0,0,gameWidth,gameHeight);
                 this.Entity.forEach(e=>{
                     e.draw(this.ctx);
@@ -155,6 +168,8 @@ class game{
             }
             if(this.status=="talking"){
                 Frame++;
+                document.getElementById("bgm").play();
+                document.getElementById("pauseOverlay").style.display="none";
                 this.ctx.clearRect(0,0,gameWidth,gameHeight);
                 this.Entity.forEach(e=>{
                     e.draw(this.ctx);

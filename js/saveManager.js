@@ -6,6 +6,12 @@ class saveMap{
         this.CrystalCave=CrystalCave;
         this.CrystalCaveRight=CrystalCaveRight;
         this.CrystalCaveLeft=CrystalCaveLeft;
+        this.coldCave=coldCave;
+        this.coldPlain=coldPlain;
+        this.coldPlainRight=coldPlainRight;
+        this.coldPalace=coldPalace;
+        this.coldPlainDown=coldPlainDown;
+        this.volcano=volcano;
         this.dragonHole=dragonHole;
         this.dragonLeft=dragonLeft;
         this.town=town;
@@ -14,6 +20,7 @@ class saveMap{
         this.mountainCave1=mountainCave1;
         this.mountainCave2=mountainCave2;
         this.mountainCave3=mountainCave3;
+        this.deephole=deephole;
     }
 }
 class saveManager{
@@ -38,6 +45,7 @@ class saveManager{
         this.event=game.eventChecker.event;
         this.achievement=game.achievement.achievements;
         this.cash=game.cash;
+        this.maxHearts=game.Lilies.maxHearts;
         this.hearts=game.Lilies.hearts;
         this.damage=game.Lilies.damage;
         this.getteditems=game.getteditems;
@@ -52,6 +60,7 @@ class saveManager{
         localStorage.setItem("LA-save-"+this.username+"event",JSON.stringify(this.event));
         localStorage.setItem("LA-save-"+this.username+"achievement",JSON.stringify(this.achievement));
         localStorage.setItem("LA-save-"+this.username+"cash",JSON.stringify(this.cash));
+        localStorage.setItem("LA-save-"+this.username+"maxHearts",JSON.stringify(this.maxHearts));
         localStorage.setItem("LA-save-"+this.username+"hearts",JSON.stringify(this.hearts));
         localStorage.setItem("LA-save-"+this.username+"damage",JSON.stringify(this.damage));
         localStorage.setItem("LA-save-"+this.username+"getteditems",JSON.stringify(this.getteditems));
@@ -70,6 +79,7 @@ class saveManager{
         this.event=JSON.parse(localStorage.getItem("LA-save-"+this.username+"event"));
         this.achievement=JSON.parse(localStorage.getItem("LA-save-"+this.username+"achievement"));
         this.cash=JSON.parse(localStorage.getItem("LA-save-"+this.username+"cash"));
+        this.maxHearts=JSON.parse(localStorage.getItem("LA-save-"+this.username+"maxHearts"));
         this.hearts=JSON.parse(localStorage.getItem("LA-save-"+this.username+"hearts"));
         this.damage=JSON.parse(localStorage.getItem("LA-save-"+this.username+"damage"));
         this.getteditems=JSON.parse(localStorage.getItem("LA-save-"+this.username+"getteditems"));
@@ -85,6 +95,7 @@ class saveManager{
         game.eventChecker.event=this.event;
         game.achievement.achievements=this.achievement;
         game.cash=this.cash;
+        game.Lilies.maxHearts=this.maxHearts;
         game.Lilies.hearts=this.hearts;
         game.Lilies.damage=this.damage;
         for(let i=0;i<game.permanentEntity.length;i++){
