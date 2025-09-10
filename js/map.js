@@ -1517,7 +1517,7 @@ var deepestForest={
         },
         {
             "type":"hitbox",
-            "hitbox":[430,515,268,19]
+            "hitbox":[430,473,268,19]
         },
         {
             "type":"hitbox",
