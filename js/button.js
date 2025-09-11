@@ -128,7 +128,7 @@ class pauseButtonGroup{
             }
             else if(this.buttonGroup[e].id=="ender"){
                 this.buttonGroup[e].onclick=function(){
-                    game.EndChecker.ender.end=true;
+                    game.eventChecker.event.end=true;
                 }
             }
         }
