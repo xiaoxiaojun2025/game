@@ -472,6 +472,9 @@ class pot extends entity{
                                                 if(game.RecipeGroup.recipe[i].name=="爆破用炎烧"){
                                                     game.achievement.getAchievement("艺术就是爆炸！",game);
                                                 }
+                                                if(game.RecipeGroup.recipe[i].name=="捕虫网"){
+                                                    game.achievement.getAchievement("小虫得豸",game);
+                                                }
                                                 if(game.RecipeGroup.recipe[i].name=="星导手杖"&&lilies.damage<5){
                                                     lilies.damage=5;
                                                     game.RecipeGroup.recipe.push(

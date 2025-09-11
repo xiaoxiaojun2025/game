@@ -50,11 +50,31 @@ var achievements=[
         "img":"achievement2.png"
     },
     {
+        "name":"小虫得豸",
+        "img":"achievement2.png"
+    },
+    {
         "name":"这不是铁镐吗",
         "img":"achievement2.png"
     },
     {
         "name":"艺术就是爆炸！",
         "img":"achievement2.png"
+    },
+    {
+        "name":"坏结局",
+        "img":"achievement3.png"
+    },
+    {
+        "name":"普通结局",
+        "img":"achievement3.png"
+    },
+    {
+        "name":"好结局",
+        "img":"achievement3.png"
+    },
+    {
+        "name":"真结局",
+        "img":"achievement3.png"
     },
 ]

@@ -14,6 +14,11 @@ class saveMap{
         this.volcano=volcano;
         this.dragonHole=dragonHole;
         this.dragonLeft=dragonLeft;
+        this.forest=forest;
+        this.deepForest=deepForest;
+        this.deepestForest=deepestForest;
+        this.thunderIsland=thunderIsland;
+        this.thunderRuins=thunderRuins;
         this.town=town;
         this.townRight=townRight;
         this.peak=peak;

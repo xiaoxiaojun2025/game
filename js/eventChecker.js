@@ -119,15 +119,19 @@ class eventChecker{
             game.changeMap(atelier);
             localStorage.removeItem("LA-save-"+localStorage.getItem("LA-username"));
             if(game.storage.item[0].amount==0){
+                game.achievement.getAchievement("坏结局",game);
                 window.location.href="../html/end.html?ending=bad";
             }
             else if(Math.max(...game.storage.item[0].quality)<=500){
+                game.achievement.getAchievement("普通结局",game);
                 window.location.href="../html/end.html?ending=normal";
             }
             else if(Math.max(...game.storage.item[0].quality)>500&&game.storage.item[game.storage.itemID("贤者之石")].amount==0){
+                game.achievement.getAchievement("好结局",game);
                 window.location.href="../html/end.html?ending=good";
             }
             else{
+                game.achievement.getAchievement("真结局",game);
                 window.location.href="../html/end.html?ending=best";
             }
         }

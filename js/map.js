@@ -156,202 +156,152 @@ var buystore=[
         ],
     }
 ]
-var mapTraitGroup={
-    "pathNearAtelier":[
-        "",
-        "",
-        "",
-        "",
-        "",
-        "品质提升",
-        "低价",
-        "高价"
-    ],
-    "pathToTheTown":[
-        "",
-        "",
-        "",
-        "",
-        "",
-        "品质提升",
-        "品质提升",
-        "品质提升",
-        "品质提升+",
-        "低价",
-        "低价",
-        "低价+",
-        "高价",
-        "高价"
-    ],
-    "CrystalCave":[
-        "",
-        "",
-        "",
-        "",        
-        "品质提升",
-        "品质提升",
-        "品质提升",
-        "品质提升+",
-        "品质提升+",
-        "品质提升++",
-    ],
-    "CrystalCaveRight":[
-        "低价",
-        "高价",
-        "高价+",
-        "高价+",        
-        "品质提升",
-        "品质提升",
-        "品质提升",
-        "品质提升+",
-        "品质提升+",
-        "品质提升++",
-    ],
-    "dragonHole":[
-        "",
-    ],
-    "mountainCave1":[
-        "",
-        "",
-        "",
-        "",
-        "",
-        "品质提升",
-        "低价",
-        "高价"
-    ],
-    "mountainCave2":[
-        "",
-        "",
-        ""
-    ],
-    "mountainCave3":[
-        "",
-    ],
-    "coldCave":[
-        "",
-    ],
-    "coldPlain":[
-        "",
-    ],
-    "coldPlainRight":[
-        "",
-    ],
-    "coldPalace":[
-        "",
-    ],
-    "coldPlainDown":[
-        "",
-    ],
-    "volcano":[
-        "",
-    ],
-    "forest":[
-        "",
-    ],
-    "deepForest":[
-        "",
-    ],
-    "deepestForest":[
-        "",
-    ],
-    "thunderIsland":[
-        "",
-    ],
-    "thunderRuins":[
-        "",
-    ],
-}
-var mapQualityGroup={
-    "pathNearAtelier":[
-        5,
-        5,
-        10,
-        10,
-        10,
-        10,
-        20
-    ],
-    "pathToTheTown":[
-        10,
-        10,
-        10,
-        15,
-        15,
-        20,
-        25
-    ],
-    "CrystalCave":[
-        10,
-        20,
-        20,
-        20,
-        20,
-        25,
-        25,
-        30,
-        30,
-        35,
-        35
-    ],
-    "CrystalCaveRight":[
-        30,
-        30,
-        40,
-        40,
-        50,
-        50,
-        50,
-    ],
-    "dragonHole":[
-        50,
-    ],
-    "mountainCave1":[
-        10,
-        20,
-    ],
-    "mountainCave2":[
-        10,
-        20,
-    ],
-    "mountainCave3":[
-        10,
-    ],
-    "coldCave":[
-        10,
-    ],
-    "coldPlain":[
-        10,
-    ],
-    "coldPlainRight":[
-        10,
-    ],
-    "coldPalace":[
-        10,
-    ],
-    "coldPlainDown":[
-        10,
-    ],
-    "volcano":[
-        10,
-    ],
-    "forest":[
-        10,
-    ],
-    "deepForest":[
-        10,
-    ],
-    "deepestForest":[
-        10,
-    ],
-    "thunderIsland":[
-        10,
-    ],
-    "thunderRuins":[
-        10,
-    ],
-}
 
+var mapTraitGroup = {
+    "pathNearAtelier": [
+        "", "", "", "", "",
+        "品质提升", "低价", "高价"
+    ],
+    "pathToTheTown": [
+        "", "", "", "", "",
+        "品质提升", "品质提升", "品质提升",
+        "品质提升+", "低价", "低价", "低价+",
+        "高价", "高价"
+    ],
+    "CrystalCave": [
+        "", "", "", "",        
+        "品质提升", "品质提升", "品质提升",
+        "品质提升+", "品质提升+", "品质提升++",
+    ],
+    "CrystalCaveRight": [
+        "低价", "高价", "高价+", "高价+",        
+        "品质提升", "品质提升", "品质提升",
+        "品质提升+", "品质提升+", "品质提升++",
+    ],
+    "dragonHole": [
+        "品质提升++", "超级品质", "究极之力"
+    ],
+    "mountainCave1": [
+        "", "", "", "", "",
+        "品质提升", "低价", "高价"
+    ],
+    "mountainCave2": [
+        "品质提升", "品质提升+", "高价", "高价+"
+    ],
+    "mountainCave3": [
+        "品质提升+", "品质提升++", "高价+", "高价++"
+    ],
+    "coldCave": [
+        "品质提升", "品质提升+", "低价", "高价"
+    ],
+    "coldPlain": [
+        "品质提升", "品质提升+", "低价", "高价"
+    ],
+    "coldPlainRight": [
+        "品质提升+", "品质提升++", "高价", "高价+"
+    ],
+    "coldPalace": [
+        "品质提升++", "超级品质", "高价++", "限定价格"
+    ],
+    "coldPlainDown": [
+        "品质提升+", "品质提升++", "高价+", "高价++"
+    ],
+    "volcano": [
+        "品质提升++", "超级品质", "究极之力"
+    ],
+    "forest": [
+        "", "", "品质提升", "低价", "高价"
+    ],
+    "deepForest": [
+        "品质提升", "品质提升+", "低价", "高价", "高价+"
+    ],
+    "deepestForest": [
+        "品质提升+", "品质提升++", "高价", "高价+", "高价++"
+    ],
+    "thunderIsland": [
+        "品质提升+", "品质提升++", "高价+", "高价++", "究极之力"
+    ],
+    "thunderRuins": [
+        "品质提升++", "超级品质", "究极之力", "限定价格"
+    ],
+    "peak": [
+        "品质提升++", "超级品质", "究极之力", "限定价格"
+    ],
+    "town": [
+        "", "", "", "", ""
+    ],
+    "townRight": [
+        "", "", "", "", ""
+    ]
+}
+var mapQualityGroup = {
+    "pathNearAtelier": [
+        5, 5, 10, 10, 10, 10, 20
+    ],
+    "pathToTheTown": [
+        10, 10, 10, 15, 15, 20, 25
+    ],
+    "CrystalCave": [
+        10, 20, 20, 20, 20, 25, 25, 30, 30, 35, 35
+    ],
+    "CrystalCaveRight": [
+        30, 30, 40, 40, 50, 50, 50
+    ],
+    "dragonHole": [
+        80, 90, 100
+    ],
+    "mountainCave1": [
+        15, 20, 25, 30
+    ],
+    "mountainCave2": [
+        25, 30, 35, 40
+    ],
+    "mountainCave3": [
+        35, 40, 45, 50
+    ],
+    "coldCave": [
+        20, 25, 30, 35
+    ],
+    "coldPlain": [
+        25, 30, 35, 40
+    ],
+    "coldPlainRight": [
+        30, 35, 40, 45
+    ],
+    "coldPalace": [
+        40, 45, 50, 55
+    ],
+    "coldPlainDown": [
+        35, 40, 45, 50
+    ],
+    "volcano": [
+        50, 55, 60, 65
+    ],
+    "forest": [
+        10, 15, 20, 25
+    ],
+    "deepForest": [
+        20, 25, 30, 35
+    ],
+    "deepestForest": [
+        30, 35, 40, 45
+    ],
+    "thunderIsland": [
+        40, 45, 50, 55
+    ],
+    "thunderRuins": [
+        50, 55, 60, 65
+    ],
+    "peak": [
+        60, 65, 70, 75
+    ],
+    "town": [
+        0, 0, 0, 0, 0
+    ],
+    "townRight": [
+        0, 0, 0, 0, 0
+    ]
+}
 
 var atelier={
     "name":"atelier",
@@ -1688,6 +1638,15 @@ var thunderIsland={
             "needTool":"捕虫网",
             "hitbox":[535,516,118,118]
         },
+        {
+            "type":"needToolItem",
+            "itemname":"雷电矿",
+            "amount":1,
+            "quality":[],
+            "trait":[],
+            "needTool":"爆破用炎烧",
+            "hitbox":[278,70,160,160]
+        },
     ]
 }
 var thunderRuins={
@@ -1732,16 +1691,6 @@ var thunderRuins={
             "destinationX":640,
             "destinationY":0,
             "hitbox":[0,720,1280,80]
-        },
-        {
-            "type":"needToolItem",
-            "itemname":"星之粉",
-            "amount":2,
-            "quality":[],
-            "trait":[],
-            "needTool":"爆破用炎烧",
-            "use":1,
-            "hitbox":[774,40,129,129]
         },
     ]
 }
@@ -1898,7 +1847,7 @@ var peak={
         {
             "type":"chest",
             "name":"炼金术的奥义",
-            "hitbox":[886,165,128,128],
+            "hitbox":[825,102,128,128],
             "recipe":[
                 {
                     "name":"万能中和剂（虹）",
@@ -1939,7 +1888,33 @@ var peak={
                     }
                 },
             ]
-        }
+        },
+        {
+            "type":"needToolItem",
+            "itemname":"星之粉",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "needTool":"爆破用炎烧",
+            "use":1,
+            "hitbox":[240,52,111,111]
+        },
+        {
+            "type":"item",
+            "itemname":"黄色的花",
+            "amount":4,
+            "quality":[],
+            "trait":[],
+            "hitbox":[70,459,139,139]
+        },
+        {
+            "type":"item",
+            "itemname":"石灰岩",
+            "amount":5,
+            "quality":[],
+            "trait":[],
+            "hitbox":[553,503,125,125]
+        },
     ]
 }
 var mountainCave1={
