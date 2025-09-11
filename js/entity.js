@@ -598,7 +598,9 @@ class dragon extends entity{
         this.spriteWidth=spriteWidth;
         this.spriteHeight=spriteHeight;
         this.DRAGON=DRAGON;
-        localStorage.setItem("LA-dragon-started-"+localStorage.getItem("LA-username"),JSON.stringify(false));
+        if(!localStorage.getItem("LA-dragon-started-"+localStorage.getItem("LA-username"))){
+            localStorage.setItem("LA-dragon-started-"+localStorage.getItem("LA-username"),JSON.stringify(false));
+        }
     }
     update(game,lilies,input){
         if(JSON.parse(localStorage.getItem("LA-trial-final_fight"+localStorage.getItem("LA-username")))==true){
@@ -616,6 +618,7 @@ class dragon extends entity{
             }
             else{
                 lilies.getDamaged(999999,game);
+                localStorage.setItem("LA-dragon-started-"+localStorage.getItem("LA-username"),JSON.stringify(false));
             }
         }
     }
