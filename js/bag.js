@@ -70,7 +70,7 @@ class bag{
                 "name":["天启与智慧之杖"],
                 "intro":"",
                 "img":"enlightenment-staff.webp",
-                "amount":1,
+                "amount":0,
                 "quality":[],
                 "trait":[]
             },
