@@ -1,4 +1,4 @@
-// game.js - 完整脚本（含怪物机制）
+// game.js - 完整脚本（含魔龙机制）
 
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
@@ -38,7 +38,7 @@ const skillCDConfig = { skill1: 5, skill2: 6, skill3: 4 };
 let currentSkillCD = { skill1: 0, skill2: 0, skill3: 0 };
 let isSkillUsedThisTurn = false;
 
-// 怪物状态
+// 魔龙状态
 let monsterStatus = { isArmorBroken: false };
 
 // 技能按钮 DOM
@@ -76,7 +76,7 @@ function drawScene() {
   if (heroImg.complete) ctx.drawImage(heroImg, hero.x, hero.y, hero.w, hero.h);
   drawHealthBar(hero.x-40, hero.y - 30, heroHP, HERO_MAX_HP);
 
-  // 怪物
+  // 魔龙
   monster.x = canvas.width * 0.62;
   monster.y = canvas.height * 0.35;
   if (monsterStatus.isArmorBroken) {
@@ -230,7 +230,7 @@ function enemyTurn(defended = false, onComplete) {
     
     // 检查是否需要提醒玩家大招即将到来 (修复BUG2: 在回合结束时提示)
     if (turnCount + 1 === nextBigAttackTurn) {
-      logBattle("⚠️ 警告：怪物正在积蓄能量，下回合将发动强力攻击！");
+      logBattle("⚠️ 警告：魔龙正在积蓄能量，下回合将发动强力攻击！");
     }
 
     // 每 4 回合发动一次大招
@@ -238,13 +238,13 @@ function enemyTurn(defended = false, onComplete) {
       let bigDmg = Math.floor(Math.random() * 21) + 30; // 30~40
       if (defended) bigDmg = Math.floor(bigDmg / 2);
       heroHP = Math.max(0, heroHP - bigDmg);
-      logBattle(`⚡ 怪物释放大招！Lilies损失${bigDmg}点HP！当前HP：${heroHP}`);
+      logBattle(`⚡ 魔龙释放大招！Lilies损失${bigDmg}点HP！当前HP：${heroHP}`);
       nextBigAttackTurn += 5; // 设置下一次大招的回合
     } else {
       let dmg = Math.floor(Math.random() * 9) + 9; // 9~18
       if (defended) dmg = Math.floor(dmg / 2);
       heroHP = Math.max(0, heroHP - dmg);
-      logBattle(`👹 怪物攻击！造成${dmg}点伤害！ 当前HP：${heroHP}`);
+      logBattle(`👹 魔龙攻击！造成${dmg}点伤害！ 当前HP：${heroHP}`);
     }
 
     checkGameOver();
@@ -261,11 +261,11 @@ function attack() {
   let damage = 22;
   if (monsterStatus.isArmorBroken) {
     damage = Math.floor(damage * 1.6);
-    logBattle(`⚔ 怪物处于重伤状态！伤害提升60%！`);
+    logBattle(`⚔ 魔龙处于重伤状态！伤害提升60%！`);
   }
 
   monsterHP = Math.max(0, monsterHP - damage);
-  logBattle(`⚔ 普通攻击！怪物损失${damage}点HP！ 当前怪物HP：${monsterHP}`);
+  logBattle(`⚔ 普通攻击！魔龙损失${damage}点HP！ 当前魔龙HP：${monsterHP}`);
 
   if (!checkGameOver()) {
     enemyTurn(false, () => {
@@ -332,12 +332,12 @@ function skill2() {
 
   if (monsterStatus.isArmorBroken) {
     damage = Math.floor(damage * 1.6);
-    logBattle(`⚔ 怪物处于重伤状态！伤害提升60%！`);
+    logBattle(`⚔ 魔龙处于重伤状态！伤害提升60%！`);
   }
 
   monsterHP = Math.max(0, monsterHP - damage);
   heroHP = Math.max(0, heroHP - selfDamage);
-  logBattle(`🔥 魔焰药剂！怪物损失${damage}点，自身损失${selfDamage}点！`);
+  logBattle(`🔥 魔焰药剂！魔龙损失${damage}点，自身损失${selfDamage}点！`);
 
   setSkillOnCooldown("skill2");
 
@@ -361,7 +361,7 @@ function skill3() {
   let damage = 22;
   monsterStatus.isArmorBroken = true;
   monsterHP = Math.max(0, monsterHP - damage);
-  logBattle(`⚡ 重伤药剂！怪物损失${damage}点HP，下回合伤害+60%！`);
+  logBattle(`⚡ 重伤药剂！魔龙损失${damage}点HP，下回合伤害+60%！`);
 
   setSkillOnCooldown("skill3");
 
