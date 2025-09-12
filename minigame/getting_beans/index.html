@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../icon.ico">
+    <title>Lilies's atelier</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <audio id="alchemyBgm" loop>
+        <source src="bgm.mp4" type="audio/mpeg">
+        您的浏览器不支持音频播放
+    </audio>
+    <div id="startScreen">
+        <div class="instructions">
+            <div class="alchemy-header">
+                <h1>炼金工房：元素收集者</h1>
+                <p class="subtitle">元素平衡的试炼</p>
+            </div>
+            <p>欢迎来到炼金工房的元素试炼！作为新晋炼金术士，你需要在限定时间内收集足够的元素能量，以证明你的炼金天赋。</p>
+            
+            <p>使用 <span class="control-key">A</span> 键向左移动</p>
+            <p>使用 <span class="control-key">D</span> 键向右移动</p>
+            <p>使用 <span class="control-key">W</span> 键加速移动（配合A/D使用）</p>
+            
+            <div class="bean-type">
+                <span><img class="element-icon" src="./小道具/蓝宝石.png" alt="">水元素水晶：+10点元素能量</span>
+            </div>
+            <div class="bean-type">
+                <span><img class="element-icon" src="./小道具/毒药瓶.png" alt="">毒药瓶：-10元素能量（护盾激活时无效）</span>
+            </div>
+            <div class="bean-type">
+                <span><img class="element-icon" src="./小道具/沙漏.png" alt="">沙漏：+5元素能量并增加5秒游戏时间（稀有）</span>
+            </div>
+            <div class="bean-type">
+                <span><img class="element-icon" src="./小道具/护盾.png" alt="">护盾：+5元素能量并且激活5秒护盾（免疫毒药瓶）</span>
+            </div>
+            
+            <h3>游戏目标：</h3>
+            <p>在40秒内获得120元素能量以上获胜,低于-80元素能量或时间结束则失败。</p>
+        </div>
+        <button id="startButton">开始试炼</button>
+    </div>
+    <canvas id="canvasOfGame"></canvas>
+    <div id="player"></div>
+    <div id="score"></div>
+    <div id="bean" class="falling-bean"></div>
+
+    <script src="game.js"></script>
+</body>
+</html>

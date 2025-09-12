@@ -1,0 +1,156 @@
+@font-face {
+    font-family: 'Lolita'; /* 自定义字体名称（后续引用使用） */
+    src: url('Lolita.ttf') format('truetype'); /* 替换为你的.ttf文件路径 */
+    font-weight: normal; /* 字体粗细（可根据需要调整） */
+    font-style: normal; /* 字体样式（正常/斜体等） */
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lolita', sans-serif; /* 全局字体 */
+}
+
+#canvasOfGame {
+    display: block;
+    width: calc(100vw - 10px);
+    height: calc(100vh - 10px);
+    margin: 10px auto;
+    max-width: 100%;
+    max-height: 100%;
+    box-sizing: border-box;
+}
+
+#player, #score, #bean {
+    display: none;
+}
+
+body {
+    overflow: hidden;
+}
+
+/* 开始界面核心样式 */
+#startScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    /* 突出背景图片 */
+    background-image: url('炼金术士背景.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 简洁文案面板 */
+.instructions {
+    max-width: 700px;
+    padding: 25px;
+    /* 半透明背景增强可读性同时不遮挡背景图 */
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 标题区域 */
+.alchemy-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+    font-family: 'Lolita', sans-serif; /* 标题字体 */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin: 0;
+
+}
+
+.subtitle {
+    color: #666;
+    font-size: 16px;
+    margin-top: 5px;
+    font-weight: 400;
+    font-family: 'Lolita', sans-serif;    
+}
+
+/* 说明文字 */
+.instructions p {
+    color: #444;
+    margin: 10px 0;
+    line-height: 1.5;
+    font-family: 'Lolita', sans-serif;
+}
+
+h3 {
+    color: #333;
+    margin: 15px 0 8px;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Lolita', sans-serif;
+}
+
+/* 控制键样式 */
+.control-key {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 0 5px;
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+    font-weight: 600;
+    font-family: 'Lolita', sans-serif;
+}
+
+/* 元素类型样式 */
+.bean-type {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    color: #555;
+    font-family: 'Lolita', sans-serif;
+}
+
+.element-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+/* 开始按钮 */
+#startButton {
+    padding: 12px 30px;
+    font-size: 18px;
+    color: white;
+    background-color: #4a6fa5;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    font-family: 'Lolita', sans-serif;
+}
+
+#startButton:hover {
+    background-color: #3a5d8c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 111, 165, 0.3);
+}
+
+/* 画布样式 */
+#canvasOfGame {
+    background-color: #fafafa;
+    border: 2px solid #eee;
+}
