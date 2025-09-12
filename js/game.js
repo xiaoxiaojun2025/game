@@ -16,7 +16,6 @@ class game{
         this.createCanvas();
         this.ctx=this.gameCanvas.getContext("2d");
         window.addEventListener("resize",this.createCanvas);
-        this.initContainer();
         this.creatPermanentEntities();
         this.storage=new bag(5000);
         this.bag=new bag(50);
@@ -34,25 +33,22 @@ class game{
         this.sumTimestamp=0;
         this.animate=this.animate.bind(this);
     }
-    initContainer(){
-        document.getElementsByClassName("canvasContainer")[0].style.width=gameWidth+"px";
-        document.getElementsByClassName("canvasContainer")[0].style.height=gameHeight+"px"
-        document.getElementById("innerCanvasContainer").style.width=gameWidth*0.7+"px"
-        document.getElementById("innerCanvasContainer").style.height=gameHeight*0.7+"px";
-    }
     createCanvas(){
         this.gameCanvas=document.getElementById("canvas1");
         this.gameCanvas.width=gameWidth;
         this.gameCanvas.height=gameHeight;
-        this.gameCanvas.style.width=gameWidth+"px";
-        this.gameCanvas.style.height=gameHeight+"px";
+        var w=gameWidth,h=gameHeight;
         const scaleX=this.gameCanvas.parentElement.parentElement.offsetWidth/gameWidth;
         const scaleY=this.gameCanvas.parentElement.parentElement.offsetHeight/gameHeight;
         const scale=Math.min(scaleX,scaleY);
         if(scale<1){
-            this.gameCanvas.style.width=(gameWidth*scale)+"px";
-            this.gameCanvas.style.height=(gameHeight*scale)+"px";
+            w=gameWidth*scale;
+            h=gameHeight*scale;
         }
+        this.gameCanvas.style.width=w+"px";
+        this.gameCanvas.style.height=h+"px";
+        document.getElementById("innerCanvasContainer").style.width=w*0.7+"px";
+        document.getElementById("innerCanvasContainer").style.height=h*0.7+"px";
         document.getElementById("canvasContainerContainer").style.width=this.gameCanvas.style.width;
         document.getElementById("canvasContainerContainer").style.height=this.gameCanvas.style.height;
     }

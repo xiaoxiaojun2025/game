@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="../icon.ico">
+        <title>Lilies' atelier</title>
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <link rel="stylesheet" type="text/css" href="../css/fonts.css">
+        <style>
+            body{
+                background-color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="videoContainer" style="position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+            <video id="video" src="../video/op.mp4" width="100%" height="100%" style="position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);object-fit: contain;"></video>
+            <div style="position: absolute;color: pink;top: 0;left: 0;display: none;font-family: 'Lolita';font-size: 2em;" id="skip">双击esc跳过</div>
+            <div style="position: absolute;color: white;bottom: 0;left: 50%;transform: translate(0,-50%);font-family: 'Lolita';font-size: 2em;" id="start">点击屏幕开始</div>
+        </div>
+        <script>
+            window.onload=function(){
+                function setContainerSize(){
+                    var video=document.getElementById("video");
+                    var videoContainer=document.getElementById("videoContainer");
+                    var scaleX=window.innerWidth/video.videoWidth;
+                    var scaleY=window.innerHeight/video.videoHeight;
+                    var scale=Math.min(scaleX,scaleY);
+                    videoContainer.style.width=(video.videoWidth*scale)+"px";
+                    videoContainer.style.height=(video.videoHeight*scale)+"px";
+                    video.style.width=(video.videoWidth*scale)+"px";
+                    video.style.height=(video.videoHeight*scale)+"px";
+                }
+                setContainerSize();
+                window.addEventListener("resize",setContainerSize);
+                window.addEventListener("click",function a(e){
+                    var video=document.getElementById("video");
+                    video.play();
+                    document.getElementById("start").style.display="none";
+                    document.getElementById("skip").style.display="block";
+                    window.removeEventListener("click",a);
+                });
+                var count=0;
+                window.addEventListener("keydown",(e)=>{
+                    if(e.key=="Escape"){
+                        e.preventDefault();
+                        count++;
+                        setTimeout(()=>{
+                            count=0;
+                        },1000);
+                        if(count==2){
+                            window.location.href="./game.html";
+                        }
+                    }
+                });
+                video.addEventListener("ended",function(){
+                    window.location.href="./game.html";
+                });
+            }
+        </script>
+    </body>
+</html>
