@@ -992,7 +992,7 @@ class trial extends entity{
                         this.ifdraw=false;
                         document.getElementById("Ehint").style.display="none";
                         game.SaveManager.save(game);
-                        window.location.href="../minigame/minigame1/index.html";
+                        window.location.href="../minigame/getting_beans/index.html";
                     }
                 }
                 else if(this.in){
@@ -1214,7 +1214,7 @@ class chest extends recipeItem{
                 localStorage.setItem(preTrialPageKey, window.location.href);
                 document.getElementById("Ehint").style.display="none";
                 game.SaveManager.save(game);
-                window.location.href="../minigame/minigame2/index.html";
+                window.location.href="../minigame/card_pairing/index.html";
             }
         }
         else if(this.in){
