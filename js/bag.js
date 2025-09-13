@@ -524,15 +524,15 @@ class bag{
                 "intro":"偶尔～会有弯曲的长出来，那种也能卖到相当高价呢。<br>弯曲的直木……也太莫名其妙了。",
                 "img":"straight-baum.webp",
                 "price":1,
-                "amount":1,
-                "quality":[10],
-                "trait":[""]
+                "amount":0,
+                "quality":[],
+                "trait":[]
             },
             {
-                "name":["灰木炭","（木材）","（燃料）"],
+                "name":["灰木炭","（木材）","（火药）","（燃料）"],
                 "intro":"“好，我来施个魔法。我会让你知道你是很棒的素材。来吧，坐上南瓜马车……",
                 "img":"aschenp-coal.webp",
-                "price":1,
+                "price":4,
                 "amount":0,
                 "quality":[],
                 "trait":[]

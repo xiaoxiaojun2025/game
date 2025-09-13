@@ -59,6 +59,13 @@ class recipeGroup{
                 }
             },
             {
+                "name":"灰木炭",
+                "time":3,
+                "recipe":{
+                    "直木":2
+                }
+            },
+            {
                 "name":"纯水",
                 "time":3,
                 "recipe":{

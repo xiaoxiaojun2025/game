@@ -1746,6 +1746,15 @@ var thunderRuins={
             "destinationY":0,
             "hitbox":[0,720,1280,80]
         },
+        {
+            "type":"needToolItem",
+            "itemname":"雷电矿",
+            "amount":2,
+            "quality":[],
+            "trait":[],
+            "needTool":"爆破用炎烧",
+            "hitbox":[717,483,148,148]
+        },
     ]
 }
 var town={
