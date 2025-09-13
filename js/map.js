@@ -327,7 +327,7 @@ var atelier={
         },
         {
             "type":"hitbox",
-            "hitbox":[0,-240,1280,80]
+            "hitbox":[0,-80,1280,80]
         },
         {
             "type":"door",
@@ -388,7 +388,7 @@ var pathNearAtelier={
         },
         {
             "type":"hitbox",
-            "hitbox":[0,-240,1280,80]
+            "hitbox":[0,-80,1280,80]
         },
         {
             "type":"text",
@@ -458,7 +458,7 @@ var pathToTheTown={
         },
         {
             "type":"hitbox",
-            "hitbox":[0,-240,1280,80]
+            "hitbox":[0,-80,1280,80]
         },
         {
             "type":"item",
@@ -687,7 +687,7 @@ var CrystalCaveRight={
         },
         {
             "type":"hitbox",
-            "hitbox":[0,-240,1280,80]
+            "hitbox":[0,-80,1280,80]
         },
         {
             "type":"hitbox",
@@ -772,7 +772,7 @@ var CrystalCaveLeft={
         },
         {
             "type":"hitbox",
-            "hitbox":[0,-240,1280,80]
+            "hitbox":[0,-80,1280,80]
         },
         {
             "type":"hitbox",
@@ -1244,6 +1244,10 @@ var dragonHole={
             "hitbox":[0,0,800,640]
         },
         {
+            "type":"hitbox",
+            "hitbox":[0,-80,1280,80]
+        },
+        {
             "type":"entrance",
             "destinationMap":"CrystalCaveLeft",
             "destinationX":587,
@@ -1293,6 +1297,10 @@ var dragonLeft={
         {
             "type":"hitbox",
             "hitbox":[-80,0,80,720]
+        },
+        {
+            "type":"hitbox",
+            "hitbox":[0,-80,1280,80]
         },
         {
             "type":"entrance",
@@ -1759,6 +1767,10 @@ var town={
             "hitbox":[996,348,151,293]
         },
         {
+            "type":"hitbox",
+            "hitbox":[0,-80,1280,80]
+        },
+        {
             "type":"entrance",
             "destinationMap":"forest",
             "destinationX":1196,
@@ -1815,7 +1827,7 @@ var townRight={
         },
         {
             "type":"hitbox",
-            "hitbox":[0,-240,1280,80]
+            "hitbox":[0,-160,1280,80]
         },
         {
             "type":"entrance",
@@ -1890,7 +1902,7 @@ var peak={
         },
         {
             "type":"hitbox",
-            "hitbox":[0,-240,1280,80]
+            "hitbox":[0,-80,1280,80]
         },
         {
             "type":"entrance",
@@ -2007,7 +2019,7 @@ var mountainCave1={
         },
         {
             "type":"hitbox",
-            "hitbox":[0,-240,1280,80]
+            "hitbox":[0,-80,1280,80]
         },
         {
             "type":"hitbox",
@@ -2093,7 +2105,7 @@ var mountainCave2={
         },
         {
             "type":"hitbox",
-            "hitbox":[0,-240,1280,80]
+            "hitbox":[0,-80,1280,80]
         },
         {
             "type":"entrance",
@@ -2203,7 +2215,7 @@ var mountainCave3={
         },
         {
             "type":"hitbox",
-            "hitbox":[0,-240,1280,80]
+            "hitbox":[0,-80,1280,80]
         },
         {
             "type":"entrance",
