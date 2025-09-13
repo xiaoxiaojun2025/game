@@ -67,25 +67,25 @@ class eventChecker{
             game.RecipeGroup.recipe.push(
                 {
                     "name":"纯洁钻石",
-                    "time":64,
+                    "time":12,
                     "recipe":{
                         "睿智绿宝石":1,
-                        "钻石原石":4,
-                        "（水）":16
+                        "钻石原石":2,
+                        "（水）":4
                     }
                 },
                 {
                     "name":"百万水晶",
-                    "time":128,
+                    "time":10,
                     "recipe":{
                         "纯洁钻石":1,
                         "纯水":2,
-                        "（神秘之力）":8
+                        "（神秘之力）":3
                     }
                 },
                 {
                     "name":"七色棱镜",
-                    "time":128,
+                    "time":10,
                     "recipe":{
                         "万能中和剂（虹）":1,
                         "纯水":4,
@@ -100,7 +100,7 @@ class eventChecker{
             game.RecipeGroup.recipe.push(
                 {
                     "name":"爆破用炎烧",
-                    "time":24,
+                    "time":4,
                     "recipe":{
                         "中和剂（红）":2,
                         "（火药）":1,

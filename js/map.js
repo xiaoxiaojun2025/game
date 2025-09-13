@@ -1156,6 +1156,14 @@ var coldPlainDown={
             "hitbox":[424,243,107,107]
         },
         {
+            "type":"item",
+            "itemname":"炙热喷水",
+            "amount":4,
+            "quality":[],
+            "trait":[],
+            "hitbox":[430,521,107,107]
+        },
+        {
             "type":"text",
             "hitbox":[0,0,1280,720],
             "text":[
@@ -1208,6 +1216,14 @@ var volcano={
             "hitbox":[-160,800,1440,80],
             "damage":999,
             "hearts":2000
+        },
+        {
+            "type":"item",
+            "itemname":"炙热喷水",
+            "amount":3,
+            "quality":[],
+            "trait":[],
+            "hitbox":[461,360,87,87]
         },
         {
             "type":"recipeItem",
