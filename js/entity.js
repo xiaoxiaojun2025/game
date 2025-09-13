@@ -618,8 +618,8 @@ class dragon extends entity{
                 window.location.href="../minigame/final_fight/index.html";
             }
             else{
-                localStorage.setItem("LA-dragon-started-"+localStorage.getItem("LA-username"),JSON.stringify(false));
                 lilies.getDamaged(999999,game);
+                localStorage.setItem("LA-dragon-started-"+localStorage.getItem("LA-username"),JSON.stringify(false));
             }
         }
     }
