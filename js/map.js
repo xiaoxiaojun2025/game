@@ -2156,7 +2156,7 @@ var mountainCave2={
             "recipe":[
                 {
                     "name":"热情红宝石",
-                    "time":8,
+                    "time":4,
                     "recipe":{
                         "红宝石原石":4,
                         "抛光液":4,
@@ -2165,7 +2165,7 @@ var mountainCave2={
                 },
                 {
                     "name":"高贵蓝宝石",
-                    "time":16,
+                    "time":6,
                     "recipe":{
                         "热情红宝石":1,
                         "蓝宝石原石":4,
@@ -2174,7 +2174,7 @@ var mountainCave2={
                 },
                 {
                     "name":"诚实黄宝石",
-                    "time":32,
+                    "time":8,
                     "recipe":{
                         "高贵蓝宝石":1,
                         "黄宝石原石":4,
@@ -2183,7 +2183,7 @@ var mountainCave2={
                 },
                 {
                     "name":"睿智绿宝石",
-                    "time":64,
+                    "time":16,
                     "recipe":{
                         "诚实黄宝石":1,
                         "绿宝石原石":4,
