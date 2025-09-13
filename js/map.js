@@ -735,7 +735,7 @@ var CrystalCaveRight={
         {
             "type":"item",
             "itemname":"可燃灰砂",
-            "amount":4,
+            "amount":6,
             "quality":[],
             "trait":[],
             "hitbox":[469,0,112,112]
@@ -2175,7 +2175,7 @@ var mountainCave2={
                     "time":4,
                     "recipe":{
                         "红宝石原石":4,
-                        "抛光液":4,
+                        "抛光液":2,
                         "（燃料）":2
                     }
                 },
@@ -2184,7 +2184,7 @@ var mountainCave2={
                     "time":6,
                     "recipe":{
                         "热情红宝石":1,
-                        "蓝宝石原石":4,
+                        "蓝宝石原石":2,
                         "纯水":4
                     }
                 },
@@ -2193,16 +2193,16 @@ var mountainCave2={
                     "time":8,
                     "recipe":{
                         "高贵蓝宝石":1,
-                        "黄宝石原石":4,
+                        "黄宝石原石":2,
                         "（金属）":3
                     }
                 },
                 {
                     "name":"睿智绿宝石",
-                    "time":16,
+                    "time":10,
                     "recipe":{
                         "诚实黄宝石":1,
-                        "绿宝石原石":4,
+                        "绿宝石原石":2,
                         "（气体）":3
                     }
                 }
