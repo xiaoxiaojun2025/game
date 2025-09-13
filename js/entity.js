@@ -605,6 +605,7 @@ class dragon extends entity{
     update(game,lilies,input){
         if(JSON.parse(localStorage.getItem("LA-trial-final_fight"+localStorage.getItem("LA-username")))==true){
             localStorage.setItem("LA-trial-final_fight"+localStorage.getItem("LA-username"),JSON.stringify(false));
+            localStorage.setItem("LA-dragon-started-"+localStorage.getItem("LA-username"),JSON.stringify(false));
             game.Entity.splice(game.Entity.indexOf(this),1);
             game.Map.entityGroup.splice(game.Map.entityGroup.indexOf(this.DRAGON),1);
             globalThis[game.Map.name].entity=game.Map.entityGroup;
@@ -617,8 +618,8 @@ class dragon extends entity{
                 window.location.href="../minigame/final_fight/index.html";
             }
             else{
-                lilies.getDamaged(999999,game);
                 localStorage.setItem("LA-dragon-started-"+localStorage.getItem("LA-username"),JSON.stringify(false));
+                lilies.getDamaged(999999,game);
             }
         }
     }
