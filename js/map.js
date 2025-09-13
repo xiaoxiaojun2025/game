@@ -2029,7 +2029,7 @@ var mountainCave1={
         },
         {
             "type":"hitbox",
-            "hitbox":[0,-80,1280,80]
+            "hitbox":[0,-240,1280,80]
         },
         {
             "type":"hitbox",
@@ -2047,7 +2047,7 @@ var mountainCave1={
             "destinationMap":"mountainCave2",
             "destinationX":0,
             "destinationY":518,
-            "hitbox":[1280,0,80,720]
+            "hitbox":[1280,-240,80,960]
         },
         {
             "type":"needToolItem",
