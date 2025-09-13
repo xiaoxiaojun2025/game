@@ -191,9 +191,9 @@ class bag{
                 "intro":"咕噜咕噜……嗯～就是一般的水呢。",
                 "img":"drinking-water.webp",
                 "price":1,
-                "amount":2,
-                "quality":[5,5],
-                "trait":["",""]
+                "amount":0,
+                "quality":[],
+                "trait":[]
             },
             {
                 "name":["啪汽啪汽水","（水）","（气体）"],
@@ -236,9 +236,9 @@ class bag{
                 "intro":"应该也可以当药草啦，不过基本上还是用作燃料居多。",
                 "img":"koinos-grass.webp",
                 "price":1,
-                "amount":1,
-                "quality":[10],
-                "trait":[""]
+                "amount":0,
+                "quality":[],
+                "trait":[]
             },
             {
                 "name":["鞣皮液","（有毒材料）"],
