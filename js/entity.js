@@ -379,7 +379,6 @@ class pot extends entity{
                                         newItem.innerHTML="<img src=../img/item/"+game.storage.item[itemID[k]].img+">"+game.storage.item[itemID[k]].name[0]+"<br>品质"+game.storage.item[itemID[k]].quality[j]+"<br>"+game.storage.item[itemID[k]].trait[j];
                                         document.getElementById("innerCanvas").appendChild(newItem);
                                         newItem.onclick=function(){
-                                            document.getElementById("continue").style.display="none";
                                             newItem.style.display="none";
                                             let usingItem={
                                                 "name":storage.item[itemID[k]].name[0],
