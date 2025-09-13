@@ -271,7 +271,7 @@ class bag{
                 "name":["生命之蜜","（药品）"],
                 "intro":"它跟蜂蜜有什么不同呢？甜度都差不多……",
                 "img":"nectar-of-life.webp",
-                "price":200,
+                "price":300,
                 "amount":0,
                 "quality":[],
                 "trait":[]
